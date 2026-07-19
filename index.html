@@ -209,6 +209,21 @@ header.hero{position:relative;overflow:hidden;padding:0;
 .field textarea{min-height:70px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent-2);
   box-shadow:0 0 0 3px rgba(192,138,62,.16)}
+/* multi-select service chips */
+.choose{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:13.5px;
+  padding:9px 13px;min-height:44px;border:1px solid #D8CBB3;border-radius:2px;cursor:pointer;
+  color:var(--ink-dim);background:#fff;transition:border-color .15s,background .15s,color .15s;user-select:none}
+.chip:hover{border-color:var(--accent-2)}
+.chip input{position:absolute;opacity:0;width:0;height:0}
+.chip .dot{width:16px;height:16px;border:1.5px solid #C3B096;border-radius:3px;flex:none;
+  display:inline-flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
+.chip .dot::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;
+  transform:rotate(-45deg) translateY(-1px) scale(0);transition:transform .15s}
+.chip input:checked~.dot{background:var(--accent-2);border-color:var(--accent-2)}
+.chip input:checked~.dot::after{transform:rotate(-45deg) translateY(-1px) scale(1)}
+.chip:has(input:checked){border-color:var(--accent-2);background:rgba(192,138,62,.12);color:var(--ink)}
+.chip input:focus-visible~.dot{box-shadow:0 0 0 3px rgba(192,138,62,.28)}
 .form-window .btn-gold{width:100%;margin-top:6px}
 .form-note{text-align:center;font-size:11px;color:var(--muted);margin:12px 0 0;letter-spacing:.02em}
 
@@ -472,14 +487,14 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
           <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
           <h3 data-i18n="res.ftitle">Vertel ons uw wensen</h3>
           <div class="field">
-            <label for="f-service" data-i18n="res.l.service">Wat wilt u reserveren?</label>
-            <select id="f-service" name="service">
-              <option value="table" data-i18n="svc.table.t">Reserveer een tafel</option>
-              <option value="bike" data-i18n="svc.bike.t">Fietsverhuur</option>
-              <option value="jacuzzi" data-i18n="svc.jac.t">Jacuzzi huren</option>
-              <option value="house" data-i18n="svc.house.t">Vakantiehuis</option>
-              <option value="event" data-i18n="svc.event.t">Vier uw feest</option>
-            </select>
+            <label data-i18n="res.l.service">Wat wilt u reserveren? (meerdere mogelijk)</label>
+            <div class="choose" id="svc-choose" role="group" aria-label="Diensten">
+              <label class="chip"><input type="checkbox" name="service" value="table" checked><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.table.t">Reserveer een tafel</span></label>
+              <label class="chip"><input type="checkbox" name="service" value="bike"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.bike.t">Fietsverhuur</span></label>
+              <label class="chip"><input type="checkbox" name="service" value="jacuzzi"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.jac.t">Jacuzzi huren</span></label>
+              <label class="chip"><input type="checkbox" name="service" value="house"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.house.t">Vakantiehuis</span></label>
+              <label class="chip"><input type="checkbox" name="service" value="event"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.event.t">Vier uw feest</span></label>
+            </div>
           </div>
           <div class="frow">
             <div class="field"><label for="f-name" data-i18n="res.l.name">Naam</label><input id="f-name" name="name" type="text" autocomplete="name"></div>
@@ -614,7 +629,7 @@ const I18N = {
     "res.p":"Vul kort uw wensen in. Uw reservering opent in uw e-mailprogramma, klaar om te versturen — wij bevestigen persoonlijk. Geen account, geen gedoe.",
     "res.a1":"Tafel, fiets, jacuzzi, vakantiehuis of feest","res.a2":"Persoonlijke bevestiging per e-mail","res.a3":"Groepen en gelegenheden welkom",
     "res.or":"Liever direct mailen? ","res.fk":"Reserveringsaanvraag","res.ftitle":"Vertel ons uw wensen",
-    "res.l.service":"Wat wilt u reserveren?","res.l.name":"Naam","res.l.guests":"Aantal personen","res.l.date":"Datum","res.l.time":"Tijd","res.l.note":"Opmerking (optioneel)",
+    "res.l.service":"Wat wilt u reserveren? (meerdere mogelijk)","res.l.name":"Naam","res.l.guests":"Aantal personen","res.l.date":"Datum","res.l.time":"Tijd","res.l.note":"Opmerking (optioneel)",
     "res.submit":"Verstuur aanvraag","res.note":"Demonstratie — opent een klaargezette e-mail. Online betaling volgt in de productieversie.",
     "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het café, het terras en de tafel — van zonnige middagen tot gezellige avonden.",
     "visit.kicker":"Bezoek ons","visit.title":"Openingstijden & route","visit.dek":"U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland.",
@@ -646,7 +661,7 @@ const I18N = {
     "res.p":"Tell us briefly what you'd like. Your request opens in your email app, ready to send — we confirm personally. No account, no fuss.",
     "res.a1":"Table, bike, jacuzzi, holiday home or event","res.a2":"Personal confirmation by email","res.a3":"Groups and occasions welcome",
     "res.or":"Prefer to email directly? ","res.fk":"Reservation request","res.ftitle":"Tell us what you'd like",
-    "res.l.service":"What would you like to book?","res.l.name":"Name","res.l.guests":"Number of guests","res.l.date":"Date","res.l.time":"Time","res.l.note":"Note (optional)",
+    "res.l.service":"What would you like to book? (select any)","res.l.name":"Name","res.l.guests":"Number of guests","res.l.date":"Date","res.l.time":"Time","res.l.note":"Note (optional)",
     "res.submit":"Send request","res.note":"Demonstration — opens a pre-filled email. Online payment follows in the production version.",
     "gal.kicker":"Gallery","gal.title":"A taste of the atmosphere","gal.dek":"A glimpse of the café, the terrace and the table — from sunny afternoons to cosy evenings.",
     "visit.kicker":"Visit us","visit.title":"Opening hours & directions","visit.dek":"Find us at Buurtweg 5 in Stavenisse, on the edge of the village in the heart of Zeeland.",
@@ -678,7 +693,7 @@ const I18N = {
     "res.p":"Nennen Sie uns kurz Ihre Wünsche. Ihre Anfrage öffnet sich in Ihrem E-Mail-Programm, bereit zum Senden — wir bestätigen persönlich. Kein Konto, kein Aufwand.",
     "res.a1":"Tisch, Fahrrad, Whirlpool, Ferienhaus oder Feier","res.a2":"Persönliche Bestätigung per E-Mail","res.a3":"Gruppen und Anlässe willkommen",
     "res.or":"Lieber direkt mailen? ","res.fk":"Reservierungsanfrage","res.ftitle":"Nennen Sie uns Ihre Wünsche",
-    "res.l.service":"Was möchten Sie reservieren?","res.l.name":"Name","res.l.guests":"Anzahl Personen","res.l.date":"Datum","res.l.time":"Uhrzeit","res.l.note":"Anmerkung (optional)",
+    "res.l.service":"Was möchten Sie reservieren? (Mehrfachauswahl)","res.l.name":"Name","res.l.guests":"Anzahl Personen","res.l.date":"Datum","res.l.time":"Uhrzeit","res.l.note":"Anmerkung (optional)",
     "res.submit":"Anfrage senden","res.note":"Demonstration — öffnet eine vorbereitete E-Mail. Online-Zahlung folgt in der Produktionsversion.",
     "gal.kicker":"Galerie","gal.title":"Atmosphäre schnuppern","gal.dek":"Ein Eindruck vom Café, der Terrasse und dem Tisch — von sonnigen Nachmittagen bis zu gemütlichen Abenden.",
     "visit.kicker":"Besuchen Sie uns","visit.title":"Öffnungszeiten & Anfahrt","visit.dek":"Sie finden uns in der Buurtweg 5 in Stavenisse, am Rande des Dorfes im Herzen von Zeeland.",
@@ -707,12 +722,12 @@ document.querySelectorAll('.lang button').forEach(b=>{
   b.addEventListener('click',()=>applyLang(b.dataset.lang));
 });
 
-/* ---------- service card → prefill reservation ---------- */
+/* ---------- service card → tick that service (accumulates) ---------- */
 document.querySelectorAll('.card[data-service]').forEach(card=>{
   card.addEventListener('click',e=>{
     e.preventDefault();
-    const sel=document.getElementById('f-service');
-    if(sel){sel.value=card.dataset.service;}
+    const box=document.querySelector('#svc-choose input[value="'+card.dataset.service+'"]');
+    if(box) box.checked=true;   // add to selection, never clear the others
     document.getElementById('reserveform').scrollIntoView({behavior:'smooth',block:'start'});
     setTimeout(()=>{const n=document.getElementById('f-name');if(n)n.focus({preventScroll:true});},500);
   });
@@ -722,8 +737,14 @@ document.querySelectorAll('.card[data-service]').forEach(card=>{
 document.getElementById('resform').addEventListener('submit',e=>{
   e.preventDefault();
   const lang=document.documentElement.lang||'nl';
-  const sel=document.getElementById('f-service');
-  const service=sel.options[sel.selectedIndex].text;
+  const chosen=[...document.querySelectorAll('#svc-choose input:checked')]
+    .map(c=>c.closest('.chip').querySelector('.chip-t').textContent.trim());
+  if(!chosen.length){   // require at least one service
+    document.getElementById('svc-choose').scrollIntoView({behavior:'smooth',block:'center'});
+    const first=document.querySelector('#svc-choose input'); if(first) first.focus();
+    return;
+  }
+  const service=chosen.join(', ');
   const name=document.getElementById('f-name').value||'—';
   const guests=document.getElementById('f-guests').value||'—';
   const date=document.getElementById('f-date').value||'—';
