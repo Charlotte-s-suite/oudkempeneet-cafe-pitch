@@ -209,22 +209,25 @@ header.hero{position:relative;overflow:hidden;padding:0;
 .field textarea{min-height:70px;resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent-2);
   box-shadow:0 0 0 3px rgba(192,138,62,.16)}
-/* multi-select service chips */
-.choose{display:flex;flex-wrap:wrap;gap:8px}
-.chip{position:relative;display:inline-flex;align-items:center;gap:8px;font-size:13.5px;
-  padding:9px 13px;min-height:44px;border:1px solid #D8CBB3;border-radius:2px;cursor:pointer;
-  color:var(--ink-dim);background:#fff;transition:border-color .15s,background .15s,color .15s;user-select:none}
-.chip:hover{border-color:var(--accent-2)}
+/* multi-select service list — one clean grouped list, uniform rows */
+.choose{display:flex;flex-direction:column;border:1px solid #E1D4BC;border-radius:4px;
+  overflow:hidden;background:#fff}
+.chip{position:relative;display:flex;align-items:center;gap:11px;padding:0 14px;min-height:48px;
+  cursor:pointer;color:var(--ink-dim);border-top:1px solid #EFE7D6;
+  transition:background .15s,color .15s;user-select:none}
+.chip:first-child{border-top:0}
+.chip:hover{background:rgba(192,138,62,.05)}
 .chip input{position:absolute;opacity:0;width:0;height:0}
-.chip .dot{width:16px;height:16px;border:1.5px solid #C3B096;border-radius:3px;flex:none;
+.chip .dot{width:18px;height:18px;border:1.5px solid #C7B79B;border-radius:4px;flex:none;
   display:inline-flex;align-items:center;justify-content:center;transition:background .15s,border-color .15s}
 .chip .dot::after{content:"";width:9px;height:5px;border-left:2px solid #fff;border-bottom:2px solid #fff;
   transform:rotate(-45deg) translateY(-1px) scale(0);transition:transform .15s}
 .chip input:checked~.dot{background:var(--accent-2);border-color:var(--accent-2)}
 .chip input:checked~.dot::after{transform:rotate(-45deg) translateY(-1px) scale(1)}
-.chip:has(input:checked){border-color:var(--accent-2);background:rgba(192,138,62,.12);color:var(--ink)}
+.chip:has(input:checked){background:rgba(192,138,62,.1);color:var(--ink)}
 .chip input:focus-visible~.dot{box-shadow:0 0 0 3px rgba(192,138,62,.28)}
-.form-window .btn-gold{width:100%;margin-top:6px}
+.chip-t{font-size:14.5px;letter-spacing:.005em}
+.form-window .btn-gold{width:100%;margin-top:14px}
 .form-note{text-align:center;font-size:11px;color:var(--muted);margin:12px 0 0;letter-spacing:.02em}
 
 /* ============================== GALLERY ============================== */
