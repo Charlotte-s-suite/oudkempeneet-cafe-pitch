@@ -39,11 +39,11 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--field);color:var(--ink);font-family:var(--sans);
-  font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  font-size:16px;line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
 img{max-width:100%;display:block}
 a{color:inherit}
 .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-section{padding:64px 0;position:relative;overflow:hidden}
+section{padding:64px 0;position:relative;overflow:clip}
 h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
 p{margin:0 0 14px}
 .serif{font-family:var(--serif)}
@@ -107,7 +107,7 @@ p{margin:0 0 14px}
 }
 
 /* ============================== HERO ============================== */
-header.hero{position:relative;overflow:hidden;padding:0;
+header.hero{position:relative;overflow:clip;padding:0;
   background:radial-gradient(150% 100% at 50% -20%,#FCF6EA 0%,var(--field) 52%,var(--field-2) 100%)}
 .hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:70px 22px 78px;text-align:center}
 .edge-text{position:absolute;left:12px;top:150px;writing-mode:vertical-rl;transform:rotate(180deg);
@@ -141,7 +141,7 @@ header.hero{position:relative;overflow:hidden;padding:0;
 /* hero photo plate */
 .plate{position:relative;background:var(--paper);padding:12px;border-radius:3px;
   box-shadow:0 0 0 1px rgba(122,90,34,.28),0 30px 70px -34px rgba(36,24,19,.6)}
-.plate .pic{overflow:hidden;border-radius:2px;position:relative}
+.plate .pic{overflow:clip;border-radius:2px;position:relative}
 .plate .pic img{width:100%;height:100%;object-fit:cover}
 .hero-plate{margin:40px auto 0;max-width:940px}
 .hero-plate .pic{aspect-ratio:16/8}
@@ -286,7 +286,7 @@ header.hero{position:relative;overflow:hidden;padding:0;
 
 /* ============================== FOOTER ============================== */
 footer{background:linear-gradient(180deg,var(--field-deep) 0%,var(--field-deep-2) 100%);
-  color:var(--paper-on-dark);padding:56px 0 34px;position:relative;overflow:hidden;text-align:center}
+  color:var(--paper-on-dark);padding:56px 0 34px;position:relative;overflow:clip;text-align:center}
 footer .fmark{width:64px;height:64px;margin:0 auto 14px}
 footer .fname{font-family:var(--serif);font-size:26px;letter-spacing:.16em;text-indent:.16em;color:#F6ECDA}
 footer .fsub{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--accent-1);margin-top:6px}
@@ -303,6 +303,40 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     .reveal{animation:rise both;animation-timeline:view();animation-range:entry 0% entry 55%}
     @keyframes rise{from{opacity:0;transform:translateY(26px)}}
     .plate.reveal{animation-range:entry 0% entry 50%}
+  }
+}
+
+/* ---------- parallax drift (§5.2 — pure-CSS scroll timeline, no JS) ----------
+   Framed photos scroll slower than the page as they pass through the viewport —
+   the Hotel-Arena feel, done lawfully: compositor-only, reduced-motion-safe.
+   A base scale() gives cover-margin so the vertical drift never reveals an edge;
+   every image is clipped by its .pic { overflow:hidden } so nothing widens the
+   page and layout never shifts (CLS stays flat). No support / reduced-motion =>
+   images are simply static — motion never gates content. */
+@media (prefers-reduced-motion: no-preference){
+  @supports (animation-timeline: view()){
+    .hero-plate .pic img,
+    .rest-plate .pic img,
+    .rest-thumbs .pic img,
+    .gal-grid .pic img{
+      scale:1.16;                       /* cover-margin for the drift */
+      animation:para-photo linear both;
+      animation-timeline:view();
+      animation-range:cover;            /* entire time the frame is on screen */
+      will-change:translate;
+    }
+    @keyframes para-photo{ from{ translate:0 -7% } to{ translate:0 7% } }
+
+    /* engraving ornaments drift further (a deeper layer). Animates the separate
+       `translate` property so it composes with their existing transform
+       (flip / centre) instead of clobbering it. Ornaments only — text never
+       parallaxes (§5.2). */
+    .engraving{
+      animation:para-orn linear both;
+      animation-timeline:view();
+      animation-range:cover;
+    }
+    @keyframes para-orn{ from{ translate:0 -34px } to{ translate:0 34px } }
   }
 }
 </style>
