@@ -328,9 +328,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
    never gates content. The `.pic { overflow:clip }` frames clip the drift, so
    nothing widens the page and CLS stays flat. */
 .parallax-on .hero-plate .pic img,
-.parallax-on .rest-plate .pic img,
-.parallax-on .rest-thumbs .pic img,
-.parallax-on .gal-grid .pic img{ will-change:translate }
+.parallax-on .rest-plate .pic img{ will-change:translate }
 </style>
 </head>
 <body>
@@ -908,11 +906,9 @@ async function loadWeather(){
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   // [selector, coverScale (0 = none, for ornaments), strength as fraction of own height]
   var GROUPS=[
-    ['.hero-plate .pic img', 1.26, 0.11],
+    ['.hero-plate .pic img', 1.26, 0.11],   // large feature photos only
     ['.rest-plate .pic img', 1.26, 0.11],
-    ['.rest-thumbs .pic img',1.24, 0.10],
-    ['.gal-grid .pic img',   1.24, 0.10],
-    ['header .engraving',    0,    0.22],
+    ['header .engraving',    0,    0.22],    // ornaments (not pictures)
     ['#restaurant .engraving',0,   0.22],
     ['#reserveform .engraving',0,  0.20]
   ];
