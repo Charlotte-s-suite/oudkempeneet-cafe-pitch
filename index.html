@@ -306,39 +306,18 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
   }
 }
 
-/* ---------- parallax drift (§5.2 — pure-CSS scroll timeline, no JS) ----------
-   Framed photos scroll slower than the page as they pass through the viewport —
-   the Hotel-Arena feel, done lawfully: compositor-only, reduced-motion-safe.
-   A base scale() gives cover-margin so the vertical drift never reveals an edge;
-   every image is clipped by its .pic { overflow:hidden } so nothing widens the
-   page and layout never shifts (CLS stays flat). No support / reduced-motion =>
-   images are simply static — motion never gates content. */
-@media (prefers-reduced-motion: no-preference){
-  @supports (animation-timeline: view()){
-    .hero-plate .pic img,
-    .rest-plate .pic img,
-    .rest-thumbs .pic img,
-    .gal-grid .pic img{
-      scale:1.16;                       /* cover-margin for the drift */
-      animation:para-photo linear both;
-      animation-timeline:view();
-      animation-range:cover;            /* entire time the frame is on screen */
-      will-change:translate;
-    }
-    @keyframes para-photo{ from{ translate:0 -7% } to{ translate:0 7% } }
-
-    /* engraving ornaments drift further (a deeper layer). Animates the separate
-       `translate` property so it composes with their existing transform
-       (flip / centre) instead of clobbering it. Ornaments only — text never
-       parallaxes (§5.2). */
-    .engraving{
-      animation:para-orn linear both;
-      animation-timeline:view();
-      animation-range:cover;
-    }
-    @keyframes para-orn{ from{ translate:0 -34px } to{ translate:0 34px } }
-  }
-}
+/* ---------- parallax drift (JS-driven — see the script; cross-browser) ----------
+   Framed photos and engraving ornaments scroll slower than the page (the
+   Hotel-Arena feel). Driven by a tiny rAF loop that sets the individual
+   `translate` property (composes with hover transforms); compositor-only, no
+   layout thrash. Base cover-scale + drift are applied by JS only when motion is
+   allowed, so reduced-motion users and no-JS both get static images — motion
+   never gates content. The `.pic { overflow:clip }` frames clip the drift, so
+   nothing widens the page and CLS stays flat. */
+.parallax-on .hero-plate .pic img,
+.parallax-on .rest-plate .pic img,
+.parallax-on .rest-thumbs .pic img,
+.parallax-on .gal-grid .pic img{ will-change:translate }
 </style>
 </head>
 <body>
@@ -883,6 +862,63 @@ async function loadWeather(){
   applyLang(saved);       // also calls updateOpenState
   loadWeather();
   setInterval(function(){updateOpenState();},60000);
+})();
+
+/* ============================================================
+   Parallax drift — cross-browser (Safari included), rAF-driven.
+   Photos + engraving ornaments scroll slower than the page. Sets the individual
+   `translate` property (composes with hover transforms); compositor-only, never
+   touches layout, so CLS stays flat. Off entirely for prefers-reduced-motion.
+   ============================================================ */
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // [selector, coverScale (0 = none, for ornaments), strength as fraction of own height]
+  var GROUPS=[
+    ['.hero-plate .pic img', 1.26, 0.11],
+    ['.rest-plate .pic img', 1.26, 0.11],
+    ['.rest-thumbs .pic img',1.24, 0.10],
+    ['.gal-grid .pic img',   1.24, 0.10],
+    ['header .engraving',    0,    0.22],
+    ['#restaurant .engraving',0,   0.22],
+    ['#reserveform .engraving',0,  0.20]
+  ];
+  var items=[];
+  GROUPS.forEach(function(g){
+    document.querySelectorAll(g[0]).forEach(function(el){
+      if(g[1]) el.style.scale=String(g[1]);          // cover-margin so drift never reveals an edge
+      items.push({el:el, strength:g[2], active:true});
+    });
+  });
+  if(!items.length) return;
+  document.documentElement.classList.add('parallax-on');
+
+  // only animate what's near the viewport (perf)
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(e){ for(var i=0;i<items.length;i++) if(items[i].el===e.target) items[i].active=e.isIntersecting; });
+    }, {rootMargin:'20% 0px 20% 0px'});
+    items.forEach(function(it){ io.observe(it.el); });
+  }
+
+  var ticking=false;
+  function update(){
+    ticking=false;
+    var vh=window.innerHeight, mid=vh/2;
+    for(var i=0;i<items.length;i++){
+      var it=items[i]; if(!it.active) continue;
+      var r=it.el.getBoundingClientRect();
+      var center=r.top + r.height/2;
+      // -1 (below viewport) .. +1 (above); 0 at centre
+      var p=(mid-center)/(mid + r.height/2);
+      if(p> 1)p=1; if(p<-1)p=-1;
+      var px=Math.round(p * r.height * it.strength);
+      it.el.style.translate='0 '+px+'px';
+    }
+  }
+  function onScroll(){ if(!ticking){ ticking=true; requestAnimationFrame(update); } }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', onScroll, {passive:true});
+  update();
 })();
 </script>
 </body>
