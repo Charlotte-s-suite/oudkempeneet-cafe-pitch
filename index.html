@@ -288,9 +288,16 @@ header.hero{position:relative;overflow:clip;padding:0;
 /* ============================== FOOTER ============================== */
 footer{background:linear-gradient(180deg,var(--field-deep) 0%,var(--field-deep-2) 100%);
   color:var(--paper-on-dark);padding:56px 0 34px;position:relative;overflow:clip;text-align:center}
-footer .fmark{width:64px;height:64px;margin:0 auto 14px}
-footer .fname{font-family:var(--serif);font-size:26px;letter-spacing:.16em;text-indent:.16em;color:#F6ECDA}
-footer .fsub{font-size:10px;letter-spacing:.36em;text-transform:uppercase;color:var(--accent-1);margin-top:6px}
+/* footer nameplate — the header lockup, recoloured for the dark field + scaled down */
+.foot-lockup{margin:0 auto 4px}
+.foot-lockup .lk-top{width:min(300px,64%);margin-bottom:13px;
+  background:linear-gradient(90deg,transparent,rgba(231,192,121,.55) 14%,rgba(231,192,121,.55) 86%,transparent)}
+.foot-lockup .lk-name{font-size:clamp(27px,6vw,36px);color:#F6ECDA}
+.foot-lockup .lk-eet{gap:clamp(9px,2.2vw,14px);margin-top:9px}
+.foot-lockup .lk-eet .txt{font-size:clamp(12px,3vw,16px);color:#F6ECDA}
+.foot-lockup .lk-eet .fl{width:clamp(26px,7vw,40px)}
+.foot-lockup .lk-place{font-size:clamp(9px,2vw,12px);color:#D8C7AC;margin-top:9px}
+.foot-lockup .lk-knot{margin-top:12px;width:clamp(112px,26vw,150px)}
 .hallmarks{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:26px 0 22px}
 .hallmark{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#CDB99C;
   border:1px solid rgba(122,106,87,.55);border-radius:3px;padding:9px 14px}
@@ -618,22 +625,25 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
       <circle cx="230" cy="105" r="7"/></g></svg>
   </div>
   <div class="wrap z2">
-    <svg class="fmark" viewBox="0 0 78 78" aria-hidden="true">
-      <ellipse cx="39" cy="39" rx="37" ry="28" fill="none" stroke="#C08A3E" stroke-width="1.4"/>
-      <ellipse cx="39" cy="39" rx="33" ry="24" fill="none" stroke="#8A5A22" stroke-width=".7"/>
-      <path d="M16 50 L28 34 L35 40 L48 26 L62 50 Z" fill="none" stroke="#E7C079" stroke-width="1.3" stroke-linejoin="round"/>
-      <circle cx="48" cy="26" r="2.4" fill="#E7C079"/>
-    </svg>
-    <div class="fname">OUD-KEMPEN</div>
-    <div class="fsub">Eetcafé · Stavenisse · Zeeland</div>
-    <!-- filigree flourish from the logo -->
-    <svg class="flourish" width="150" height="20" viewBox="0 0 150 20" style="margin:20px auto 0" aria-hidden="true">
-      <g stroke="#C08A3E" fill="none" stroke-width="1">
-        <path d="M10 10 H58"/><path d="M92 10 H140"/>
-        <path d="M58 10 c6 -6 12 -6 17 0 c5 6 11 6 17 0"/>
-        <path d="M75 4 v12"/><circle cx="75" cy="10" r="2.4" fill="#E7C079" stroke="none"/>
-      </g>
-    </svg>
+    <!-- footer nameplate — same lockup as the header, recoloured for the dark field -->
+    <div class="lockup foot-lockup" aria-label="Oud-Kempen Eetcafé — Stavenisse, Zeeland">
+      <span class="lk-top" aria-hidden="true"></span>
+      <span class="lk-name">Oud-Kempen</span>
+      <span class="lk-eet" aria-hidden="true">
+        <svg class="fl flip" viewBox="0 0 54 14"><path d="M52 7 H15 c-4.5 0 -7.5 -2 -9.5 -5.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span class="txt">Eetcafé</span>
+        <svg class="fl" viewBox="0 0 54 14"><path d="M52 7 H15 c-4.5 0 -7.5 -2 -9.5 -5.4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+      </span>
+      <span class="lk-place">Stavenisse · Zeeland</span>
+      <svg class="lk-knot" viewBox="0 0 168 16" aria-hidden="true">
+        <g stroke="currentColor" fill="none" stroke-width="1.3" stroke-linecap="round">
+          <path d="M16 8 H66"/><path d="M102 8 H152"/>
+          <path d="M84 8 c-10 -7 -20 -7 -20 0 c0 7 10 7 20 0"/>
+          <path d="M84 8 c10 -7 20 -7 20 0 c0 7 -10 7 -20 0"/>
+        </g>
+        <circle cx="84" cy="8" r="2.3" fill="currentColor"/>
+      </svg>
+    </div>
     <div class="hallmarks">
       <span class="hallmark" data-i18n="hall.1">Zes dagen open</span>
       <span class="hallmark" data-i18n="hall.2">Terras & speeltuin</span>
