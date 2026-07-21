@@ -201,6 +201,23 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .card .tag{margin-top:16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-3);
   border-top:1px solid #E2D6BF;padding-top:11px;width:100%}
 
+/* ============================== FEATURE BAND (full-bleed photo) ============================== */
+.feature-band{position:relative;overflow:clip;padding:64px 22px;
+  min-height:clamp(360px,56vh,540px);display:flex;align-items:center;justify-content:center;text-align:center;
+  border-top:1px solid rgba(122,90,34,.22);border-bottom:1px solid rgba(122,90,34,.22)}
+.fb-media{position:absolute;inset:0;z-index:0}
+.fb-media img{width:100%;height:100%;object-fit:cover}
+/* legibility scrim — kept light so the band reads as imagery, not a dark slab */
+.feature-band::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(26,15,8,.30),rgba(26,15,8,.10) 42%,rgba(26,15,8,.40))}
+.fb-inner{position:relative;z-index:2;max-width:640px;margin:0 auto;color:#fff}
+.fb-inner .kicker{color:#F1D9A8}
+.fb-title{font-family:var(--serif);font-weight:700;color:#fff;margin-top:8px;
+  font-size:clamp(26px,5.2vw,42px);letter-spacing:.04em;text-indent:.04em;line-height:1.08;
+  text-shadow:0 2px 24px rgba(0,0,0,.5)}
+.fb-p{margin:0 auto;max-width:52ch;color:#F3ECE0;font-size:clamp(14px,2.4vw,17px);
+  text-shadow:0 1px 14px rgba(0,0,0,.55)}
+
 /* ============================== RESERVATION BAND ============================== */
 .reserve{background:linear-gradient(180deg,var(--field-deep) 0%,var(--field-deep-2) 100%);
   color:var(--paper-on-dark);border-top:1px solid rgba(122,106,87,.3);border-bottom:1px solid rgba(122,106,87,.3)}
@@ -472,8 +489,32 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
   </div>
 </section>
 
+<!-- ============================== FEATURE BAND (full-bleed photo) ============================== -->
+<section class="feature-band" aria-label="Ons terras">
+  <div class="fb-media"><img src="assets/terrace.webp" width="1200" height="653" loading="lazy" alt="Het terras van Oud-Kempen op een zonnige dag"></div>
+  <div class="fb-inner reveal">
+    <div class="kicker" data-i18n="fb.kicker">Buiten bij Oud-Kempen</div>
+    <h2 class="fb-title" data-i18n="fb.title">Een terras omgeven door natuur</h2>
+    <svg class="flourish" width="150" height="20" viewBox="0 0 150 20" style="margin:16px auto 14px" aria-hidden="true">
+      <g stroke="#E7C079" fill="none" stroke-width="1.1">
+        <path d="M18 10 H62"/><path d="M88 10 H132"/>
+        <path d="M75 10 c-8 -6 -16 -6 -16 0 c0 6 8 6 16 0"/>
+        <path d="M75 10 c8 -6 16 -6 16 0 c0 6 -8 6 -16 0"/>
+      </g><circle cx="75" cy="10" r="2.1" fill="#E7C079"/>
+    </svg>
+    <p class="fb-p" data-i18n="fb.p">Zonnige middagen en lange zomeravonden op ons ruime terras — aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.</p>
+  </div>
+</section>
+
 <!-- ============================== SERVICES ============================== -->
 <section class="services" id="services">
+  <div class="engraving" style="right:-150px;top:40px;opacity:.09" aria-hidden="true">
+    <svg width="440" height="480" viewBox="0 0 420 460"><g stroke="currentColor" fill="none" stroke-width="1">
+      <path d="M210 40 C120 90 120 200 210 250 C300 200 300 90 210 40 Z"/>
+      <path d="M210 90 C160 120 160 190 210 220 C260 190 260 120 210 90 Z"/>
+      <path d="M360 300 C310 280 270 320 290 370 C330 360 360 340 360 300 Z"/>
+      <circle cx="210" cy="150" r="8"/></g></svg>
+  </div>
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="svc.kicker">Alles bij Oud-Kempen</div>
@@ -567,6 +608,12 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 
 <!-- ============================== GALLERY ============================== -->
 <section class="gallery" id="gallery">
+  <div class="engraving" style="left:-150px;bottom:20px;opacity:.08;transform:scaleX(-1)" aria-hidden="true">
+    <svg width="420" height="460" viewBox="0 0 420 460"><g stroke="currentColor" fill="none" stroke-width="1">
+      <path d="M210 40 C120 90 120 200 210 250 C300 200 300 90 210 40 Z"/>
+      <path d="M60 300 C110 280 150 320 130 370 C90 360 60 340 60 300 Z"/>
+      <circle cx="210" cy="150" r="8"/></g></svg>
+  </div>
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="gal.kicker">Galerij</div>
@@ -686,6 +733,7 @@ const I18N = {
     "res.or":"Liever direct mailen? ","res.fk":"Reserveringsaanvraag","res.ftitle":"Vertel ons uw wensen",
     "res.l.service":"Wat wilt u reserveren? (meerdere mogelijk)","res.l.name":"Naam","res.l.guests":"Aantal personen","res.l.date":"Datum","res.l.time":"Tijd","res.l.note":"Opmerking (optioneel)",
     "res.submit":"Verstuur aanvraag","res.note":"Demonstratie — opent een klaargezette e-mail. Online betaling volgt in de productieversie.",
+    "fb.kicker":"Buiten bij Oud-Kempen","fb.title":"Een terras omgeven door natuur","fb.p":"Zonnige middagen en lange zomeravonden op ons ruime terras — aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.",
     "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het café, het terras en de tafel — van zonnige middagen tot gezellige avonden.",
     "visit.kicker":"Bezoek ons","visit.title":"Openingstijden & route","visit.dek":"U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Gesloten","visit.route":"Routebeschrijving",
@@ -718,6 +766,7 @@ const I18N = {
     "res.or":"Prefer to email directly? ","res.fk":"Reservation request","res.ftitle":"Tell us what you'd like",
     "res.l.service":"What would you like to book? (select any)","res.l.name":"Name","res.l.guests":"Number of guests","res.l.date":"Date","res.l.time":"Time","res.l.note":"Note (optional)",
     "res.submit":"Send request","res.note":"Demonstration — opens a pre-filled email. Online payment follows in the production version.",
+    "fb.kicker":"Outdoors at Oud-Kempen","fb.title":"A terrace surrounded by nature","fb.p":"Sunny afternoons and long summer evenings on our spacious terrace — on the edge of the village, with the Zeeland countryside as your view.",
     "gal.kicker":"Gallery","gal.title":"A taste of the atmosphere","gal.dek":"A glimpse of the café, the terrace and the table — from sunny afternoons to cosy evenings.",
     "visit.kicker":"Visit us","visit.title":"Opening hours & directions","visit.dek":"Find us at Buurtweg 5 in Stavenisse, on the edge of the village in the heart of Zeeland.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Closed","visit.route":"Get directions",
@@ -750,6 +799,7 @@ const I18N = {
     "res.or":"Lieber direkt mailen? ","res.fk":"Reservierungsanfrage","res.ftitle":"Nennen Sie uns Ihre Wünsche",
     "res.l.service":"Was möchten Sie reservieren? (Mehrfachauswahl)","res.l.name":"Name","res.l.guests":"Anzahl Personen","res.l.date":"Datum","res.l.time":"Uhrzeit","res.l.note":"Anmerkung (optional)",
     "res.submit":"Anfrage senden","res.note":"Demonstration — öffnet eine vorbereitete E-Mail. Online-Zahlung folgt in der Produktionsversion.",
+    "fb.kicker":"Draußen bei Oud-Kempen","fb.title":"Eine Terrasse inmitten der Natur","fb.p":"Sonnige Nachmittage und lange Sommerabende auf unserer weitläufigen Terrasse — am Rande des Dorfes, mit der zeeländischen Natur als Aussicht.",
     "gal.kicker":"Galerie","gal.title":"Atmosphäre schnuppern","gal.dek":"Ein Eindruck vom Café, der Terrasse und dem Tisch — von sonnigen Nachmittagen bis zu gemütlichen Abenden.",
     "visit.kicker":"Besuchen Sie uns","visit.title":"Öffnungszeiten & Anfahrt","visit.dek":"Sie finden uns in der Buurtweg 5 in Stavenisse, am Rande des Dorfes im Herzen von Zeeland.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Geschlossen","visit.route":"Route anzeigen",
@@ -919,8 +969,11 @@ async function loadWeather(){
   var GROUPS=[
     ['.hero-plate .pic img', 1.26, 0.11],   // large feature photos only
     ['.rest-plate .pic img', 1.26, 0.11],
+    ['.feature-band .fb-media img', 1.22, 0.09],
     ['header .engraving',    0,    0.22],    // ornaments (not pictures)
     ['#restaurant .engraving',0,   0.22],
+    ['.services .engraving', 0,    0.20],
+    ['.gallery .engraving',  0,    0.20],
     ['#reserveform .engraving',0,  0.20]
   ];
   var items=[];
