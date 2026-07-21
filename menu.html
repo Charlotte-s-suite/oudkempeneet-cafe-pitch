@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.classList.add('js');</script>
+<title>Menu — Oud-Kempen Eetcafé · Stavenisse, Zeeland</title>
+<meta name="description" content="De kaart van Oud-Kempen Eetcafé: verse gerechten, steengrill-specials en Zeeuwse klassiekers met foto's.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23241813'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23E7C079' text-anchor='middle'%3EOK%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --field:#F1EADC;--field-2:#EBE2D0;--field-deep:#241813;--field-deep-2:#1B120D;
+  --line:#C6B497;--line-dk:#7A6A57;--accent-1:#E7C079;--accent-2:#C08A3E;--accent-3:#8A5A22;
+  --paper:#FBF7EF;--ink:#2E2016;--ink-dim:#6B5A48;--muted:#93826B;--paper-on-dark:#F3EADB;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;overflow-x:clip;
+  background:linear-gradient(180deg,#FFFFFF 0,#FBF6EC 360px,var(--field) 1250px) no-repeat var(--field);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
+/* nav */
+.nav{position:sticky;top:0;z-index:50;background:rgba(251,248,242,.82);backdrop-filter:saturate(1.1) blur(10px);border-bottom:1px solid rgba(122,106,87,.18)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 22px;max-width:1120px;margin:0 auto}
+.brand{display:inline-flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;color:var(--ink);line-height:1}
+.nb-name{font-family:var(--serif);font-weight:700;font-size:clamp(15px,3.4vw,19px);letter-spacing:.01em;text-transform:uppercase;color:#2A1B10;line-height:1}
+.nb-eet{display:flex;align-items:center;gap:6px;font-family:var(--serif);font-weight:600;font-size:8px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:#3B2A1E;line-height:1}
+.nb-fl{display:inline-block;width:13px;height:1px;background:var(--accent-2)}
+.nav-right{display:flex;align-items:center;gap:13px}
+.nav-back{font-size:12px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--ink-dim)}
+.nav-back:hover{color:var(--ink)}
+.lang{display:inline-flex;border:1px solid rgba(122,106,87,.4);border-radius:2px;overflow:hidden}
+.lang button{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding:7px 8px;min-width:36px;min-height:34px;background:transparent;border:0;cursor:pointer;color:var(--ink-dim);border-right:1px solid rgba(122,106,87,.28)}
+.lang button:last-child{border-right:0}
+.lang button[aria-pressed="true"]{background:var(--accent-2);color:#241300;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;font-family:var(--sans);font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding:13px 24px;min-height:46px;border-radius:2px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform .18s,box-shadow .18s,background-position .4s;background-size:200% 100%}
+.btn-gold{color:#28190C;font-weight:650;border-color:#b98a3f;background-image:linear-gradient(120deg,var(--accent-1),var(--accent-2) 55%,var(--accent-1));box-shadow:0 10px 24px -14px rgba(138,90,34,.8)}
+.btn-gold:hover,.btn-gold:focus-visible{background-position:100% 0;transform:translateY(-2px)}
+@media(max-width:600px){.nav-back{display:none}}
+@media(max-width:560px){.nav-right .btn-gold{display:none}.nav-in{padding:10px 16px}}
+/* header */
+.mhead{text-align:center;padding:56px 22px 12px;position:relative}
+.mhead .kicker{font-size:11px;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:var(--accent-3)}
+.mhead h1{font-size:clamp(38px,8vw,66px);letter-spacing:.06em;text-indent:.06em;color:#2A1B10;text-transform:uppercase;margin:10px 0 0}
+.mhead .dek{max-width:56ch;margin:16px auto 0;color:var(--ink-dim);font-size:clamp(15px,2.4vw,17px)}
+.hrule{width:130px;height:1px;margin:22px auto 0;background:linear-gradient(90deg,transparent,var(--accent-2),transparent)}
+.photo-note{max-width:60ch;margin:14px auto 0;font-size:11.5px;letter-spacing:.02em;color:var(--muted);font-style:italic}
+/* category */
+.menu-body{padding:26px 0 40px}
+.menu-cat{margin-top:46px}
+.cat-head{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:26px}
+.cat-head h2{font-size:clamp(20px,4vw,28px);letter-spacing:.14em;text-indent:.14em;text-transform:uppercase;color:#2A1B10;white-space:nowrap}
+.cat-rule{height:1px;flex:1;max-width:140px;background:linear-gradient(90deg,transparent,var(--accent-2))}
+.cat-head .cat-rule:last-child{background:linear-gradient(90deg,var(--accent-2),transparent)}
+/* dish cards */
+.dish-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
+.dish{margin:0;background:var(--paper);border-radius:4px;overflow:clip;
+  box-shadow:0 0 0 1px rgba(122,90,34,.22),0 26px 54px -30px rgba(36,24,19,.5);
+  transition:transform .22s cubic-bezier(.22,.61,.36,1),box-shadow .22s}
+.dish:hover{transform:translateY(-5px);box-shadow:0 0 0 1px rgba(122,90,34,.34),0 34px 60px -28px rgba(36,24,19,.6)}
+.dish-pic{aspect-ratio:4/3;overflow:clip}
+.dish-pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.dish:hover .dish-pic img{transform:scale(1.05)}
+.dish-body{padding:16px 18px 18px}
+.dish-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.dish-top h3{font-size:19px;letter-spacing:.01em;color:#2A1B10;line-height:1.2}
+.price{font-family:var(--serif);font-weight:700;font-size:18px;white-space:nowrap;
+  background:linear-gradient(160deg,#B9812F,#8A5A22);-webkit-background-clip:text;background-clip:text;color:transparent}
+.p-unit{font-family:var(--sans);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);-webkit-text-fill-color:var(--muted);margin-left:5px}
+.dish-body p{margin:7px 0 0;font-size:13.5px;color:var(--ink-dim)}
+/* drinks */
+.drinks-block{margin-top:56px}
+.drinks-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:26px;max-width:900px;margin:0 auto}
+.drink-col{background:var(--paper);border-radius:4px;padding:22px 24px;box-shadow:0 0 0 1px rgba(122,90,34,.18),0 20px 44px -30px rgba(36,24,19,.4)}
+.drink-h{font-family:var(--serif);font-weight:700;font-size:16px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-3);margin-bottom:12px}
+.drink-row{display:flex;align-items:baseline;gap:8px;padding:6px 0;font-size:14.5px}
+.drink-row .dots{flex:1;border-bottom:1px dotted #C9B79D;transform:translateY(-3px)}
+.drink-row .dprice{font-variant-numeric:tabular-nums;color:var(--ink-dim);white-space:nowrap}
+/* footer */
+.mfoot{background:linear-gradient(180deg,var(--field-deep),var(--field-deep-2));color:var(--paper-on-dark);text-align:center;padding:44px 22px 30px;margin-top:56px}
+.mfoot .fcta{margin-bottom:18px}
+.mfoot .fine{font-size:12px;color:#B3A184}
+.mfoot .fine a{color:#D8C7AC;text-decoration:none}
+.mprov{margin-top:12px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#6E5C46}
+/* reveal */
+.js .reveal{opacity:0;transform:translateY(40px);transition:opacity .5s ease,transform .55s cubic-bezier(.22,.61,.36,1)}
+.js .reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .reveal{opacity:1;transform:none;transition:none}}
+
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-in">
+    <a class="brand" href="index.html" aria-label="Oud-Kempen Eetcafé — home">
+      <span class="nb-name">Oud-Kempen</span>
+      <span class="nb-eet" aria-hidden="true"><i class="nb-fl"></i>Eetcafé<i class="nb-fl"></i></span>
+    </a>
+    <div class="nav-right">
+      <a class="nav-back" href="index.html" data-i18n="back.home">← Terug naar home</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+      </div>
+      <a class="btn btn-gold" href="index.html#services" data-i18n="nav.reserve">Reserveer</a>
+    </div>
+  </div>
+</nav>
+
+<header class="mhead">
+  <div class="kicker" data-i18n="hdr.kicker">Eetcafé · Stavenisse · Zeeland</div>
+  <h1 data-i18n="hdr.title">De Kaart</h1>
+  <p class="dek" data-i18n="hdr.dek">Verse gerechten, steengrill-specials en Zeeuwse klassiekers — geserveerd in een warme, ontspannen sfeer.</p>
+  <div class="hrule"></div>
+  <p class="photo-note" data-i18n="photo.note">Conceptfotografie — representatieve beelden; definitieve gerechten worden voor de productieversie gefotografeerd.</p>
+</header>
+
+<main class="menu-body">
+  <div class="wrap">
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.main">Hoofdgerechten</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/cheese-fondue.webp" width="760" height="570" loading="lazy" alt="Cheese Fondue"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.cheese-fondue.n">Kaasfondue</h3><span class="price">€&nbsp;25,95<span class="p-unit">p.p.</span></span></div>
+          <p data-i18n="m.cheese-fondue.d">Reserveren 1 dag vooraf, minimaal 2 personen.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/steak.webp" width="760" height="570" loading="lazy" alt="Steak"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.steak.n">Steak</h3><span class="price">€&nbsp;27,95</span></div>
+          <p data-i18n="m.steak.d">Geserveerd met friet en salade.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/chicken-satay.webp" width="760" height="570" loading="lazy" alt="Chicken Satay"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.chicken-satay.n">Kipsaté</h3><span class="price">€&nbsp;21,95</span></div>
+          <p data-i18n="m.chicken-satay.d">Met huisgemaakte satésaus, friet en salade.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/rendang.webp" width="760" height="570" loading="lazy" alt="Rendang"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.rendang.n">Rendang</h3><span class="price">€&nbsp;20,95</span></div>
+          <p data-i18n="m.rendang.d">Met rijst of noedels, pittige boontjes of kousenband.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/sole.webp" width="760" height="570" loading="lazy" alt="Sole"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.sole.n">Tong</h3><span class="price">€&nbsp;25,95</span></div>
+          <p data-i18n="m.sole.d">Geserveerd met friet en salade.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/uitsmijter.webp" width="760" height="570" loading="lazy" alt="Ham &amp; Cheese Fried Eggs"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.uitsmijter.n">Uitsmijter ham-kaas</h3><span class="price">€&nbsp;13,95</span></div>
+          <p data-i18n="m.uitsmijter.d">Op geroosterd brood.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/toastie.webp" width="760" height="570" loading="lazy" alt="Ham &amp; Cheese Toastie"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.toastie.n">Tosti ham-kaas</h3><span class="price">€&nbsp;8,95</span></div>
+          <p data-i18n="m.toastie.d">Knapperig geroosterd.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.start">Voorgerechten</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/soup.webp" width="760" height="570" loading="lazy" alt="Soup of the Day"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.soup.n">Soep van de dag</h3><span class="price">€&nbsp;8,50</span></div>
+          <p data-i18n="m.soup.d">Dagelijks vers bereid.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/watermelon-tartare.webp" width="760" height="570" loading="lazy" alt="Watermelon Tartare"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.watermelon-tartare.n">Watermeloen tartaar</h3><span class="price">€&nbsp;8,50</span></div>
+          <p data-i18n="m.watermelon-tartare.d">Fris, met feta en kruiden.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.pancake">Pannenkoeken</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/pancake.webp" width="760" height="570" loading="lazy" alt="Traditional Pancake"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.pancake.n">Pannenkoek naturel</h3><span class="price">€&nbsp;9,95</span></div>
+          <p data-i18n="m.pancake.d">Met stroop, suiker en boter.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.snack">Snacks</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/mixed-snacks.webp" width="760" height="570" loading="lazy" alt="Mixed Fried Snacks (8 pcs)"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.mixed-snacks.n">Bittergarnituur (8 st.)</h3><span class="price">€&nbsp;7,50</span></div>
+          <p data-i18n="m.mixed-snacks.d">Met mosterd.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/bitterballen.webp" width="760" height="570" loading="lazy" alt="Bitterballen (8 pcs)"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.bitterballen.n">Bitterballen (8 st.)</h3><span class="price">€&nbsp;7,50</span></div>
+          <p data-i18n="m.bitterballen.d">Met mosterd.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/chicken-wings.webp" width="760" height="570" loading="lazy" alt="Chicken Wings (8 pcs)"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.chicken-wings.n">Kippenvleugels (8 st.)</h3><span class="price">€&nbsp;8,50</span></div>
+          <p data-i18n="m.chicken-wings.d">Knapperig, met dip.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.veg">Vegetarisch</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/pasta-mushroom.webp" width="760" height="570" loading="lazy" alt="Pasta with Mushrooms"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.pasta-mushroom.n">Pasta met champignons</h3><span class="price">€&nbsp;17,50</span></div>
+          <p data-i18n="m.pasta-mushroom.d">Met salade.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/pesto-pasta.webp" width="760" height="570" loading="lazy" alt="Gluten-Free Pesto Pasta"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.pesto-pasta.n">Glutenvrije pestopasta</h3><span class="price">€&nbsp;16,50</span></div>
+          <p data-i18n="m.pesto-pasta.d">Met salade.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.kids">Kindermenu</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/kids.webp" width="760" height="570" loading="lazy" alt="Children&#x27;s Menu"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.kids.n">Kindermenu</h3><span class="price">€&nbsp;8,95</span></div>
+          <p data-i18n="m.kids.d">Alle gerechten met friet, appelmoes &amp; mayonaise, ijs en een verrassing. Keuze uit frikandel, kroket, 4 kipnuggets of pannenkoek.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="cat.dessert">Desserts</h2><span class="cat-rule"></span></div>
+    <div class="dish-grid">
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/cheese-platter.webp" width="760" height="570" loading="lazy" alt="Cheese Platter"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.cheese-platter.n">Kaasplankje</h3><span class="price">€&nbsp;12,95</span></div>
+          <p data-i18n="m.cheese-platter.d">Met druiven, noten en vijgen.</p>
+        </figcaption>
+      </figure>
+      <figure class="dish reveal">
+        <div class="dish-pic"><img src="assets/menu/ice-cream.webp" width="760" height="570" loading="lazy" alt="Ice Cream with Strawberries &amp; Whipped Cream"></div>
+        <figcaption class="dish-body">
+          <div class="dish-top"><h3 data-i18n="m.ice-cream.n">IJs met aardbeien &amp; slagroom</h3><span class="price">€&nbsp;8,50</span></div>
+          <p data-i18n="m.ice-cream.d">Vers en romig.</p>
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  <div class="menu-cat drinks-block">
+    <div class="cat-head reveal"><span class="cat-rule"></span><h2 data-i18n="drinks.title">Dranken</h2><span class="cat-rule"></span></div>
+    <div class="drinks-grid">
+      <div class="drink-col reveal">
+        <div class="drink-h" data-i18n="dr.hot">Warme dranken</div>
+        <div class="drink-row"><span data-i18n="dr.hot.0">Koffie</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.hot.1">Thee</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.hot.2">Espresso</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.hot.3">Dubbele espresso</span><span class="dots"></span><span class="dprice">€&nbsp;4,50</span></div>
+        <div class="drink-row"><span data-i18n="dr.hot.4">Cappuccino</span><span class="dots"></span><span class="dprice">€&nbsp;3,50</span></div>
+        <div class="drink-row"><span data-i18n="dr.hot.5">Latte macchiato</span><span class="dots"></span><span class="dprice">€&nbsp;3,95</span></div>
+      </div>
+      <div class="drink-col reveal">
+        <div class="drink-h" data-i18n="dr.soft">Frisdranken</div>
+        <div class="drink-row"><span data-i18n="dr.soft.0">Coca-Cola / Cola Zero</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.soft.1">Fanta</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.soft.2">7UP / 7UP Zero</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.soft.3">Bitter lemon</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.soft.4">Plat / bruisend water</span><span class="dots"></span><span class="dprice">€&nbsp;3,00</span></div>
+        <div class="drink-row"><span data-i18n="dr.soft.5">Lipton Ice Tea</span><span class="dots"></span><span class="dprice">€&nbsp;3,20</span></div>
+        <div class="drink-row"><span data-i18n="dr.soft.6">Appel- / multivitamine- / jus d&#x27;orange</span><span class="dots"></span><span class="dprice">€&nbsp;3,20</span></div>
+      </div>
+    </div>
+  </div>
+  </div>
+</main>
+
+<footer class="mfoot">
+  <a class="btn btn-gold fcta" href="index.html#services" data-i18n="cta.reserve">Reserveer een tafel</a>
+  <div class="fine">Oud-Kempen Eetcafé · Buurtweg 5, 4696 RT Stavenisse · <a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></div>
+  <div class="mprov" data-i18n="prov">Ontwerpconcept door Merritt Digital · demonstratiebuild · conceptfotografie</div>
+</footer>
+<script>
+
+var I18N={"nl": {"nav.home": "Home", "nav.reserve": "Reserveer", "hdr.kicker": "Eetcafé · Stavenisse · Zeeland", "hdr.title": "De Kaart", "hdr.dek": "Verse gerechten, steengrill-specials en Zeeuwse klassiekers — geserveerd in een warme, ontspannen sfeer.", "photo.note": "Conceptfotografie — representatieve beelden; definitieve gerechten worden voor de productieversie gefotografeerd.", "drinks.title": "Dranken", "cta.reserve": "Reserveer een tafel", "back.home": "← Terug naar home", "prov": "Ontwerpconcept door Merritt Digital · demonstratiebuild · conceptfotografie", "cat.main": "Hoofdgerechten", "m.cheese-fondue.n": "Kaasfondue", "m.cheese-fondue.d": "Reserveren 1 dag vooraf, minimaal 2 personen.", "m.steak.n": "Steak", "m.steak.d": "Geserveerd met friet en salade.", "m.chicken-satay.n": "Kipsaté", "m.chicken-satay.d": "Met huisgemaakte satésaus, friet en salade.", "m.rendang.n": "Rendang", "m.rendang.d": "Met rijst of noedels, pittige boontjes of kousenband.", "m.sole.n": "Tong", "m.sole.d": "Geserveerd met friet en salade.", "m.uitsmijter.n": "Uitsmijter ham-kaas", "m.uitsmijter.d": "Op geroosterd brood.", "m.toastie.n": "Tosti ham-kaas", "m.toastie.d": "Knapperig geroosterd.", "cat.start": "Voorgerechten", "m.soup.n": "Soep van de dag", "m.soup.d": "Dagelijks vers bereid.", "m.watermelon-tartare.n": "Watermeloen tartaar", "m.watermelon-tartare.d": "Fris, met feta en kruiden.", "cat.pancake": "Pannenkoeken", "m.pancake.n": "Pannenkoek naturel", "m.pancake.d": "Met stroop, suiker en boter.", "cat.snack": "Snacks", "m.mixed-snacks.n": "Bittergarnituur (8 st.)", "m.mixed-snacks.d": "Met mosterd.", "m.bitterballen.n": "Bitterballen (8 st.)", "m.bitterballen.d": "Met mosterd.", "m.chicken-wings.n": "Kippenvleugels (8 st.)", "m.chicken-wings.d": "Knapperig, met dip.", "cat.veg": "Vegetarisch", "m.pasta-mushroom.n": "Pasta met champignons", "m.pasta-mushroom.d": "Met salade.", "m.pesto-pasta.n": "Glutenvrije pestopasta", "m.pesto-pasta.d": "Met salade.", "cat.kids": "Kindermenu", "m.kids.n": "Kindermenu", "m.kids.d": "Alle gerechten met friet, appelmoes & mayonaise, ijs en een verrassing. Keuze uit frikandel, kroket, 4 kipnuggets of pannenkoek.", "cat.dessert": "Desserts", "m.cheese-platter.n": "Kaasplankje", "m.cheese-platter.d": "Met druiven, noten en vijgen.", "m.ice-cream.n": "IJs met aardbeien & slagroom", "m.ice-cream.d": "Vers en romig.", "dr.hot": "Warme dranken", "dr.hot.0": "Koffie", "dr.hot.1": "Thee", "dr.hot.2": "Espresso", "dr.hot.3": "Dubbele espresso", "dr.hot.4": "Cappuccino", "dr.hot.5": "Latte macchiato", "dr.soft": "Frisdranken", "dr.soft.0": "Coca-Cola / Cola Zero", "dr.soft.1": "Fanta", "dr.soft.2": "7UP / 7UP Zero", "dr.soft.3": "Bitter lemon", "dr.soft.4": "Plat / bruisend water", "dr.soft.5": "Lipton Ice Tea", "dr.soft.6": "Appel- / multivitamine- / jus d'orange"}, "en": {"nav.home": "Home", "nav.reserve": "Reserve", "hdr.kicker": "Eatery · Stavenisse · Zeeland", "hdr.title": "Our Menu", "hdr.dek": "Fresh dishes, stone-grill specials and Zeeland classics — served in a warm, relaxed setting.", "photo.note": "Concept photography — representative images; final dishes photographed for the production version.", "drinks.title": "Drinks", "cta.reserve": "Reserve a table", "back.home": "← Back to home", "prov": "Design concept by Merritt Digital · demonstration build · concept photography", "cat.main": "Main Courses", "m.cheese-fondue.n": "Cheese Fondue", "m.cheese-fondue.d": "Reservation 1 day in advance, minimum 2 persons.", "m.steak.n": "Steak", "m.steak.d": "Served with fries and salad.", "m.chicken-satay.n": "Chicken Satay", "m.chicken-satay.d": "With homemade satay sauce, fries and salad.", "m.rendang.n": "Rendang", "m.rendang.d": "With rice or noodles, spicy beans or coconut beans.", "m.sole.n": "Sole", "m.sole.d": "Served with fries and salad.", "m.uitsmijter.n": "Ham & Cheese Fried Eggs", "m.uitsmijter.d": "On toasted bread.", "m.toastie.n": "Ham & Cheese Toastie", "m.toastie.d": "Crisp and toasted.", "cat.start": "Starters", "m.soup.n": "Soup of the Day", "m.soup.d": "Freshly made daily.", "m.watermelon-tartare.n": "Watermelon Tartare", "m.watermelon-tartare.d": "Fresh, with feta and herbs.", "cat.pancake": "Pancakes", "m.pancake.n": "Traditional Pancake", "m.pancake.d": "With syrup, sugar and butter.", "cat.snack": "Snacks", "m.mixed-snacks.n": "Mixed Fried Snacks (8 pcs)", "m.mixed-snacks.d": "With mustard.", "m.bitterballen.n": "Bitterballen (8 pcs)", "m.bitterballen.d": "With mustard.", "m.chicken-wings.n": "Chicken Wings (8 pcs)", "m.chicken-wings.d": "Crispy, with a dip.", "cat.veg": "Vegetarian", "m.pasta-mushroom.n": "Pasta with Mushrooms", "m.pasta-mushroom.d": "With salad.", "m.pesto-pasta.n": "Gluten-Free Pesto Pasta", "m.pesto-pasta.d": "With salad.", "cat.kids": "Children's Menu", "m.kids.n": "Children's Menu", "m.kids.d": "All dishes include fries, applesauce & mayonnaise, ice cream and a surprise. Choice of frikandel, croquette, 4 chicken nuggets or pancake.", "cat.dessert": "Desserts", "m.cheese-platter.n": "Cheese Platter", "m.cheese-platter.d": "With grapes, nuts and figs.", "m.ice-cream.n": "Ice Cream with Strawberries & Whipped Cream", "m.ice-cream.d": "Fresh and creamy.", "dr.hot": "Hot Drinks", "dr.hot.0": "Coffee", "dr.hot.1": "Tea", "dr.hot.2": "Espresso", "dr.hot.3": "Double Espresso", "dr.hot.4": "Cappuccino", "dr.hot.5": "Latte Macchiato", "dr.soft": "Soft Drinks", "dr.soft.0": "Coca-Cola / Cola Zero", "dr.soft.1": "Fanta", "dr.soft.2": "7UP / 7UP Zero", "dr.soft.3": "Bitter Lemon", "dr.soft.4": "Still / Sparkling Water", "dr.soft.5": "Lipton Ice Tea", "dr.soft.6": "Apple / Multivitamin / Orange Juice"}, "de": {"nav.home": "Startseite", "nav.reserve": "Reservieren", "hdr.kicker": "Eetcafé · Stavenisse · Zeeland", "hdr.title": "Die Karte", "hdr.dek": "Frische Gerichte, Steingrill-Spezialitäten und zeeländische Klassiker — in warmer, entspannter Atmosphäre.", "photo.note": "Konzeptfotografie — repräsentative Bilder; finale Gerichte werden für die Produktionsversion fotografiert.", "drinks.title": "Getränke", "cta.reserve": "Tisch reservieren", "back.home": "← Zurück zur Startseite", "prov": "Designkonzept von Merritt Digital · Demonstrationsbuild · Konzeptfotografie", "cat.main": "Hauptgerichte", "m.cheese-fondue.n": "Käsefondue", "m.cheese-fondue.d": "Reservierung 1 Tag im Voraus, mindestens 2 Personen.", "m.steak.n": "Steak", "m.steak.d": "Serviert mit Pommes und Salat.", "m.chicken-satay.n": "Hähnchen-Satay", "m.chicken-satay.d": "Mit hausgemachter Satay-Sauce, Pommes und Salat.", "m.rendang.n": "Rendang", "m.rendang.d": "Mit Reis oder Nudeln, würzigen Bohnen.", "m.sole.n": "Seezunge", "m.sole.d": "Serviert mit Pommes und Salat.", "m.uitsmijter.n": "Spiegeleier mit Schinken & Käse", "m.uitsmijter.d": "Auf geröstetem Brot.", "m.toastie.n": "Schinken-Käse-Toast", "m.toastie.d": "Knusprig getoastet.", "cat.start": "Vorspeisen", "m.soup.n": "Tagessuppe", "m.soup.d": "Täglich frisch zubereitet.", "m.watermelon-tartare.n": "Wassermelonen-Tatar", "m.watermelon-tartare.d": "Frisch, mit Feta und Kräutern.", "cat.pancake": "Pfannkuchen", "m.pancake.n": "Pfannkuchen natur", "m.pancake.d": "Mit Sirup, Zucker und Butter.", "cat.snack": "Snacks", "m.mixed-snacks.n": "Gemischte Snacks (8 St.)", "m.mixed-snacks.d": "Mit Senf.", "m.bitterballen.n": "Bitterballen (8 St.)", "m.bitterballen.d": "Mit Senf.", "m.chicken-wings.n": "Chicken Wings (8 St.)", "m.chicken-wings.d": "Knusprig, mit Dip.", "cat.veg": "Vegetarisch", "m.pasta-mushroom.n": "Pasta mit Champignons", "m.pasta-mushroom.d": "Mit Salat.", "m.pesto-pasta.n": "Glutenfreie Pesto-Pasta", "m.pesto-pasta.d": "Mit Salat.", "cat.kids": "Kindermenü", "m.kids.n": "Kindermenü", "m.kids.d": "Alle Gerichte mit Pommes, Apfelmus & Mayonnaise, Eis und einer Überraschung. Wahl aus Frikandel, Krokette, 4 Chicken Nuggets oder Pfannkuchen.", "cat.dessert": "Nachtische", "m.cheese-platter.n": "Käseplatte", "m.cheese-platter.d": "Mit Trauben, Nüssen und Feigen.", "m.ice-cream.n": "Eis mit Erdbeeren & Sahne", "m.ice-cream.d": "Frisch und cremig.", "dr.hot": "Heißgetränke", "dr.hot.0": "Kaffee", "dr.hot.1": "Tee", "dr.hot.2": "Espresso", "dr.hot.3": "Doppelter Espresso", "dr.hot.4": "Cappuccino", "dr.hot.5": "Latte Macchiato", "dr.soft": "Erfrischungsgetränke", "dr.soft.0": "Coca-Cola / Cola Zero", "dr.soft.1": "Fanta", "dr.soft.2": "7UP / 7UP Zero", "dr.soft.3": "Bitter Lemon", "dr.soft.4": "Still / Sprudel Wasser", "dr.soft.5": "Lipton Ice Tea", "dr.soft.6": "Apfel- / Multivitamin- / Orangensaft"}};
+function applyLang(l){var d=I18N[l]||I18N.nl;
+  document.querySelectorAll('[data-i18n]').forEach(function(e){var k=e.getAttribute('data-i18n');if(d[k]!=null)e.textContent=d[k];});
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lang button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.lang===l));});
+  try{localStorage.setItem('ok-lang',l);}catch(e){}}
+document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){applyLang(b.dataset.lang);});});
+(function(){var s='nl';try{s=localStorage.getItem('ok-lang')||'nl';}catch(e){}if(!I18N[s])s='nl';applyLang(s);})();
+(function(){var els=[].slice.call(document.querySelectorAll('.reveal'));if(!els.length)return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function all(){els.forEach(function(e){e.classList.add('in');});}
+  if(reduce||!('IntersectionObserver' in window)){all();return;}
+  try{var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:0.1,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e);});
+    setTimeout(function(){els.forEach(function(e){if(!e.classList.contains('in')){var r=e.getBoundingClientRect();if(r.top<innerHeight)e.classList.add('in');}});},2500);
+  }catch(e){all();}})();
+
+</script>
+</body>
+</html>
