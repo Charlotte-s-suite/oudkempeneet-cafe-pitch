@@ -101,9 +101,9 @@ p{margin:0 0 14px}
   color:var(--ink-dim);border-right:1px solid rgba(122,106,87,.28)}
 .lang button:last-child{border-right:0}
 .lang button[aria-pressed="true"]{background:var(--accent-2);color:#241300;font-weight:600}
+@media(max-width:960px){.nav-right .btn-gold{display:none}} /* keep the text links; hero carries the CTA */
 @media(max-width:820px){.nav-links{display:none}}
 @media(max-width:560px){
-  .nav-right .btn-gold{display:none}          /* hero carries the primary CTA on phones */
   .brand .bs{display:none}
   .lang button{min-width:34px;padding:7px 7px}
   .nav-in{padding:10px 16px}
@@ -160,7 +160,7 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .live .row{display:flex;justify-content:center;gap:min(12vw,72px);flex-wrap:wrap;margin-top:12px}
 .live .cell .fig{font-family:var(--serif);font-size:clamp(28px,7vw,40px);font-weight:700;line-height:1;
   background:linear-gradient(160deg,#B9812F,#8A5A22);-webkit-background-clip:text;background-clip:text;color:transparent}
-.live .cell .u{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.live .cell .u{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px}
 .live .cell .fig.open{background:linear-gradient(160deg,#3F8F5C,#276B3E);-webkit-background-clip:text;background-clip:text}
 .live .cell .fig.shut{background:linear-gradient(160deg,#A6603A,#7A3E22);-webkit-background-clip:text;background-clip:text}
 .live .status{margin-top:14px;font-size:11.5px;letter-spacing:.04em;color:var(--ink-dim)}
@@ -448,6 +448,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
   </div>
 </header>
 
+<main>
 <!-- ============================== RESTAURANT ============================== -->
 <section class="restaurant" id="restaurant">
   <div class="engraving" style="left:-130px;bottom:-40px;opacity:.1;transform:scaleX(-1)" aria-hidden="true">
@@ -665,6 +666,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     </div>
   </div>
 </section>
+</main>
 
 <!-- ============================== FOOTER ============================== -->
 <footer>
