@@ -983,9 +983,8 @@ document.querySelectorAll('.lang button').forEach(b=>{
    Per-category reservation: flip-card modal (open/close/submit).
    Card click -> the card flies to top-centre, flips + expands to reveal that
    category's form; page dims behind. X or submit reverses the sequence.
-   NOTE: server-side email DELIVERY IS HELD (awaiting the delivery inbox). The
-   submit runs the confirm + reverse sequence; the actual send is stubbed in
-   deliverReservation() below — wire it there when the inbox is provided.
+   On submit the form is delivered server-side to the cafe's inbox via
+   deliverReservation() (FormSubmit), then the reverse sequence runs.
    ============================================================ */
 (function(){
   var wrap=document.getElementById('resModal'),dim=document.getElementById('resDim'),
@@ -1057,15 +1056,15 @@ document.querySelectorAll('.lang button').forEach(b=>{
     },130);
   }
 
-  /* --- delivery: HELD until the reservation inbox is provided --------------
-     Wire the real server-side send here (collect `data`, POST to a form-to-email
-     endpoint, resolve on success / reject on failure). For now it resolves so the
-     UI confirm + reverse sequence runs without sending anything. */
+  /* --- server-side delivery via FormSubmit (keyless, no backend) -----------
+     Delivers each reservation straight to the caf&eacute;'s inbox; the customer never
+     opens a mail client. One-time activation: the first submission triggers an
+     "Activate Form" email to the inbox below — once clicked, all reservations are
+     forwarded there. To change the destination, swap this one address. */
+  var RES_ENDPOINT='https://formsubmit.co/ajax/eetcafeeoudkempen@gmail.com';
   function deliverReservation(service,data){
-    return Promise.resolve({held:true});
-    /* Example once wired:
-       return fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
-         body:JSON.stringify(data)}).then(function(r){if(!r.ok)throw r.status;return r.json();}); */
+    return fetch(RES_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+      body:JSON.stringify(data)}).then(function(r){if(!r.ok)throw r.status;return r.json().catch(function(){return{};});});
   }
 
   function onSubmit(e){
@@ -1077,6 +1076,8 @@ document.querySelectorAll('.lang button').forEach(b=>{
     var svc=form.getAttribute('data-service'),svcName=t('svc.'+SVCKEY[svc]+'.t')||svc;
     var data={};new FormData(form).forEach(function(v,k){if(k!=='_honey')data[k]=v;});
     data.category=svcName;data.lang=lang();
+    data._subject=({nl:'Nieuwe reservering',en:'New reservation',de:'Neue Reservierung'}[lang()]||'Reservation')+' — '+svcName;
+    data._template='table';data._captcha='false';
     busy=true;if(btn)btn.disabled=true;
     if(status){status.className='form-status sending';status.textContent=t('res.sending')||'…';}
     deliverReservation(svc,data).then(function(){
