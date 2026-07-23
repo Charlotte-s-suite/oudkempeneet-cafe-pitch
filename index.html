@@ -265,6 +265,42 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .chip input:focus-visible~.dot{box-shadow:0 0 0 3px rgba(192,138,62,.28)}
 .chip-t{font-size:14.5px;letter-spacing:.005em}
 .form-window .btn-gold{width:100%;margin-top:14px}
+/* ===== per-category reservation: prompt panel + flip-card modal ===== */
+.res-prompt{display:flex;flex-direction:column}
+.res-prompt h3{margin-bottom:4px}
+.res-prompt .rp-lead{text-align:center;color:var(--ink-dim);font-size:14px;margin:2px 0 16px}
+.prompt-btns{display:flex;flex-direction:column;gap:8px}
+.pbtn{font-family:var(--sans);text-align:left;font-size:15px;color:var(--ink);background:#fff;
+  border:1px solid #E1D4BC;border-radius:3px;padding:13px 15px;min-height:46px;cursor:pointer;
+  display:flex;align-items:center;gap:11px;transition:border-color .15s,background .15s,transform .15s}
+.pbtn::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-2);flex:none}
+.pbtn:hover,.pbtn:focus-visible{border-color:var(--accent-2);background:rgba(192,138,62,.08);transform:translateX(2px);outline:none}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+.res-dim{position:fixed;inset:0;z-index:88;background:rgba(20,12,6,.55);opacity:0;
+  transition:opacity .28s ease;pointer-events:none}
+.res-dim.on{opacity:1;pointer-events:auto}
+.res-modal-wrap{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-start;justify-content:center;
+  padding:max(4vh,14px) 14px 28px;pointer-events:none;visibility:hidden;overflow-y:auto;perspective:1600px}
+.res-modal-wrap.open{visibility:visible}
+.res-flip{position:relative;width:min(560px,94vw);transform-style:preserve-3d;pointer-events:auto;
+  transition:transform .32s cubic-bezier(.4,.02,.2,1);will-change:transform}
+.res-face{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:4px;
+  background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px rgba(122,90,34,.3),0 40px 80px -30px rgba(0,0,0,.65)}
+.res-front{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:28px}
+.res-front .ic svg{width:54px;height:54px;stroke:var(--accent-3);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.rf-front-title{font-family:var(--serif);font-size:24px;color:#2A1B10;margin-top:14px}
+.res-back{position:relative;transform:rotateY(180deg)}
+.res-x{position:absolute;top:9px;right:9px;z-index:4;width:38px;height:38px;border-radius:50%;
+  border:1px solid #E1D4BC;background:#fff;color:var(--ink-dim);font-size:22px;line-height:1;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:color .15s,border-color .15s}
+.res-x:hover,.res-x:focus-visible{color:var(--ink);border-color:var(--accent-2);outline:none}
+.res-form{padding:34px 24px 24px}
+.form-status{text-align:center;font-size:13.5px;margin-top:10px}
+.form-status.sending{color:var(--ink-dim)}
+.form-status.ok{color:#2E7D46}
+.form-status.err{color:#A6603A}
+@media (prefers-reduced-motion: reduce){.res-flip{transition:none}.res-dim{transition:none}}
 .form-note{text-align:center;font-size:11px;color:var(--muted);margin:12px 0 0;letter-spacing:.02em}
 
 /* ============================== GALLERY ============================== */
@@ -578,31 +614,18 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
           </ul>
           <p class="contact-line"><span data-i18n="res.or">Liever direct mailen? </span><a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></p>
         </div>
-        <form class="form-window reveal" id="resform">
+        <div class="form-window res-prompt reveal">
           <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
-          <h3 data-i18n="res.ftitle">Vertel ons uw wensen</h3>
-          <div class="field">
-            <label data-i18n="res.l.service">Wat wilt u reserveren? (meerdere mogelijk)</label>
-            <div class="choose" id="svc-choose" role="group" aria-label="Diensten">
-              <label class="chip"><input type="checkbox" name="service" value="table" checked><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.table.t">Reserveer een tafel</span></label>
-              <label class="chip"><input type="checkbox" name="service" value="bike"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.bike.t">Fietsverhuur</span></label>
-              <label class="chip"><input type="checkbox" name="service" value="jacuzzi"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.jac.t">Jacuzzi huren</span></label>
-              <label class="chip"><input type="checkbox" name="service" value="house"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.house.t">Vakantiehuis</span></label>
-              <label class="chip"><input type="checkbox" name="service" value="event"><span class="dot" aria-hidden="true"></span><span class="chip-t" data-i18n="svc.event.t">Vier uw feest</span></label>
-            </div>
+          <h3 data-i18n="res.picktitle">Kies uw dienst</h3>
+          <p class="rp-lead" data-i18n="res.pick">Elke dienst heeft een eigen snel formulier. Klik hieronder — of op een kaart hierboven — om te openen.</p>
+          <div class="prompt-btns">
+            <button type="button" class="pbtn" data-open="table"><span data-i18n="svc.table.t">Reserveer een tafel</span></button>
+            <button type="button" class="pbtn" data-open="bike"><span data-i18n="svc.bike.t">Fietsverhuur</span></button>
+            <button type="button" class="pbtn" data-open="jacuzzi"><span data-i18n="svc.jac.t">Jacuzzi huren</span></button>
+            <button type="button" class="pbtn" data-open="house"><span data-i18n="svc.house.t">Vakantiehuis</span></button>
+            <button type="button" class="pbtn" data-open="event"><span data-i18n="svc.event.t">Vier uw feest</span></button>
           </div>
-          <div class="frow">
-            <div class="field"><label for="f-name" data-i18n="res.l.name">Naam</label><input id="f-name" name="name" type="text" autocomplete="name"></div>
-            <div class="field"><label for="f-guests" data-i18n="res.l.guests">Aantal personen</label><input id="f-guests" name="guests" type="number" min="1" value="2"></div>
-          </div>
-          <div class="frow">
-            <div class="field"><label for="f-date" data-i18n="res.l.date">Datum</label><input id="f-date" name="date" type="date"></div>
-            <div class="field"><label for="f-time" data-i18n="res.l.time">Tijd</label><input id="f-time" name="time" type="time" value="18:00"></div>
-          </div>
-          <div class="field"><label for="f-note" data-i18n="res.l.note">Opmerking (optioneel)</label><textarea id="f-note" name="note"></textarea></div>
-          <button type="submit" class="btn btn-gold" data-i18n="res.submit">Verstuur aanvraag</button>
-          <p class="form-note" data-i18n="res.note">Demonstratie — opent een klaargezette e-mail. Online betaling volgt in de productieversie.</p>
-        </form>
+        </div>
       </div>
     </div>
   </div>
@@ -668,6 +691,129 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 </section>
 </main>
 
+<!-- ============================== RESERVATION FORMS (per category) ============================== -->
+<div id="res-form-store" hidden>
+  <form class="res-form" data-service="table" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
+    <h3 data-i18n="svc.table.t">Reserveer een tafel</h3>
+    <div class="frow">
+      <div class="field"><label for="f-table-name" data-i18n="res.l.name">Naam</label><input id="f-table-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-table-email" data-i18n="res.l.email">E-mailadres</label><input id="f-table-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="field"><label for="f-table-guests" data-i18n="res.l.guests">Aantal personen</label><input id="f-table-guests" name="guests" type="number" min="1" value="2"></div>
+    <div class="frow">
+      <div class="field"><label for="f-table-date" data-i18n="res.l.date">Datum</label><input id="f-table-date" name="date" type="date"></div>
+      <div class="field"><label for="f-table-time" data-i18n="res.l.time">Tijd</label><input id="f-table-time" name="time" type="time" value="18:00"></div>
+    </div>
+    <div class="field"><label for="f-table-note" data-i18n="res.l.note">Opmerking (optioneel)</label><textarea id="f-table-note" name="note"></textarea></div>
+    <button type="submit" class="btn btn-gold" data-i18n="res.submit">Verstuur aanvraag</button>
+    <p class="form-note" data-i18n="res.note2">Wij bevestigen uw reservering persoonlijk.</p>
+    <div class="form-status" role="status" aria-live="polite"></div>
+  </form>
+  <form class="res-form" data-service="bike" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
+    <h3 data-i18n="svc.bike.t">Fietsverhuur</h3>
+    <div class="frow">
+      <div class="field"><label for="f-bike-name" data-i18n="res.l.name">Naam</label><input id="f-bike-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-bike-email" data-i18n="res.l.email">E-mailadres</label><input id="f-bike-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-bike-std" data-i18n="res.b.std">Aantal gewone fietsen</label><input id="f-bike-std" name="standard_bikes" type="number" min="0" value="0"></div>
+      <div class="field"><label for="f-bike-e" data-i18n="res.b.e">Aantal e-bikes</label><input id="f-bike-e" name="e_bikes" type="number" min="0" value="0"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-bike-pud" data-i18n="res.b.pud">Ophaaldatum</label><input id="f-bike-pud" name="pickup_date" type="date"></div>
+      <div class="field"><label for="f-bike-put" data-i18n="res.b.put">Ophaaltijd</label><input id="f-bike-put" name="pickup_time" type="time" value="10:00"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-bike-dod" data-i18n="res.b.dod">Inleverdatum</label><input id="f-bike-dod" name="dropoff_date" type="date"></div>
+      <div class="field"><label for="f-bike-dot" data-i18n="res.b.dot">Inlevertijd</label><input id="f-bike-dot" name="dropoff_time" type="time" value="17:00"></div>
+    </div>
+    <div class="field"><label for="f-bike-note" data-i18n="res.l.note">Opmerking (optioneel)</label><textarea id="f-bike-note" name="note"></textarea></div>
+    <button type="submit" class="btn btn-gold" data-i18n="res.submit">Verstuur aanvraag</button>
+    <p class="form-note" data-i18n="res.note2">Wij bevestigen uw reservering persoonlijk.</p>
+    <div class="form-status" role="status" aria-live="polite"></div>
+  </form>
+  <form class="res-form" data-service="jacuzzi" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
+    <h3 data-i18n="svc.jac.t">Jacuzzi huren</h3>
+    <div class="frow">
+      <div class="field"><label for="f-jac-name" data-i18n="res.l.name">Naam</label><input id="f-jac-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-jac-email" data-i18n="res.l.email">E-mailadres</label><input id="f-jac-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-jac-sd" data-i18n="res.l.startdate">Startdatum</label><input id="f-jac-sd" name="start_date" type="date"></div>
+      <div class="field"><label for="f-jac-st" data-i18n="res.l.starttime">Starttijd</label><input id="f-jac-st" name="start_time" type="time" value="19:00"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-jac-ed" data-i18n="res.l.enddate">Einddatum</label><input id="f-jac-ed" name="end_date" type="date"></div>
+      <div class="field"><label for="f-jac-et" data-i18n="res.l.endtime">Eindtijd</label><input id="f-jac-et" name="end_time" type="time" value="21:00"></div>
+    </div>
+    <div class="field"><label for="f-jac-room" data-i18n="res.j.room">Kamernummer</label><input id="f-jac-room" name="room" type="text"></div>
+    <div class="field"><label for="f-jac-note" data-i18n="res.l.note">Opmerking (optioneel)</label><textarea id="f-jac-note" name="note"></textarea></div>
+    <button type="submit" class="btn btn-gold" data-i18n="res.submit">Verstuur aanvraag</button>
+    <p class="form-note" data-i18n="res.note2">Wij bevestigen uw reservering persoonlijk.</p>
+    <div class="form-status" role="status" aria-live="polite"></div>
+  </form>
+  <form class="res-form" data-service="house" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
+    <h3 data-i18n="svc.house.t">Vakantiehuis</h3>
+    <div class="frow">
+      <div class="field"><label for="f-house-name" data-i18n="res.l.name">Naam</label><input id="f-house-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-house-email" data-i18n="res.l.email">E-mailadres</label><input id="f-house-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-house-ci" data-i18n="res.h.ci">Aankomstdatum</label><input id="f-house-ci" name="checkin" type="date"></div>
+      <div class="field"><label for="f-house-co" data-i18n="res.h.co">Vertrekdatum</label><input id="f-house-co" name="checkout" type="date"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-house-adults" data-i18n="res.h.adults">Volwassenen</label><input id="f-house-adults" name="adults" type="number" min="1" value="2"></div>
+      <div class="field"><label for="f-house-children" data-i18n="res.h.children">Kinderen</label><input id="f-house-children" name="children" type="number" min="0" value="0"></div>
+    </div>
+    <div class="field"><label for="f-house-note" data-i18n="res.l.note">Opmerking (optioneel)</label><textarea id="f-house-note" name="note"></textarea></div>
+    <button type="submit" class="btn btn-gold" data-i18n="res.submit">Verstuur aanvraag</button>
+    <p class="form-note" data-i18n="res.note2">Wij bevestigen uw reservering persoonlijk.</p>
+    <div class="form-status" role="status" aria-live="polite"></div>
+  </form>
+  <form class="res-form" data-service="event" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
+    <h3 data-i18n="svc.event.t">Vier uw feest</h3>
+    <div class="frow">
+      <div class="field"><label for="f-event-name" data-i18n="res.l.name">Naam</label><input id="f-event-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-event-email" data-i18n="res.l.email">E-mailadres</label><input id="f-event-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="field"><label for="f-event-type" data-i18n="res.e.type">Type gelegenheid</label><input id="f-event-type" name="event_type" type="text"></div>
+    <div class="field"><label for="f-event-guests" data-i18n="res.e.guests">Verwacht aantal gasten</label><input id="f-event-guests" name="guests" type="number" min="1" value="20"></div>
+    <div class="frow">
+      <div class="field"><label for="f-event-sd" data-i18n="res.l.startdate">Startdatum</label><input id="f-event-sd" name="start_date" type="date"></div>
+      <div class="field"><label for="f-event-st" data-i18n="res.l.starttime">Starttijd</label><input id="f-event-st" name="start_time" type="time" value="18:00"></div>
+    </div>
+    <div class="frow">
+      <div class="field"><label for="f-event-ed" data-i18n="res.l.enddate">Einddatum</label><input id="f-event-ed" name="end_date" type="date"></div>
+      <div class="field"><label for="f-event-et" data-i18n="res.l.endtime">Eindtijd</label><input id="f-event-et" name="end_time" type="time" value="23:00"></div>
+    </div>
+    <button type="submit" class="btn btn-gold" data-i18n="res.submit">Verstuur aanvraag</button>
+    <p class="form-note" data-i18n="res.note2">Wij bevestigen uw reservering persoonlijk.</p>
+    <div class="form-status" role="status" aria-live="polite"></div>
+  </form>
+</div>
+
+<div class="res-dim" id="resDim" hidden></div>
+<div class="res-modal-wrap" id="resModal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="res-flip" id="resFlip">
+    <div class="res-face res-front" id="resFront" aria-hidden="true"></div>
+    <div class="res-face res-back">
+      <button type="button" class="res-x" id="resX" aria-label="Sluiten">&times;</button>
+      <div id="resSlot"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ============================== FOOTER ============================== -->
 <footer>
   <div class="engraving" style="left:50%;transform:translateX(-50%);top:20px;opacity:.08;color:#C6B497" aria-hidden="true">
@@ -731,11 +877,12 @@ const I18N = {
     "svc.house.t":"Vakantiehuis","svc.house.d":"Vraag vrijblijvend naar beschikbaarheid en tarieven.","svc.house.tag":"Aanvraag",
     "svc.event.t":"Vier uw feest","svc.event.d":"Verjaardag, bruiloft of borrel — wij regelen het.","svc.event.tag":"Op maat",
     "res.kicker":"Reserveren","res.h3":"Uw plek bij Oud-Kempen is zo geregeld",
-    "res.p":"Vul kort uw wensen in. Uw reservering opent in uw e-mailprogramma, klaar om te versturen — wij bevestigen persoonlijk. Geen account, geen gedoe.",
+    "res.p":"Kies een dienst en vul het korte formulier in — elke dienst heeft z'n eigen formulier. Wij bevestigen persoonlijk. Geen account, geen gedoe.",
     "res.a1":"Tafel, fiets, jacuzzi, vakantiehuis of feest","res.a2":"Persoonlijke bevestiging per e-mail","res.a3":"Groepen en gelegenheden welkom",
     "res.or":"Liever direct mailen? ","res.fk":"Reserveringsaanvraag","res.ftitle":"Vertel ons uw wensen",
     "res.l.service":"Wat wilt u reserveren? (meerdere mogelijk)","res.l.name":"Naam","res.l.guests":"Aantal personen","res.l.date":"Datum","res.l.time":"Tijd","res.l.note":"Opmerking (optioneel)",
     "res.submit":"Verstuur aanvraag","res.note":"Demonstratie — opent een klaargezette e-mail. Online betaling volgt in de productieversie.",
+    "res.l.email":"E-mailadres","res.l.startdate":"Startdatum","res.l.starttime":"Starttijd","res.l.enddate":"Einddatum","res.l.endtime":"Eindtijd","res.b.std":"Aantal gewone fietsen","res.b.e":"Aantal e-bikes","res.b.pud":"Ophaaldatum","res.b.put":"Ophaaltijd","res.b.dod":"Inleverdatum","res.b.dot":"Inlevertijd","res.j.room":"Kamernummer","res.h.ci":"Aankomstdatum","res.h.co":"Vertrekdatum","res.h.adults":"Volwassenen","res.h.children":"Kinderen","res.e.type":"Type gelegenheid","res.e.guests":"Verwacht aantal gasten","res.note2":"Wij bevestigen uw reservering persoonlijk.","res.ok":"Bedankt voor uw aanvraag! Wij nemen spoedig contact op.","res.err":"Er ging iets mis. Probeer het opnieuw of mail ons direct.","res.sending":"Versturen…","res.close":"Sluiten","res.picktitle":"Kies uw dienst","res.pick":"Elke dienst heeft een eigen snel formulier. Klik hieronder — of op een kaart hierboven — om te openen.",
     "fb.kicker":"Buiten bij Oud-Kempen","fb.title":"Een terras omgeven door natuur","fb.p":"Zonnige middagen en lange zomeravonden op ons ruime terras — aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.",
     "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het café, het terras en de tafel — van zonnige middagen tot gezellige avonden.",
     "visit.kicker":"Bezoek ons","visit.title":"Openingstijden & route","visit.dek":"U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland.",
@@ -764,11 +911,12 @@ const I18N = {
     "svc.house.t":"Holiday home","svc.house.d":"Enquire about availability and rates, no obligation.","svc.house.tag":"Enquiry",
     "svc.event.t":"Host your event","svc.event.d":"Birthday, wedding or party — we'll arrange it.","svc.event.tag":"Tailored",
     "res.kicker":"Reservations","res.h3":"Your place at Oud-Kempen is quickly sorted",
-    "res.p":"Tell us briefly what you'd like. Your request opens in your email app, ready to send — we confirm personally. No account, no fuss.",
+    "res.p":"Pick a service and fill in the short form — each service has its own. We confirm personally. No account, no fuss.",
     "res.a1":"Table, bike, jacuzzi, holiday home or event","res.a2":"Personal confirmation by email","res.a3":"Groups and occasions welcome",
     "res.or":"Prefer to email directly? ","res.fk":"Reservation request","res.ftitle":"Tell us what you'd like",
     "res.l.service":"What would you like to book? (select any)","res.l.name":"Name","res.l.guests":"Number of guests","res.l.date":"Date","res.l.time":"Time","res.l.note":"Note (optional)",
     "res.submit":"Send request","res.note":"Demonstration — opens a pre-filled email. Online payment follows in the production version.",
+    "res.l.email":"Email address","res.l.startdate":"Start date","res.l.starttime":"Start time","res.l.enddate":"End date","res.l.endtime":"End time","res.b.std":"Standard bikes","res.b.e":"E-bikes","res.b.pud":"Pick-up date","res.b.put":"Pick-up time","res.b.dod":"Drop-off date","res.b.dot":"Drop-off time","res.j.room":"Room number","res.h.ci":"Check-in date","res.h.co":"Check-out date","res.h.adults":"Adults","res.h.children":"Children","res.e.type":"Event type","res.e.guests":"Expected number of guests","res.note2":"We confirm your reservation personally.","res.ok":"Thank you for your request! We'll be in touch shortly.","res.err":"Something went wrong. Please try again or email us directly.","res.sending":"Sending…","res.close":"Close","res.picktitle":"Choose your service","res.pick":"Each service has its own quick form. Tap below — or a card above — to open.",
     "fb.kicker":"Outdoors at Oud-Kempen","fb.title":"A terrace surrounded by nature","fb.p":"Sunny afternoons and long summer evenings on our spacious terrace — on the edge of the village, with the Zeeland countryside as your view.",
     "gal.kicker":"Gallery","gal.title":"A taste of the atmosphere","gal.dek":"A glimpse of the café, the terrace and the table — from sunny afternoons to cosy evenings.",
     "visit.kicker":"Visit us","visit.title":"Opening hours & directions","visit.dek":"Find us at Buurtweg 5 in Stavenisse, on the edge of the village in the heart of Zeeland.",
@@ -797,11 +945,12 @@ const I18N = {
     "svc.house.t":"Ferienhaus","svc.house.d":"Fragen Sie unverbindlich nach Verfügbarkeit und Preisen.","svc.house.tag":"Anfrage",
     "svc.event.t":"Feiern Sie","svc.event.d":"Geburtstag, Hochzeit oder Feier — wir organisieren es.","svc.event.tag":"Individuell",
     "res.kicker":"Reservierung","res.h3":"Ihr Platz bei Oud-Kempen ist schnell geregelt",
-    "res.p":"Nennen Sie uns kurz Ihre Wünsche. Ihre Anfrage öffnet sich in Ihrem E-Mail-Programm, bereit zum Senden — wir bestätigen persönlich. Kein Konto, kein Aufwand.",
+    "res.p":"Wählen Sie einen Dienst und füllen Sie das kurze Formular aus — jeder Dienst hat sein eigenes. Wir bestätigen persönlich. Kein Konto, kein Aufwand.",
     "res.a1":"Tisch, Fahrrad, Whirlpool, Ferienhaus oder Feier","res.a2":"Persönliche Bestätigung per E-Mail","res.a3":"Gruppen und Anlässe willkommen",
     "res.or":"Lieber direkt mailen? ","res.fk":"Reservierungsanfrage","res.ftitle":"Nennen Sie uns Ihre Wünsche",
     "res.l.service":"Was möchten Sie reservieren? (Mehrfachauswahl)","res.l.name":"Name","res.l.guests":"Anzahl Personen","res.l.date":"Datum","res.l.time":"Uhrzeit","res.l.note":"Anmerkung (optional)",
     "res.submit":"Anfrage senden","res.note":"Demonstration — öffnet eine vorbereitete E-Mail. Online-Zahlung folgt in der Produktionsversion.",
+    "res.l.email":"E-Mail-Adresse","res.l.startdate":"Startdatum","res.l.starttime":"Startzeit","res.l.enddate":"Enddatum","res.l.endtime":"Endzeit","res.b.std":"Normale Fahrräder","res.b.e":"E-Bikes","res.b.pud":"Abholdatum","res.b.put":"Abholzeit","res.b.dod":"Rückgabedatum","res.b.dot":"Rückgabezeit","res.j.room":"Zimmernummer","res.h.ci":"Anreisedatum","res.h.co":"Abreisedatum","res.h.adults":"Erwachsene","res.h.children":"Kinder","res.e.type":"Art der Veranstaltung","res.e.guests":"Erwartete Gästezahl","res.note2":"Wir bestätigen Ihre Reservierung persönlich.","res.ok":"Danke für Ihre Anfrage! Wir melden uns in Kürze.","res.err":"Etwas ist schiefgelaufen. Bitte erneut versuchen oder mailen Sie uns direkt.","res.sending":"Senden…","res.close":"Schließen","res.picktitle":"Wählen Sie Ihren Dienst","res.pick":"Jeder Dienst hat ein eigenes Kurzformular. Klicken Sie unten — oder auf eine Karte oben.",
     "fb.kicker":"Draußen bei Oud-Kempen","fb.title":"Eine Terrasse inmitten der Natur","fb.p":"Sonnige Nachmittage und lange Sommerabende auf unserer weitläufigen Terrasse — am Rande des Dorfes, mit der zeeländischen Natur als Aussicht.",
     "gal.kicker":"Galerie","gal.title":"Atmosphäre schnuppern","gal.dek":"Ein Eindruck vom Café, der Terrasse und dem Tisch — von sonnigen Nachmittagen bis zu gemütlichen Abenden.",
     "visit.kicker":"Besuchen Sie uns","visit.title":"Öffnungszeiten & Anfahrt","visit.dek":"Sie finden uns in der Buurtweg 5 in Stavenisse, am Rande des Dorfes im Herzen von Zeeland.",
@@ -830,42 +979,128 @@ document.querySelectorAll('.lang button').forEach(b=>{
   b.addEventListener('click',()=>applyLang(b.dataset.lang));
 });
 
-/* ---------- service card → tick that service (accumulates) ---------- */
-document.querySelectorAll('.card[data-service]').forEach(card=>{
-  card.addEventListener('click',e=>{
-    e.preventDefault();
-    const box=document.querySelector('#svc-choose input[value="'+card.dataset.service+'"]');
-    if(box) box.checked=true;   // add to selection, never clear the others
-    document.getElementById('reserveform').scrollIntoView({behavior:'smooth',block:'start'});
-    setTimeout(()=>{const n=document.getElementById('f-name');if(n)n.focus({preventScroll:true});},500);
-  });
-});
+/* ============================================================
+   Per-category reservation: flip-card modal (open/close/submit).
+   Card click -> the card flies to top-centre, flips + expands to reveal that
+   category's form; page dims behind. X or submit reverses the sequence.
+   NOTE: server-side email DELIVERY IS HELD (awaiting the delivery inbox). The
+   submit runs the confirm + reverse sequence; the actual send is stubbed in
+   deliverReservation() below — wire it there when the inbox is provided.
+   ============================================================ */
+(function(){
+  var wrap=document.getElementById('resModal'),dim=document.getElementById('resDim'),
+      flip=document.getElementById('resFlip'),front=document.getElementById('resFront'),
+      slot=document.getElementById('resSlot'),xbtn=document.getElementById('resX'),
+      store=document.getElementById('res-form-store');
+  if(!wrap||!store||!flip){return;}
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var curSrc=null,busy=false;
+  function lang(){return document.documentElement.lang||'nl';}
+  function t(k){var d=(typeof I18N!=='undefined'&&(I18N[lang()]||I18N.nl))||{};return d[k]||'';}
+  var SVCKEY={table:'table',bike:'bike',jacuzzi:'jac',house:'house',event:'event'};
 
-/* ---------- reservation form → mailto ---------- */
-document.getElementById('resform').addEventListener('submit',e=>{
-  e.preventDefault();
-  const lang=document.documentElement.lang||'nl';
-  const chosen=[...document.querySelectorAll('#svc-choose input:checked')]
-    .map(c=>c.closest('.chip').querySelector('.chip-t').textContent.trim());
-  if(!chosen.length){   // require at least one service
-    document.getElementById('svc-choose').scrollIntoView({behavior:'smooth',block:'center'});
-    const first=document.querySelector('#svc-choose input'); if(first) first.focus();
-    return;
+  function onceEnd(cb){
+    var done=false;
+    function fire(e){ if(e&&(e.target!==flip||e.propertyName!=='transform'))return; if(done)return; done=true; flip.removeEventListener('transitionend',fire); clearTimeout(to); cb(); }
+    var to=setTimeout(fire,460);
+    flip.addEventListener('transitionend',fire);
   }
-  const service=chosen.join(', ');
-  const name=document.getElementById('f-name').value||'—';
-  const guests=document.getElementById('f-guests').value||'—';
-  const date=document.getElementById('f-date').value||'—';
-  const time=document.getElementById('f-time').value||'—';
-  const note=document.getElementById('f-note').value||'';
-  const subjBy={nl:'Reserveringsaanvraag',en:'Reservation request',de:'Reservierungsanfrage'};
-  const subject=(subjBy[lang]||'Reservering')+' — '+service;
-  const L={nl:['Reserveren','Naam','Aantal personen','Datum','Tijd','Opmerking'],
-           en:['Booking','Name','Guests','Date','Time','Note'],
-           de:['Reservierung','Name','Personen','Datum','Uhrzeit','Anmerkung']}[lang]||['Reserveren','Naam','Personen','Datum','Tijd','Opmerking'];
-  const body=L[0]+': '+service+'\n'+L[1]+': '+name+'\n'+L[2]+': '+guests+'\n'+L[3]+': '+date+'\n'+L[4]+': '+time+'\n'+L[5]+': '+note;
-  window.location.href='mailto:Eetcafeeoudkempen@Gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-});
+  function startTransform(src){
+    var box=flip.getBoundingClientRect();
+    var r=(src&&src.getBoundingClientRect)?src.getBoundingClientRect():box;
+    var sc=Math.max(0.12,r.width/box.width);
+    var dx=(r.left+r.width/2)-(box.left+box.width/2);
+    var dy=(r.top+r.height/2)-(box.top+box.height/2);
+    return 'translate('+dx+'px,'+dy+'px) scale('+sc+') rotateY(0deg)';
+  }
+  function focusFirst(){var f=slot.querySelector('input:not(.hp):not([type=hidden]),select,textarea');if(f){try{f.focus({preventScroll:true});}catch(e){}}}
+
+  function openForm(service,src){
+    if(busy||wrap.classList.contains('open'))return;
+    var form=store.querySelector('.res-form[data-service="'+service+'"]');
+    if(!form)return;
+    curSrc=src;
+    slot.appendChild(form);
+    var card=document.querySelector('.card[data-service="'+service+'"]');
+    var ic=card&&card.querySelector('.ic'),h=card&&card.querySelector('h3');
+    front.innerHTML=(ic?ic.outerHTML:'')+'<div class="rf-front-title">'+(h?h.textContent:'')+'</div>';
+    if(typeof applyLang==='function')applyLang(lang());
+    xbtn.setAttribute('aria-label',t('res.close')||'Sluiten');
+    wrap.classList.add('open');wrap.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(src&&src.classList&&src.classList.contains('card'))src.style.visibility='hidden';
+    if(reduce){flip.style.transform='rotateY(180deg)';dim.hidden=false;requestAnimationFrame(function(){dim.classList.add('on');});focusFirst();return;}
+    flip.style.transition='none';flip.style.transform='rotateY(0deg)';
+    flip.style.transform=startTransform(src);
+    flip.getBoundingClientRect();            // reflow so the start state paints
+    flip.style.transition='';
+    onceEnd(function(){dim.hidden=false;requestAnimationFrame(function(){dim.classList.add('on');});focusFirst();});
+    requestAnimationFrame(function(){flip.style.transform='rotateY(180deg)';});
+  }
+
+  function closeForm(){
+    if(busy||!wrap.classList.contains('open'))return;
+    var form=slot.querySelector('.res-form');
+    dim.classList.remove('on');                        // 1) un-dim first
+    function finish(){
+      wrap.classList.remove('open');wrap.setAttribute('aria-hidden','true');dim.hidden=true;
+      document.body.style.overflow='';
+      if(form){var st=form.querySelector('.form-status');if(st){st.className='form-status';st.textContent='';}store.appendChild(form);}
+      if(curSrc&&curSrc.classList&&curSrc.classList.contains('card'))curSrc.style.visibility='';
+      flip.style.transition='none';flip.style.transform='rotateY(0deg)';flip.getBoundingClientRect();flip.style.transition='';
+      curSrc=null;
+    }
+    if(reduce){finish();return;}
+    setTimeout(function(){                              // 2) un-expand + flip back + return
+      onceEnd(finish);
+      requestAnimationFrame(function(){flip.style.transform=startTransform(curSrc);});
+    },130);
+  }
+
+  /* --- delivery: HELD until the reservation inbox is provided --------------
+     Wire the real server-side send here (collect `data`, POST to a form-to-email
+     endpoint, resolve on success / reject on failure). For now it resolves so the
+     UI confirm + reverse sequence runs without sending anything. */
+  function deliverReservation(service,data){
+    return Promise.resolve({held:true});
+    /* Example once wired:
+       return fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
+         body:JSON.stringify(data)}).then(function(r){if(!r.ok)throw r.status;return r.json();}); */
+  }
+
+  function onSubmit(e){
+    e.preventDefault();if(busy)return;
+    var form=e.currentTarget;
+    var hp=form.querySelector('input[name="_honey"]');if(hp&&hp.value){closeForm();return;}
+    if(!form.checkValidity()){form.reportValidity();return;}
+    var status=form.querySelector('.form-status'),btn=form.querySelector('button[type=submit]');
+    var svc=form.getAttribute('data-service'),svcName=t('svc.'+SVCKEY[svc]+'.t')||svc;
+    var data={};new FormData(form).forEach(function(v,k){if(k!=='_honey')data[k]=v;});
+    data.category=svcName;data.lang=lang();
+    busy=true;if(btn)btn.disabled=true;
+    if(status){status.className='form-status sending';status.textContent=t('res.sending')||'…';}
+    deliverReservation(svc,data).then(function(){
+      busy=false;if(btn)btn.disabled=false;
+      if(status){status.className='form-status ok';status.textContent=t('res.ok')||'Bedankt';}
+      form.reset();
+      setTimeout(closeForm,1200);            // on submit -> reverse the sequence
+    }).catch(function(){
+      busy=false;if(btn)btn.disabled=false;
+      if(status){status.className='form-status err';status.textContent=t('res.err')||'Er ging iets mis.';}
+    });
+  }
+
+  store.querySelectorAll('.res-form').forEach(function(f){f.addEventListener('submit',onSubmit);});
+  document.querySelectorAll('.card[data-service]').forEach(function(card){
+    card.addEventListener('click',function(e){e.preventDefault();openForm(card.getAttribute('data-service'),card);});
+  });
+  document.querySelectorAll('[data-open]').forEach(function(bn){
+    bn.addEventListener('click',function(){openForm(bn.getAttribute('data-open'),bn);});
+  });
+  xbtn.addEventListener('click',closeForm);
+  dim.addEventListener('click',closeForm);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeForm();});
+})();
 
 /* ============================================================
    LIVE — open/closed (real hours, Europe/Amsterdam) + weather
