@@ -997,6 +997,14 @@ document.querySelectorAll('.lang button').forEach(b=>{
   function lang(){return document.documentElement.lang||'nl';}
   function t(k){var d=(typeof I18N!=='undefined'&&(I18N[lang()]||I18N.nl))||{};return d[k]||'';}
   var SVCKEY={table:'table',bike:'bike',jacuzzi:'jac',house:'house',event:'event'};
+  /* The cafe always receives the inquiry in Dutch, whatever language the customer
+     browsed in — FormSubmit uses the JSON keys as the email's field labels. */
+  var NLCAT={table:'Reserveer een tafel',bike:'Fietsverhuur',jacuzzi:'Jacuzzi huren',house:'Vakantiehuis',event:'Vier uw feest'};
+  var NLLABEL={name:'Naam',email:'E-mailadres',guests:'Aantal personen',date:'Datum',time:'Tijd',note:'Opmerking',
+    standard_bikes:'Aantal gewone fietsen',e_bikes:'Aantal e-bikes',pickup_date:'Ophaaldatum',pickup_time:'Ophaaltijd',
+    dropoff_date:'Inleverdatum',dropoff_time:'Inlevertijd',start_date:'Startdatum',start_time:'Starttijd',
+    end_date:'Einddatum',end_time:'Eindtijd',room:'Kamernummer',checkin:'Aankomstdatum',checkout:'Vertrekdatum',
+    adults:'Volwassenen',children:'Kinderen',event_type:'Type gelegenheid'};
 
   function onceEnd(cb){
     var done=false;
@@ -1074,9 +1082,17 @@ document.querySelectorAll('.lang button').forEach(b=>{
     if(!form.checkValidity()){form.reportValidity();return;}
     var status=form.querySelector('.form-status'),btn=form.querySelector('button[type=submit]');
     var svc=form.getAttribute('data-service'),svcName=t('svc.'+SVCKEY[svc]+'.t')||svc;
-    var data={};new FormData(form).forEach(function(v,k){if(k!=='_honey')data[k]=v;});
-    data.category=svcName;data.lang=lang();
-    data._subject=({nl:'Nieuwe reservering',en:'New reservation',de:'Neue Reservierung'}[lang()]||'Reservation')+' — '+svcName;
+    var raw={};new FormData(form).forEach(function(v,k){if(k!=='_honey')raw[k]=v;});
+    var custEmail=raw.email||'';
+    var data={};
+    data['Categorie']=NLCAT[svc]||svcName;                 // Dutch labels for the cafe's email
+    Object.keys(raw).forEach(function(k){
+      var lbl=(svc==='event'&&k==='guests')?'Verwacht aantal gasten':(NLLABEL[k]||k);
+      data[lbl]=raw[k];
+    });
+    data['Website-taal']=({nl:'Nederlands',en:'Engels',de:'Duits'}[lang()]||'Nederlands');
+    data._subject='Nieuwe reservering — '+(NLCAT[svc]||svcName);
+    data._replyto=custEmail;                               // reply goes straight to the guest
     data._template='table';data._captcha='false';
     busy=true;if(btn)btn.disabled=true;
     if(status){status.className='form-status sending';status.textContent=t('res.sending')||'…';}
