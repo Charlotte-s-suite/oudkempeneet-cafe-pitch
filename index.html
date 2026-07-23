@@ -280,7 +280,8 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
   transition:opacity .28s ease;pointer-events:none}
 .res-dim.on{opacity:1;pointer-events:auto}
 .res-modal-wrap{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-start;justify-content:center;
-  padding:max(4vh,14px) 14px 28px;pointer-events:none;visibility:hidden;overflow-y:auto;perspective:1600px}
+  padding:max(4vh,14px) 14px 48px;pointer-events:none;visibility:hidden;overflow-y:auto;perspective:1600px;
+  -webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .res-modal-wrap.open{visibility:visible}
 .res-flip{position:relative;width:min(560px,94vw);transform-style:preserve-3d;pointer-events:auto;
   transition:transform .32s cubic-bezier(.4,.02,.2,1);will-change:transform}
@@ -1035,6 +1036,7 @@ document.querySelectorAll('.lang button').forEach(b=>{
     xbtn.setAttribute('aria-label',t('res.close')||'Sluiten');
     wrap.classList.add('open');wrap.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
+    wrap.scrollTop=0;fitViewport();
     if(src&&src.classList&&src.classList.contains('card'))src.style.visibility='hidden';
     if(reduce){flip.style.transform='rotateY(180deg)';dim.hidden=false;requestAnimationFrame(function(){dim.classList.add('on');});focusFirst();return;}
     flip.style.transition='none';flip.style.transform='rotateY(0deg)';
@@ -1055,6 +1057,7 @@ document.querySelectorAll('.lang button').forEach(b=>{
       if(form){var st=form.querySelector('.form-status');if(st){st.className='form-status';st.textContent='';}store.appendChild(form);}
       if(curSrc&&curSrc.classList&&curSrc.classList.contains('card'))curSrc.style.visibility='';
       flip.style.transition='none';flip.style.transform='rotateY(0deg)';flip.getBoundingClientRect();flip.style.transition='';
+      resetViewport();
       curSrc=null;
     }
     if(reduce){finish();return;}
@@ -1105,6 +1108,38 @@ document.querySelectorAll('.lang button').forEach(b=>{
       busy=false;if(btn)btn.disabled=false;
       if(status){status.className='form-status err';status.textContent=t('res.err')||'Er ging iets mis.';}
     });
+  }
+
+  /* ---- keep the focused field visible above the on-screen keyboard (mobile) ----
+     The modal is position:fixed, so an opening keyboard overlays it. Use the
+     VisualViewport API to clamp the scrollable modal to the *visible* area above
+     the keyboard, then scroll the focused field into that area. Falls back to
+     innerHeight where VisualViewport is unavailable; harmless on desktop. */
+  var vvp=window.visualViewport;
+  function fitViewport(){
+    if(!wrap.classList.contains('open')||!vvp)return;
+    wrap.style.top=vvp.offsetTop+'px';
+    wrap.style.bottom='auto';
+    wrap.style.height=vvp.height+'px';
+  }
+  function resetViewport(){ wrap.style.top='';wrap.style.bottom='';wrap.style.height='';wrap.scrollTop=0; }
+  function keepVisible(el){
+    if(!el||!wrap.classList.contains('open'))return;
+    var visTop=vvp?vvp.offsetTop:0, visBottom=vvp?(vvp.offsetTop+vvp.height):window.innerHeight, pad=24;
+    var r=el.getBoundingClientRect();
+    if(r.bottom>visBottom-pad){ wrap.scrollTop+=(r.bottom-(visBottom-pad)); }
+    else if(r.top<visTop+pad){ wrap.scrollTop-=((visTop+pad)-r.top); }
+  }
+  wrap.addEventListener('focusin',function(e){
+    var el=e.target;
+    if(el&&el.matches&&el.matches('input,select,textarea')){
+      setTimeout(function(){ fitViewport(); keepVisible(el); },300);  // wait out the keyboard animation
+    }
+  });
+  if(vvp){
+    vvp.addEventListener('resize',function(){ fitViewport();
+      var a=document.activeElement; if(a&&a.matches&&a.matches('input,select,textarea')) keepVisible(a); });
+    vvp.addEventListener('scroll',fitViewport);
   }
 
   store.querySelectorAll('.res-form').forEach(function(f){f.addEventListener('submit',onSubmit);});
