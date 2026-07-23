@@ -280,7 +280,7 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
   transition:opacity .28s ease;pointer-events:none}
 .res-dim.on{opacity:1;pointer-events:auto}
 .res-modal-wrap{position:fixed;inset:0;z-index:90;display:flex;align-items:flex-start;justify-content:center;
-  padding:max(4vh,14px) 14px 48px;pointer-events:none;visibility:hidden;overflow-y:auto;perspective:1600px;
+  padding:max(4vh,14px) 14px 48px;pointer-events:auto;visibility:hidden;overflow-y:auto;perspective:1600px;
   -webkit-overflow-scrolling:touch;overscroll-behavior:contain}
 .res-modal-wrap.open{visibility:visible}
 .res-flip{position:relative;width:min(560px,94vw);transform-style:preserve-3d;pointer-events:auto;
@@ -1027,8 +1027,12 @@ document.querySelectorAll('.lang button').forEach(b=>{
      natively interactive. Some browsers (notably Safari) mis-hit-test inputs sitting
      on a rotateY(180) backface, making them appear unclickable. The settled flat
      state is visually identical to the finished flip, so there is no jump. */
-  function settle2D(){front.style.display='none';flip.style.transition='none';flip.style.transform='none';if(back)back.style.transform='none';flip.getBoundingClientRect();flip.style.transition='';}
-  function unsettle3D(){front.style.display='';if(back)back.style.transform='';flip.style.transition='none';flip.style.transform='rotateY(180deg)';flip.getBoundingClientRect();flip.style.transition='';}
+  function settle2D(){front.style.display='none';flip.style.transition='none';flip.style.transform='none';if(back)back.style.transform='none';
+    wrap.style.perspective='none';flip.style.transformStyle='flat';   // drop 3D context so iOS can momentum-scroll the form
+    flip.getBoundingClientRect();flip.style.transition='';}
+  function unsettle3D(){front.style.display='';if(back)back.style.transform='';
+    wrap.style.perspective='';flip.style.transformStyle='';           // restore 3D for the closing flip
+    flip.style.transition='none';flip.style.transform='rotateY(180deg)';flip.getBoundingClientRect();flip.style.transition='';}
 
   function openForm(service,src){
     if(busy||wrap.classList.contains('open'))return;
@@ -1128,9 +1132,12 @@ document.querySelectorAll('.lang button').forEach(b=>{
   var vvp=window.visualViewport;
   function fitViewport(){
     if(!wrap.classList.contains('open')||!vvp)return;
+    // shrink the scroller to end exactly at the top of the keyboard (bottom = keyboard height),
+    // so its content overflows and can be scrolled to reach fields the keyboard would cover.
+    var kb=Math.max(0,(window.innerHeight-vvp.height-vvp.offsetTop));
     wrap.style.top=vvp.offsetTop+'px';
-    wrap.style.bottom='auto';
-    wrap.style.height=vvp.height+'px';
+    wrap.style.bottom=kb+'px';
+    wrap.style.height='auto';
   }
   function resetViewport(){ wrap.style.top='';wrap.style.bottom='';wrap.style.height='';wrap.scrollTop=0; }
   function keepVisible(el){
@@ -1161,6 +1168,7 @@ document.querySelectorAll('.lang button').forEach(b=>{
   });
   xbtn.addEventListener('click',closeForm);
   dim.addEventListener('click',closeForm);
+  wrap.addEventListener('click',function(e){if(e.target===wrap)closeForm();});  // tap backdrop (wrap now catches events)
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeForm();});
 })();
 
