@@ -32,10 +32,10 @@
   --paper:#FBF7EF;        /* booking / info window */
   --ink:#2E2016;          /* text on paper/field */
   --ink-dim:#6B5A48;      /* secondary */
-  --muted:#93826B;        /* tertiary / labels */
+  --muted:#75634E;        /* tertiary / labels (AA on white) */
   --paper-on-dark:#F3EADB;/* text on espresso */
   --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
-  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -50,8 +50,7 @@ section{padding:64px 0;position:relative;overflow:clip}
 h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0}
 p{margin:0 0 14px}
 .serif{font-family:var(--serif)}
-.gold{background:linear-gradient(160deg,var(--accent-1) 8%,var(--accent-2) 50%,var(--accent-3) 92%);
-  -webkit-background-clip:text;background-clip:text;color:transparent}
+.gold{color:var(--accent-1)}
 
 /* ---------- engraving / flourish ornament (§3.4) ---------- */
 .engraving{position:absolute;pointer-events:none;color:var(--line);z-index:1}
@@ -67,9 +66,9 @@ p{margin:0 0 14px}
   box-shadow .18s,background-position .4s,color .18s;background-size:200% 100%}
 .btn-gold{color:#28190C;font-weight:650;border-color:#b98a3f;
   background-image:linear-gradient(120deg,var(--accent-1),var(--accent-2) 55%,var(--accent-1));
-  box-shadow:0 10px 24px -14px rgba(138,90,34,.8)}
+  box-shadow:none}
 .btn-gold:hover,.btn-gold:focus-visible{background-position:100% 0;transform:translateY(-2px);
-  box-shadow:0 16px 30px -14px rgba(138,90,34,.9)}
+  box-shadow:none}
 .btn-line{color:var(--ink);border-color:var(--accent-3);background:transparent}
 .btn-line:hover,.btn-line:focus-visible{transform:translateY(-2px);
   background:rgba(192,138,62,.1);border-color:var(--accent-2)}
@@ -96,7 +95,7 @@ p{margin:0 0 14px}
 .nav-links a:hover::after,.nav-links a:focus-visible::after{right:0}
 .nav-right{display:flex;align-items:center;gap:14px}
 .lang{display:inline-flex;border:1px solid rgba(122,106,87,.4);border-radius:2px;overflow:hidden}
-.lang button{font-family:var(--sans);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+.lang button{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;
   padding:7px 9px;min-width:38px;min-height:34px;background:transparent;border:0;cursor:pointer;
   color:var(--ink-dim);border-right:1px solid rgba(122,106,87,.28)}
 .lang button:last-child{border-right:0}
@@ -112,14 +111,12 @@ p{margin:0 0 14px}
 /* ============================== HERO ============================== */
 header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .hero-in{position:relative;z-index:2;max-width:1080px;margin:0 auto;padding:70px 22px 78px;text-align:center}
-.edge-text{position:absolute;left:12px;top:150px;writing-mode:vertical-rl;transform:rotate(180deg);
-  font-size:10px;letter-spacing:.42em;color:var(--line);opacity:.9;text-transform:uppercase;z-index:2}
 .crest{width:78px;height:78px;margin:0 auto 20px;position:relative}
-.kicker{font-size:11px;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:var(--accent-3)}
+.kicker{font-size:12px;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:var(--accent-3)}
 .hero h1{font-size:clamp(38px,8.5vw,72px);letter-spacing:.06em;text-indent:.06em;line-height:1.02;
   margin:14px 0 4px;color:#2A1B10}
-.hero .sub{font-size:clamp(11px,2.6vw,14px);letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--accent-3);margin-top:8px}
+.hero .sub{font-size:clamp(13px,2.7vw,15.5px);letter-spacing:.03em;text-indent:.03em;
+  color:var(--accent-3);margin-top:10px;font-family:var(--serif);font-style:italic}
 .hero .lede{max-width:52ch;margin:22px auto 0;color:var(--ink-dim);font-size:clamp(15px,2.4vw,17px)}
 
 /* ---------- the nameplate lockup (extracted from the client's logo) ---------- */
@@ -142,28 +139,28 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 
 /* hero photo plate */
 .plate{position:relative;background:var(--paper);padding:12px;border-radius:3px;
-  box-shadow:0 0 0 1px rgba(122,90,34,.28),0 30px 70px -34px rgba(36,24,19,.6)}
+  box-shadow:0 30px 70px -34px rgba(36,24,19,.6)}
 .plate .pic{overflow:clip;border-radius:2px;position:relative}
 .plate .pic img{width:100%;height:100%;object-fit:cover}
 .hero-plate{margin:40px auto 0;max-width:940px}
 .hero-plate .pic{aspect-ratio:16/8}
 .hero-plate .cap{position:absolute;left:22px;bottom:20px;z-index:3;text-align:left;color:#fff;
   text-shadow:0 2px 18px rgba(0,0,0,.6)}
-.hero-plate .cap .k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#F3D9A6}
+.hero-plate .cap .k{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:#F3D9A6}
 .hero-plate .cap .t{font-family:var(--serif);font-size:clamp(18px,3.4vw,26px);margin-top:4px}
 .hero-plate .pic::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(20,12,6,.55));z-index:2}
 
 /* ---------- live window (§3.2) ---------- */
 .live{max-width:560px;margin:34px auto 0;padding:20px 24px 16px;text-align:center}
-.live .label{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-3)}
+.live .label{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-3)}
 .live .row{display:flex;justify-content:center;gap:min(12vw,72px);flex-wrap:wrap;margin-top:12px}
 .live .cell .fig{font-family:var(--serif);font-size:clamp(28px,7vw,40px);font-weight:700;line-height:1;
-  background:linear-gradient(160deg,#B9812F,#8A5A22);-webkit-background-clip:text;background-clip:text;color:transparent}
-.live .cell .u{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px}
-.live .cell .fig.open{background:linear-gradient(160deg,#3F8F5C,#276B3E);-webkit-background-clip:text;background-clip:text}
-.live .cell .fig.shut{background:linear-gradient(160deg,#A6603A,#7A3E22);-webkit-background-clip:text;background-clip:text}
-.live .status{margin-top:14px;font-size:11.5px;letter-spacing:.04em;color:var(--ink-dim)}
+  color:#8A5A22}
+.live .cell .u{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-dim);margin-top:6px}
+.live .cell .fig.open{color:#276B3E}
+.live .cell .fig.shut{color:#8A4A28}
+.live .status{margin-top:14px;font-size:12.5px;letter-spacing:.04em;color:var(--ink-dim)}
 .live .status .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#D9A441;
   margin-right:7px;vertical-align:middle}
 
@@ -192,13 +189,13 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
   display:flex;flex-direction:column;align-items:center;transition:transform .2s cubic-bezier(.22,.61,.36,1),box-shadow .2s}
 @media(max-width:719px){.card{flex-basis:100%}}   /* single full-width column on phones */
 .card:hover,.card:focus-visible{transform:translateY(-5px);
-  box-shadow:0 0 0 1px rgba(122,90,34,.36),0 34px 60px -30px rgba(36,24,19,.55)}
+  box-shadow:0 34px 60px -30px rgba(36,24,19,.55)}
 .card .ic{width:52px;height:52px;margin-bottom:14px}
 .card .ic svg{width:52px;height:52px;stroke:var(--accent-3);fill:none;stroke-width:1.4;
   stroke-linecap:round;stroke-linejoin:round}
 .card h3{font-size:20px;letter-spacing:.01em;margin-bottom:6px;color:#2A1B10;text-transform:capitalize}
 .card p{font-size:14px;color:var(--ink-dim);margin:0}
-.card .tag{margin-top:16px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-3);
+.card .tag{margin-top:16px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent-3);
   border-top:1px solid #E2D6BF;padding-top:11px;width:100%}
 
 /* ============================== FEATURE BAND (full-bleed photo) ============================== */
@@ -210,13 +207,12 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 /* legibility scrim — kept light so the band reads as imagery, not a dark slab */
 .feature-band::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
   background:linear-gradient(180deg,rgba(26,15,8,.30),rgba(26,15,8,.10) 42%,rgba(26,15,8,.40))}
-.fb-inner{position:relative;z-index:2;max-width:640px;margin:0 auto;color:#fff}
+.fb-inner{position:relative;z-index:2;max-width:600px;margin:0 auto;color:#fff;
+  background:#241813;padding:30px 28px;border-radius:4px}
 .fb-inner .kicker{color:#F1D9A8}
 .fb-title{font-family:var(--serif);font-weight:700;color:#fff;margin-top:8px;
-  font-size:clamp(26px,5.2vw,42px);letter-spacing:.04em;text-indent:.04em;line-height:1.08;
-  text-shadow:0 2px 24px rgba(0,0,0,.5)}
-.fb-p{margin:0 auto;max-width:52ch;color:#F3ECE0;font-size:clamp(14px,2.4vw,17px);
-  text-shadow:0 1px 14px rgba(0,0,0,.55)}
+  font-size:clamp(26px,5.2vw,42px);letter-spacing:.04em;text-indent:.04em;line-height:1.08}
+.fb-p{margin:0 auto;max-width:52ch;color:#F3ECE0;font-size:clamp(14px,2.4vw,17px)}
 
 /* ============================== RESERVATION BAND ============================== */
 .reserve{background:linear-gradient(180deg,var(--field-deep) 0%,var(--field-deep-2) 100%);
@@ -234,13 +230,13 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .res-persuade .contact-line{margin-top:24px;font-size:14px;color:#C9B79C}
 .res-persuade .contact-line a{color:var(--accent-1);text-decoration:none}
 .form-window{background:var(--paper);color:var(--ink);border-radius:3px;padding:26px 24px;
-  box-shadow:0 0 0 1px rgba(122,90,34,.3),0 34px 70px -32px rgba(0,0,0,.7)}
-.form-window .fk{font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-3);text-align:center}
+  box-shadow:0 34px 70px -32px rgba(0,0,0,.7)}
+.form-window .fk{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--accent-3);text-align:center}
 .form-window h3{text-align:center;font-size:23px;margin:6px 0 18px;color:#2A1B10}
 .frow{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 @media(max-width:460px){.frow{grid-template-columns:1fr}}
 .field{margin-bottom:12px}
-.field label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.field label{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
 .field input,.field select,.field textarea{width:100%;font-family:var(--sans);font-size:15px;color:var(--ink);
   background:#fff;border:1px solid #D8CBB3;border-radius:2px;padding:11px 12px;min-height:44px}
 .field textarea{min-height:70px;resize:vertical}
@@ -286,7 +282,7 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .res-flip{position:relative;width:min(560px,94vw);transform-style:preserve-3d;pointer-events:auto;
   transition:transform .32s cubic-bezier(.4,.02,.2,1);will-change:transform}
 .res-face{backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:4px;
-  background:var(--paper);color:var(--ink);box-shadow:0 0 0 1px rgba(122,90,34,.3),0 40px 80px -30px rgba(0,0,0,.65)}
+  background:var(--paper);color:var(--ink);box-shadow:0 40px 80px -30px rgba(0,0,0,.65)}
 .res-front{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:28px}
 .res-front .ic svg{width:54px;height:54px;stroke:var(--accent-3);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
@@ -302,7 +298,7 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .form-status.ok{color:#2E7D46}
 .form-status.err{color:#A6603A}
 @media (prefers-reduced-motion: reduce){.res-flip{transition:none}.res-dim{transition:none}}
-.form-note{text-align:center;font-size:11px;color:var(--muted);margin:12px 0 0;letter-spacing:.02em}
+.form-note{text-align:center;font-size:12px;color:var(--muted);margin:12px 0 0;letter-spacing:.02em}
 
 /* ============================== GALLERY ============================== */
 .gallery{background:transparent}
@@ -321,7 +317,7 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch;position:relative;z-index:2}
 @media(max-width:840px){.visit-grid{grid-template-columns:1fr}}
 .info-window{background:var(--paper);border-radius:3px;padding:28px 26px;
-  box-shadow:0 0 0 1px rgba(122,90,34,.24),0 26px 56px -30px rgba(36,24,19,.5)}
+  box-shadow:0 26px 56px -30px rgba(36,24,19,.5)}
 .info-window h3{font-size:24px;margin-bottom:6px;color:#2A1B10}
 .info-window .addr{color:var(--ink-dim);font-size:15px;margin-bottom:20px}
 .hours{list-style:none;padding:0;margin:0 0 20px;border-top:1px solid #E4D8C1}
@@ -337,7 +333,7 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
 .contact-rows a:hover{color:var(--accent-2)}
 .contact-rows svg{width:17px;height:17px;stroke:var(--accent-3);fill:none;stroke-width:1.5;flex:none}
 .map-window{background:var(--paper);border-radius:3px;padding:9px;
-  box-shadow:0 0 0 1px rgba(122,90,34,.24),0 26px 56px -30px rgba(36,24,19,.5);min-height:320px;display:flex}
+  box-shadow:0 26px 56px -30px rgba(36,24,19,.5);min-height:320px;display:flex}
 .map-window iframe{width:100%;border:0;border-radius:2px;filter:saturate(.82) sepia(.12);min-height:320px;flex:1}
 
 /* ============================== FOOTER ============================== */
@@ -354,11 +350,11 @@ footer{background:linear-gradient(180deg,var(--field-deep) 0%,var(--field-deep-2
 .foot-lockup .lk-place{font-size:clamp(9px,2vw,12px);color:#D8C7AC;margin-top:9px}
 .foot-lockup .lk-knot{margin-top:12px;width:clamp(112px,26vw,150px)}
 .hallmarks{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin:26px 0 22px}
-.hallmark{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:#CDB99C;
+.hallmark{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#CDB99C;
   border:1px solid rgba(122,106,87,.55);border-radius:3px;padding:9px 14px}
 footer .fine{font-size:12px;color:#B3A184;letter-spacing:.02em}
 footer .fine a{color:#D8C7AC;text-decoration:none}
-.provenance{margin-top:16px;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#6E5C46}
+.provenance{margin-top:16px;font-size:12px;letter-spacing:.04em;color:#B3A184}
 
 /* ---------- scroll reveal (§5.1) — content drifts up from the bottom as it
    enters view. JS/IntersectionObserver-driven (works in every browser incl.
@@ -422,7 +418,6 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
-  <div class="edge-text" aria-hidden="true">Buurtweg 5 · Stavenisse · Zeeland</div>
   <!-- flourish bleed -->
   <div class="engraving" style="right:-120px;top:20px;opacity:.16" aria-hidden="true">
     <svg width="420" height="460" viewBox="0 0 420 460">
@@ -455,7 +450,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
       </svg>
     </h1>
     <div class="sub" data-i18n="hero.sub">Genieten van rust, sfeer en goed eten</div>
-    <p class="lede" data-i18n="hero.lede">Verse gerechten, steengrill en Zeeuwse gastvrijheid — in een warm, ontspannen café aan de rand van Stavenisse, met een ruim terras omgeven door natuur.</p>
+    <p class="lede" data-i18n="hero.lede">Verse gerechten, steengrill en Zeeuwse gastvrijheid in een warm, ontspannen café aan de rand van Stavenisse, met een ruim terras omgeven door natuur.</p>
     <div class="hero-rule"></div>
     <div class="hero-cta">
       <a class="btn btn-gold" href="#services" data-i18n="hero.cta1">Reserveer een tafel</a>
@@ -475,12 +470,12 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 
     <!-- LIVE window -->
     <div class="plate live" role="status" aria-live="polite">
-      <div class="label" data-i18n="live.label">Terrasweer · Stavenisse — nu</div>
+      <div class="label" data-i18n="live.label">Terrasweer · Stavenisse</div>
       <div class="row">
         <div class="cell"><div class="fig" id="wx-temp">17°</div><div class="u" id="wx-desc" data-i18n="live.clear">Helder</div></div>
         <div class="cell"><div class="fig open" id="oc-fig" data-i18n="live.open">Open</div><div class="u" id="oc-u" data-i18n="live.until">tot 21:00</div></div>
       </div>
-      <div class="status" id="live-status"><span class="dot"></span><span data-i18n="live.seed">indicatief — live gegevens laden…</span></div>
+      <div class="status" id="live-status"><span class="dot"></span><span data-i18n="live.seed">indicatief; live gegevens laden…</span></div>
     </div>
   </div>
 </header>
@@ -498,17 +493,17 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="rest.kicker">Het restaurant</div>
       <h2 data-i18n="rest.title">Vers, eerlijk en Zeeuws</h2>
-      <p data-i18n="rest.dek">Of u nu komt voor de lunch, het diner of een borrel — bij Oud-Kempen staat goed eten in een gemoedelijke sfeer altijd centraal.</p>
+      <p data-i18n="rest.dek">Of u nu komt voor de lunch, het diner of een borrel: bij Oud-Kempen staat goed eten in een gemoedelijke sfeer altijd centraal.</p>
     </div>
     <div class="rest-grid">
       <div class="rest-copy reveal">
         <h3 data-i18n="rest.h3">Van steengrill tot een frisse borrel</h3>
-        <p data-i18n="rest.p1">Ontdek verse gerechten, onze populaire steengrill-specials, hartige snacks en heerlijke desserts — geserveerd in een warme, comfortabele setting. Binnen gezellig aan tafel, of buiten op het ruime terras omgeven door natuur.</p>
+        <p data-i18n="rest.p1">Ontdek verse gerechten, onze populaire steengrill-specials, hartige snacks en heerlijke desserts, geserveerd in een warme, comfortabele setting. Binnen gezellig aan tafel, of buiten op het ruime terras omgeven door natuur.</p>
         <ul class="assure">
           <li data-i18n="rest.a1">Verse dag- en seizoensgerechten</li>
-          <li data-i18n="rest.a2">Steengrill & gourmet — samen aan tafel</li>
+          <li data-i18n="rest.a2">Steengrill & gourmet, samen aan tafel</li>
           <li data-i18n="rest.a3">Ruim terras, kindvriendelijk met speeltuin</li>
-          <li data-i18n="rest.a4">Zes dagen open — woensdag gesloten</li>
+          <li data-i18n="rest.a4">Zes dagen open, woensdag gesloten</li>
         </ul>
         <div class="hero-cta" style="justify-content:flex-start;margin-top:22px">
           <a class="btn btn-gold" href="#services" data-i18n="rest.cta1">Reserveer een tafel</a>
@@ -532,7 +527,6 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 <section class="feature-band" aria-label="Ons terras">
   <div class="fb-media"><img src="assets/terrace.webp" width="1200" height="653" loading="lazy" alt="Het terras van Oud-Kempen op een zonnige dag"></div>
   <div class="fb-inner reveal">
-    <div class="kicker" data-i18n="fb.kicker">Buiten bij Oud-Kempen</div>
     <h2 class="fb-title" data-i18n="fb.title">Een terras omgeven door natuur</h2>
     <svg class="flourish" width="150" height="20" viewBox="0 0 150 20" style="margin:16px auto 14px" aria-hidden="true">
       <g stroke="#E7C079" fill="none" stroke-width="1.1">
@@ -541,7 +535,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
         <path d="M75 10 c8 -6 16 -6 16 0 c0 6 -8 6 -16 0"/>
       </g><circle cx="75" cy="10" r="2.1" fill="#E7C079"/>
     </svg>
-    <p class="fb-p" data-i18n="fb.p">Zonnige middagen en lange zomeravonden op ons ruime terras — aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.</p>
+    <p class="fb-p" data-i18n="fb.p">Zonnige middagen en lange zomeravonden op ons ruime terras, aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.</p>
   </div>
 </section>
 
@@ -558,13 +552,13 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="svc.kicker">Alles bij Oud-Kempen</div>
       <h2 data-i18n="svc.title">Meer dan alleen eten</h2>
-      <p data-i18n="svc.dek">Reserveer direct wat u zoekt — een tafel, een fiets, de jacuzzi, het vakantiehuis of uw eigen feest. Kies en wij nemen contact op ter bevestiging.</p>
+      <p data-i18n="svc.dek">Reserveer direct wat u zoekt: een tafel, een fiets, de jacuzzi, het vakantiehuis of uw eigen feest. Kies en wij nemen contact op ter bevestiging.</p>
     </div>
     <div class="cards">
       <a class="card reveal" href="#reserveform" data-service="table">
         <span class="ic"><svg viewBox="0 0 44 44"><path d="M14 8v12M11 8v7a3 3 0 006 0V8M30 8c-2.5 0-4 3-4 8s1.5 6 4 6M30 22v14M14 20v16"/></svg></span>
         <h3 data-i18n="svc.table.t">Reserveer een tafel</h3>
-        <p data-i18n="svc.table.d">Lunch, diner of borrel — binnen of op het terras.</p>
+        <p data-i18n="svc.table.d">Lunch, diner of borrel, binnen of op het terras.</p>
         <span class="tag" data-i18n="svc.table.tag">Direct reserveren</span>
       </a>
       <a class="card reveal" href="#reserveform" data-service="bike">
@@ -588,7 +582,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
       <a class="card reveal" href="#reserveform" data-service="event">
         <span class="ic"><svg viewBox="0 0 44 44"><path d="M15 10l3 12M29 10l-3 12M18 22h8l-1 6h-6zM22 28v6M17 34h10M13 8l2 3M31 8l-2 3M22 6v4"/></svg></span>
         <h3 data-i18n="svc.event.t">Vier uw feest</h3>
-        <p data-i18n="svc.event.d">Verjaardag, bruiloft of borrel — wij regelen het.</p>
+        <p data-i18n="svc.event.d">Verjaardag, bruiloft of borrel; wij regelen het.</p>
         <span class="tag" data-i18n="svc.event.tag">Op maat</span>
       </a>
     </div>
@@ -607,7 +601,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
         <div class="res-persuade reveal">
           <div class="kicker" style="color:var(--accent-1)" data-i18n="res.kicker">Reserveren</div>
           <h3 data-i18n="res.h3">Uw plek bij <span class="gold">Oud-Kempen</span> is zo geregeld</h3>
-          <p data-i18n="res.p">Vul kort uw wensen in. Uw reservering opent in uw e-mailprogramma, klaar om te versturen — wij bevestigen persoonlijk. Geen account, geen gedoe.</p>
+          <p data-i18n="res.p">Kies een dienst en vul het korte formulier in. Elke dienst heeft z'n eigen formulier. Wij bevestigen persoonlijk. Geen account, geen gedoe.</p>
           <ul class="assure">
             <li data-i18n="res.a1">Tafel, fiets, jacuzzi, vakantiehuis of feest</li>
             <li data-i18n="res.a2">Persoonlijke bevestiging per e-mail</li>
@@ -616,9 +610,8 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
           <p class="contact-line"><span data-i18n="res.or">Liever direct mailen? </span><a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></p>
         </div>
         <div class="form-window res-prompt reveal">
-          <div class="fk" data-i18n="res.fk">Reserveringsaanvraag</div>
           <h3 data-i18n="res.picktitle">Kies uw dienst</h3>
-          <p class="rp-lead" data-i18n="res.pick">Elke dienst heeft een eigen snel formulier. Klik hieronder — of op een kaart hierboven — om te openen.</p>
+          <p class="rp-lead" data-i18n="res.pick">Elke dienst heeft een eigen snel formulier. Klik hieronder of op een kaart hierboven om te openen.</p>
           <div class="prompt-btns">
             <button type="button" class="pbtn" data-open="table"><span data-i18n="svc.table.t">Reserveer een tafel</span></button>
             <button type="button" class="pbtn" data-open="bike"><span data-i18n="svc.bike.t">Fietsverhuur</span></button>
@@ -644,7 +637,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="gal.kicker">Galerij</div>
       <h2 data-i18n="gal.title">Sfeer proeven</h2>
-      <p data-i18n="gal.dek">Een indruk van het café, het terras en de tafel — van zonnige middagen tot gezellige avonden.</p>
+      <p data-i18n="gal.dek">Een indruk van het café, het terras en de tafel, van zonnige middagen tot gezellige avonden.</p>
     </div>
     <div class="gal-grid">
       <figure class="plate wide reveal"><div class="pic"><img src="assets/terrace.webp" width="1200" height="653" loading="lazy" alt="Terras van Oud-Kempen op een zonnige dag"></div></figure>
@@ -849,7 +842,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
       <span class="hallmark" data-i18n="hall.4">Hart van Zeeland</span>
     </div>
     <div class="fine">© 2026 Oud-Kempen Eetcafé · Buurtweg 5, 4696 RT Stavenisse · <a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></div>
-    <div class="provenance" data-i18n="prov">Ontwerpconcept door Merritt Digital · demonstratiebuild · weer- en openingsstatus live, reserveringen per e-mail tot de productieversie</div>
+    <div class="provenance" data-i18n="prov">Website door Merritt Digital</div>
   </div>
 </footer>
 
@@ -861,56 +854,56 @@ const I18N = {
   nl:{
     "nav.restaurant":"Restaurant","nav.menu":"Menu","nav.services":"Reserveren","nav.gallery":"Galerij","nav.visit":"Bezoek","nav.cta":"Reserveer",
     "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Genieten van rust, sfeer en goed eten",
-    "hero.lede":"Verse gerechten, steengrill en Zeeuwse gastvrijheid — in een warm, ontspannen café aan de rand van Stavenisse, met een ruim terras omgeven door natuur.",
+    "hero.lede":"Verse gerechten, steengrill en Zeeuwse gastvrijheid in een warm, ontspannen café aan de rand van Stavenisse, met een ruim terras omgeven door natuur.",
     "hero.cta1":"Reserveer een tafel","hero.cta2":"Bekijk het restaurant","hero.capk":"Aan de rand van het dorp","hero.capt":"Stavenisse, Zeeland",
-    "live.label":"Terrasweer · Stavenisse — nu","live.clear":"Helder","live.open":"Open","live.until":"tot 21:00","live.seed":"indicatief — live gegevens laden…",
+    "live.label":"Terrasweer · Stavenisse","live.clear":"Helder","live.open":"Open","live.until":"tot 21:00","live.seed":"indicatief; live gegevens laden…",
     "rest.kicker":"Het restaurant","rest.title":"Vers, eerlijk en Zeeuws",
-    "rest.dek":"Of u nu komt voor de lunch, het diner of een borrel — bij Oud-Kempen staat goed eten in een gemoedelijke sfeer altijd centraal.",
+    "rest.dek":"Of u nu komt voor de lunch, het diner of een borrel: bij Oud-Kempen staat goed eten in een gemoedelijke sfeer altijd centraal.",
     "rest.h3":"Van steengrill tot een frisse borrel",
-    "rest.p1":"Ontdek verse gerechten, onze populaire steengrill-specials, hartige snacks en heerlijke desserts — geserveerd in een warme, comfortabele setting. Binnen gezellig aan tafel, of buiten op het ruime terras omgeven door natuur.",
-    "rest.a1":"Verse dag- en seizoensgerechten","rest.a2":"Steengrill & gourmet — samen aan tafel","rest.a3":"Ruim terras, kindvriendelijk met speeltuin","rest.a4":"Zes dagen open — woensdag gesloten",
+    "rest.p1":"Ontdek verse gerechten, onze populaire steengrill-specials, hartige snacks en heerlijke desserts, geserveerd in een warme, comfortabele setting. Binnen gezellig aan tafel, of buiten op het ruime terras omgeven door natuur.",
+    "rest.a1":"Verse dag- en seizoensgerechten","rest.a2":"Steengrill & gourmet, samen aan tafel","rest.a3":"Ruim terras, kindvriendelijk met speeltuin","rest.a4":"Zes dagen open, woensdag gesloten",
     "rest.cta1":"Reserveer een tafel","rest.cta2":"Bekijk het menu",
     "svc.kicker":"Alles bij Oud-Kempen","svc.title":"Meer dan alleen eten",
-    "svc.dek":"Reserveer direct wat u zoekt — een tafel, een fiets, de jacuzzi, het vakantiehuis of uw eigen feest. Kies en wij nemen contact op ter bevestiging.",
-    "svc.table.t":"Reserveer een tafel","svc.table.d":"Lunch, diner of borrel — binnen of op het terras.","svc.table.tag":"Direct reserveren",
+    "svc.dek":"Reserveer direct wat u zoekt: een tafel, een fiets, de jacuzzi, het vakantiehuis of uw eigen feest. Kies en wij nemen contact op ter bevestiging.",
+    "svc.table.t":"Reserveer een tafel","svc.table.d":"Lunch, diner of borrel, binnen of op het terras.","svc.table.tag":"Direct reserveren",
     "svc.bike.t":"Fietsverhuur","svc.bike.d":"Ontdek Zeeland op de fiets, zo van het terras af.","svc.bike.tag":"Per dag te huur",
     "svc.jac.t":"Jacuzzi huren","svc.jac.d":"Ontspan onder de Zeeuwse hemel na een dag uit.","svc.jac.tag":"Op reservering",
     "svc.house.t":"Vakantiehuis","svc.house.d":"Vraag vrijblijvend naar beschikbaarheid en tarieven.","svc.house.tag":"Aanvraag",
-    "svc.event.t":"Vier uw feest","svc.event.d":"Verjaardag, bruiloft of borrel — wij regelen het.","svc.event.tag":"Op maat",
+    "svc.event.t":"Vier uw feest","svc.event.d":"Verjaardag, bruiloft of borrel; wij regelen het.","svc.event.tag":"Op maat",
     "res.kicker":"Reserveren","res.h3":"Uw plek bij Oud-Kempen is zo geregeld",
     "res.p":"Kies een dienst en vul het korte formulier in — elke dienst heeft z'n eigen formulier. Wij bevestigen persoonlijk. Geen account, geen gedoe.",
     "res.a1":"Tafel, fiets, jacuzzi, vakantiehuis of feest","res.a2":"Persoonlijke bevestiging per e-mail","res.a3":"Groepen en gelegenheden welkom",
     "res.or":"Liever direct mailen? ","res.fk":"Reserveringsaanvraag","res.ftitle":"Vertel ons uw wensen",
     "res.l.service":"Wat wilt u reserveren? (meerdere mogelijk)","res.l.name":"Naam","res.l.guests":"Aantal personen","res.l.date":"Datum","res.l.time":"Tijd","res.l.note":"Opmerking (optioneel)",
     "res.submit":"Verstuur aanvraag","res.note":"Demonstratie — opent een klaargezette e-mail. Online betaling volgt in de productieversie.",
-    "res.l.email":"E-mailadres","res.l.startdate":"Startdatum","res.l.starttime":"Starttijd","res.l.enddate":"Einddatum","res.l.endtime":"Eindtijd","res.b.std":"Aantal gewone fietsen","res.b.e":"Aantal e-bikes","res.b.pud":"Ophaaldatum","res.b.put":"Ophaaltijd","res.b.dod":"Inleverdatum","res.b.dot":"Inlevertijd","res.j.room":"Villanummer","res.h.ci":"Aankomstdatum","res.h.co":"Vertrekdatum","res.h.adults":"Volwassenen","res.h.children":"Kinderen","res.e.type":"Type gelegenheid","res.e.guests":"Verwacht aantal gasten","res.note2":"Wij bevestigen uw reservering persoonlijk.","res.ok":"Bedankt voor uw aanvraag! Wij nemen spoedig contact op.","res.err":"Er ging iets mis. Probeer het opnieuw of mail ons direct.","res.sending":"Versturen…","res.close":"Sluiten","res.picktitle":"Kies uw dienst","res.pick":"Elke dienst heeft een eigen snel formulier. Klik hieronder — of op een kaart hierboven — om te openen.",
-    "fb.kicker":"Buiten bij Oud-Kempen","fb.title":"Een terras omgeven door natuur","fb.p":"Zonnige middagen en lange zomeravonden op ons ruime terras — aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.",
-    "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het café, het terras en de tafel — van zonnige middagen tot gezellige avonden.",
+    "res.l.email":"E-mailadres","res.l.startdate":"Startdatum","res.l.starttime":"Starttijd","res.l.enddate":"Einddatum","res.l.endtime":"Eindtijd","res.b.std":"Aantal gewone fietsen","res.b.e":"Aantal e-bikes","res.b.pud":"Ophaaldatum","res.b.put":"Ophaaltijd","res.b.dod":"Inleverdatum","res.b.dot":"Inlevertijd","res.j.room":"Villanummer","res.h.ci":"Aankomstdatum","res.h.co":"Vertrekdatum","res.h.adults":"Volwassenen","res.h.children":"Kinderen","res.e.type":"Type gelegenheid","res.e.guests":"Verwacht aantal gasten","res.note2":"Wij bevestigen uw reservering persoonlijk.","res.ok":"Bedankt voor uw aanvraag! Wij nemen spoedig contact op.","res.err":"Er ging iets mis. Probeer het opnieuw of mail ons direct.","res.sending":"Versturen…","res.close":"Sluiten","res.picktitle":"Kies uw dienst","res.pick":"Elke dienst heeft een eigen snel formulier. Klik hieronder of op een kaart hierboven om te openen.",
+    "fb.kicker":"Buiten bij Oud-Kempen","fb.title":"Een terras omgeven door natuur","fb.p":"Zonnige middagen en lange zomeravonden op ons ruime terras, aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.",
+    "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het café, het terras en de tafel, van zonnige middagen tot gezellige avonden.",
     "visit.kicker":"Bezoek ons","visit.title":"Openingstijden & route","visit.dek":"U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Gesloten","visit.route":"Routebeschrijving",
     "day.mon":"Maandag","day.tue":"Dinsdag","day.wed":"Woensdag","day.thu":"Donderdag","day.fri":"Vrijdag","day.sat":"Zaterdag","day.sun":"Zondag",
     "hall.1":"Zes dagen open","hall.2":"Terras & speeltuin","hall.3":"Steengrill-specials","hall.4":"Hart van Zeeland",
-    "prov":"Ontwerpconcept door Merritt Digital · demonstratiebuild · weer- en openingsstatus live, reserveringen per e-mail tot de productieversie"
+    "prov":"Website door Merritt Digital"
   },
   en:{
     "nav.restaurant":"Restaurant","nav.menu":"Menu","nav.services":"Book","nav.gallery":"Gallery","nav.visit":"Visit","nav.cta":"Reserve",
     "hero.kicker":"Eatery · Stavenisse · Zeeland","hero.sub":"Rest, atmosphere and good food",
-    "hero.lede":"Fresh dishes, stone-grill specials and Zeeland hospitality — in a warm, relaxed café on the edge of Stavenisse, with a spacious terrace surrounded by nature.",
+    "hero.lede":"Fresh dishes, stone-grill specials and Zeeland hospitality in a warm, relaxed café on the edge of Stavenisse, with a spacious terrace surrounded by nature.",
     "hero.cta1":"Reserve a table","hero.cta2":"See the restaurant","hero.capk":"On the edge of the village","hero.capt":"Stavenisse, Zeeland",
-    "live.label":"Terrace weather · Stavenisse — now","live.clear":"Clear","live.open":"Open","live.until":"until 9:00 pm","live.seed":"indicative — loading live data…",
+    "live.label":"Terrace weather · Stavenisse","live.clear":"Clear","live.open":"Open","live.until":"until 9:00 pm","live.seed":"indicative; loading live data…",
     "rest.kicker":"The restaurant","rest.title":"Fresh, honest and Zeeland",
-    "rest.dek":"Whether you come for lunch, dinner or a drink — at Oud-Kempen, good food in a cosy atmosphere is always at the heart of it.",
+    "rest.dek":"Whether you come for lunch, dinner or a drink: at Oud-Kempen, good food in a cosy atmosphere is always at the heart of it.",
     "rest.h3":"From stone grill to a crisp drink",
-    "rest.p1":"Discover fresh dishes, our popular stone-grill specials, savoury snacks and delicious desserts — served in a warm, comfortable setting. Cosy at the table indoors, or out on the spacious terrace surrounded by nature.",
-    "rest.a1":"Fresh daily and seasonal dishes","rest.a2":"Stone grill & gourmet — together at the table","rest.a3":"Spacious terrace, child-friendly with playground","rest.a4":"Open six days — closed Wednesday",
+    "rest.p1":"Discover fresh dishes, our popular stone-grill specials, savoury snacks and delicious desserts, served in a warm, comfortable setting. Cosy at the table indoors, or out on the spacious terrace surrounded by nature.",
+    "rest.a1":"Fresh daily and seasonal dishes","rest.a2":"Stone grill & gourmet, together at the table","rest.a3":"Spacious terrace, child-friendly with playground","rest.a4":"Open six days, closed Wednesday",
     "rest.cta1":"Reserve a table","rest.cta2":"View the menu",
     "svc.kicker":"Everything at Oud-Kempen","svc.title":"More than just dining",
-    "svc.dek":"Book exactly what you need — a table, a bike, the jacuzzi, the holiday home or your own event. Choose and we'll be in touch to confirm.",
-    "svc.table.t":"Reserve a table","svc.table.d":"Lunch, dinner or drinks — indoors or on the terrace.","svc.table.tag":"Book now",
+    "svc.dek":"Book exactly what you need: a table, a bike, the jacuzzi, the holiday home or your own event. Choose and we'll be in touch to confirm.",
+    "svc.table.t":"Reserve a table","svc.table.d":"Lunch, dinner or drinks, indoors or on the terrace.","svc.table.tag":"Book now",
     "svc.bike.t":"Bike rental","svc.bike.d":"Explore Zeeland by bike, straight from the terrace.","svc.bike.tag":"By the day",
     "svc.jac.t":"Jacuzzi rental","svc.jac.d":"Unwind under the Zeeland sky after a day out.","svc.jac.tag":"On reservation",
     "svc.house.t":"Holiday home","svc.house.d":"Enquire about availability and rates, no obligation.","svc.house.tag":"Enquiry",
-    "svc.event.t":"Host your event","svc.event.d":"Birthday, wedding or party — we'll arrange it.","svc.event.tag":"Tailored",
+    "svc.event.t":"Host your event","svc.event.d":"Birthday, wedding or party; we'll arrange it.","svc.event.tag":"Tailored",
     "res.kicker":"Reservations","res.h3":"Your place at Oud-Kempen is quickly sorted",
     "res.p":"Pick a service and fill in the short form — each service has its own. We confirm personally. No account, no fuss.",
     "res.a1":"Table, bike, jacuzzi, holiday home or event","res.a2":"Personal confirmation by email","res.a3":"Groups and occasions welcome",
@@ -924,19 +917,19 @@ const I18N = {
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Closed","visit.route":"Get directions",
     "day.mon":"Monday","day.tue":"Tuesday","day.wed":"Wednesday","day.thu":"Thursday","day.fri":"Friday","day.sat":"Saturday","day.sun":"Sunday",
     "hall.1":"Open six days","hall.2":"Terrace & playground","hall.3":"Stone-grill specials","hall.4":"Heart of Zeeland",
-    "prov":"Design concept by Merritt Digital · demonstration build · weather & open status live, reservations by email until production"
+    "prov":"Website by Merritt Digital"
   },
   de:{
     "nav.restaurant":"Restaurant","nav.menu":"Menü","nav.services":"Reservieren","nav.gallery":"Galerie","nav.visit":"Besuch","nav.cta":"Reservieren",
     "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Ruhe, Atmosphäre und gutes Essen",
     "hero.lede":"Frische Gerichte, Steingrill-Spezialitäten und zeeländische Gastfreundschaft — in einem warmen, entspannten Café am Rande von Stavenisse, mit großzügiger Terrasse umgeben von Natur.",
     "hero.cta1":"Tisch reservieren","hero.cta2":"Zum Restaurant","hero.capk":"Am Rande des Dorfes","hero.capt":"Stavenisse, Zeeland",
-    "live.label":"Terrassenwetter · Stavenisse — jetzt","live.clear":"Klar","live.open":"Geöffnet","live.until":"bis 21:00","live.seed":"vorläufig — Live-Daten laden…",
+    "live.label":"Terrassenwetter · Stavenisse","live.clear":"Klar","live.open":"Geöffnet","live.until":"bis 21:00","live.seed":"vorläufig; Live-Daten laden…",
     "rest.kicker":"Das Restaurant","rest.title":"Frisch, ehrlich und zeeländisch",
     "rest.dek":"Ob zum Mittagessen, Abendessen oder auf ein Getränk — bei Oud-Kempen steht gutes Essen in gemütlicher Atmosphäre immer im Mittelpunkt.",
     "rest.h3":"Vom Steingrill bis zum frischen Drink",
     "rest.p1":"Entdecken Sie frische Gerichte, unsere beliebten Steingrill-Spezialitäten, herzhafte Snacks und köstliche Desserts — serviert in warmem, gemütlichem Ambiente. Drinnen behaglich am Tisch oder draußen auf der weitläufigen Terrasse inmitten der Natur.",
-    "rest.a1":"Frische Tages- und Saisongerichte","rest.a2":"Steingrill & Gourmet — gemeinsam am Tisch","rest.a3":"Weitläufige Terrasse, kinderfreundlich mit Spielplatz","rest.a4":"Sechs Tage geöffnet — mittwochs geschlossen",
+    "rest.a1":"Frische Tages- und Saisongerichte","rest.a2":"Steingrill & Gourmet — gemeinsam am Tisch","rest.a3":"Weitläufige Terrasse, kinderfreundlich mit Spielplatz","rest.a4":"Sechs Tage geöffnet, mittwochs geschlossen",
     "rest.cta1":"Tisch reservieren","rest.cta2":"Zur Speisekarte",
     "svc.kicker":"Alles bei Oud-Kempen","svc.title":"Mehr als nur Essen",
     "svc.dek":"Reservieren Sie direkt, was Sie möchten — einen Tisch, ein Fahrrad, den Whirlpool, das Ferienhaus oder Ihre eigene Feier. Wählen Sie, wir melden uns zur Bestätigung.",
@@ -958,7 +951,7 @@ const I18N = {
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Geschlossen","visit.route":"Route anzeigen",
     "day.mon":"Montag","day.tue":"Dienstag","day.wed":"Mittwoch","day.thu":"Donnerstag","day.fri":"Freitag","day.sat":"Samstag","day.sun":"Sonntag",
     "hall.1":"Sechs Tage geöffnet","hall.2":"Terrasse & Spielplatz","hall.3":"Steingrill-Spezialitäten","hall.4":"Herz von Zeeland",
-    "prov":"Designkonzept von Merritt Digital · Demonstrationsbuild · Wetter- und Öffnungsstatus live, Reservierungen per E-Mail bis zur Produktion"
+    "prov":"Website von Merritt Digital"
   }
 };
 const HTML_LANG = {nl:"nl",en:"en",de:"de"};
