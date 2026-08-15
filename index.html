@@ -1076,10 +1076,17 @@ document.querySelectorAll('.lang button').forEach(b=>{
 
   /* --- server-side delivery via FormSubmit (keyless, no backend) -----------
      Delivers each reservation straight to the caf&eacute;'s inbox; the customer never
-     opens a mail client. One-time activation: the first submission triggers an
-     "Activate Form" email to the inbox below — once clicked, all reservations are
-     forwarded there. To change the destination, swap this one address. */
-  var RES_ENDPOINT='https://formsubmit.co/ajax/eetcafeeoudkempen@gmail.com';
+     opens a mail client. Reservations go straight to the cafe's own inbox, so we
+     never hold customer data. */
+  /* INTERIM: the address is assembled at runtime so it is not a harvestable literal
+     in page source (address harvesters regex the raw HTML for user@host). This is a
+     partial mitigation, NOT the real fix. The real fix is FormSubmit's random-string
+     alias — issued to the cafe inbox when the form was activated — which keeps the
+     address out of the source entirely. When that alias is to hand, delete the two
+     lines below and replace with:
+         var RES_ENDPOINT='https://formsubmit.co/ajax/<alias>';           */
+  var RES_BOX=['eetcafeeoudkempen','gmail.com'];
+  var RES_ENDPOINT='https://formsubmit.co/ajax/'+RES_BOX[0]+String.fromCharCode(64)+RES_BOX[1];
   function deliverReservation(service,data){
     return fetch(RES_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
       body:JSON.stringify(data)}).then(function(r){if(!r.ok)throw r.status;return r.json().catch(function(){return{};});});
@@ -1101,7 +1108,8 @@ document.querySelectorAll('.lang button').forEach(b=>{
       data[lbl]=raw[k];
     });
     data['Website-taal']=({nl:'Nederlands',en:'Engels',de:'Duits'}[lang()]||'Nederlands');
-    data._subject='Nieuwe reservering — '+(NLCAT[svc]||svcName);
+    // scannable at a glance in the cafe's inbox: what was booked, and by whom
+    data._subject='Reservering — '+(NLCAT[svc]||svcName)+(raw.name?' — '+raw.name:'');
     data._replyto=custEmail;                               // reply goes straight to the guest
     data._template='table';data._captcha='false';
     busy=true;if(btn)btn.disabled=true;
