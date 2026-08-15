@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Your website, in your hands — Oudkempeneet Eetcafé</title>
+<style>
+  :root{
+    --field:#1A1C20; --brass:#B08D4A; --brass-lt:#E3C57E; --brass-dk:#8A6D33;
+    --paper:#FAF7F0; --ink:#23262B; --ink-dim:#565B66; --line:#D8D2C4;
+    --serif:"Iowan Old Style",Charter,Palatino,Georgia,serif;
+    --sans:system-ui,-apple-system,"Segoe UI",sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:#fff;color:var(--ink);font-family:var(--sans);font-size:11.5pt;line-height:1.6}
+  .page{max-width:186mm;margin:0 auto;padding:0 4mm}
+
+  /* cover */
+  .cover{background:var(--field);color:var(--paper);padding:26mm 16mm 20mm;margin-bottom:12mm}
+  .cover .kicker{font-size:9pt;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-lt)}
+  .cover h1{font-family:var(--serif);font-size:30pt;font-weight:600;line-height:1.15;margin:6mm 0 4mm}
+  .cover p{color:#C9CCD3;max-width:120mm;font-size:11pt}
+  .cover .for{margin-top:9mm;padding-top:5mm;border-top:1px solid #3A3D45;font-size:10pt;color:#9BA0AA}
+
+  h2{font-family:var(--serif);font-size:17pt;font-weight:600;margin:11mm 0 1mm;color:var(--field);
+     padding-bottom:2mm;border-bottom:1px solid var(--line);page-break-after:avoid}
+  h2 .num{color:var(--brass-dk);font-variant-numeric:tabular-nums}
+  h3{font-family:var(--sans);font-size:11.5pt;font-weight:600;margin:6mm 0 1.5mm;page-break-after:avoid}
+  p{margin:0 0 3mm}
+  ol,ul{margin:0 0 3mm 6mm}
+  li{margin:0 0 2mm}
+  strong{font-weight:600}
+  code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10pt;
+       background:#F1EDE3;padding:1px 5px;border-radius:3px;border:1px solid var(--line)}
+  .type{display:block;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10.5pt;
+        background:var(--field);color:var(--brass-lt);padding:3mm 4mm;border-radius:4px;margin:2mm 0 3mm;
+        word-break:break-all}
+
+  .box{border:1px solid var(--line);border-left:3px solid var(--brass);background:#FBF9F4;
+       padding:4mm 5mm;margin:4mm 0;page-break-inside:avoid}
+  .box.warn{border-left-color:#B4472E;background:#FDF4F1}
+  .box.warn h4{color:#8E3A24}
+  .box h4{font-size:11pt;margin-bottom:1.5mm;font-family:var(--sans)}
+
+  .shot{margin:4mm 0;page-break-inside:avoid}
+  .shot img{width:100%;border:1px solid var(--line);border-radius:3px;display:block}
+  .shot .cap{font-size:9pt;color:var(--ink-dim);margin-top:1.5mm;font-style:italic}
+  .slot{border:2px dashed var(--brass);background:#FBF6EA;border-radius:4px;padding:14mm 6mm;
+        text-align:center;color:var(--brass-dk);font-size:10pt;margin:4mm 0}
+  .slot b{display:block;font-size:11pt;margin-bottom:1mm}
+
+  table{width:100%;border-collapse:collapse;margin:3mm 0 4mm;font-size:10.5pt;page-break-inside:avoid}
+  th,td{text-align:left;padding:2.5mm 3mm;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#F4F1EA;font-weight:600}
+  td code{font-size:9.5pt}
+
+  .step{page-break-inside:avoid}
+  .worksheet td{height:11mm}
+  .foot{margin-top:12mm;padding-top:4mm;border-top:1px solid var(--line);
+        font-size:9.5pt;color:var(--ink-dim);text-align:center}
+  @page{size:A4;margin:16mm 12mm}
+  @media print{.cover{margin-bottom:8mm}}
+</style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="kicker">Merritt Digital · Alameda</div>
+  <h1>Your website,<br>in your hands</h1>
+  <p>Everything you need to put your new site online, on hosting you own outright — and to stop
+     paying a monthly subscription for a website you already own.</p>
+  <div class="for">Prepared for Dave · Oudkempeneet Eetcafé · oudkempeneetcafe.nl</div>
+</div>
+
+<div class="page">
+
+<h2><span class="num">0.</span> Before you start</h2>
+
+<p>This guide takes you from nothing to a live website on hosting that belongs to you. When you
+finish, three things are true: <strong>your website is yours</strong>, <strong>the hosting account
+is in your name</strong>, and <strong>you have no website subscription to pay.</strong></p>
+
+<p>Most café websites cost their owner a monthly fee forever, for a site that was built once and
+rarely changes. That is what we are ending here. Come back to us whenever you want changes made —
+we would like you to, and we would rather earn it than lock you in.</p>
+
+<h3>Set aside about 45 minutes</h3>
+<p>Most of that is waiting. The clicking is perhaps fifteen minutes.</p>
+
+<h3>Have these ready</h3>
+<ul>
+  <li><strong>The website folder we sent you.</strong> Save it somewhere you can find it — your
+      Desktop is perfect. Do not open or rename anything inside it.</li>
+  <li><strong>Your phone</strong>, for the security code step.</li>
+  <li><strong>Your login for the company you bought <code>oudkempeneetcafe.nl</code> from.</strong>
+      Your domain is registered through <strong>Key-Systems</strong>, possibly via a reseller you
+      bought it from. You need to be able to sign in there for Step 4.</li>
+  <li><strong>A printer or a pen.</strong> There is one thing in Step 1 you must write down.</li>
+</ul>
+
+<div class="box">
+  <h4>What will <em>not</em> happen</h4>
+  <p style="margin:0">Your email will not be affected. We checked: there is no email attached to
+  this domain — your Gmail address is entirely separate and nothing in this guide touches it. Your
+  Google Maps listing and your reviews are also unaffected.</p>
+</div>
+
+<h2><span class="num">1.</span> Create your Cloudflare account</h2>
+
+<p>Cloudflare is the company that will host your website. The plan we are using is free, and it
+stays free at the size of a café website.</p>
+
+<div class="step">
+<h3>1.1 — Open the sign-up page</h3>
+<p>In your browser, go to:</p>
+<span class="type">dash.cloudflare.com/sign-up</span>
+
+<div class="shot">
+  <img src="img/01-cloudflare-signup.png" alt="The Cloudflare sign-up page">
+  <div class="cap">The sign-up page. Use the Email and Password boxes in the middle.</div>
+</div>
+
+<p>Type your email address and choose a password. Tick <strong>“Verify you are human”</strong>,
+then click the blue <strong>Sign up</strong> button.</p>
+<p>Ignore the “Continue with Google / Apple / GitHub” buttons at the top — using a plain email
+address keeps this account simple and independent.</p>
+</div>
+
+<div class="step">
+<h3>1.2 — Confirm your email</h3>
+<p>Cloudflare sends you an email with a confirmation link. Open it and click the link. If it has
+not arrived after a minute, check your spam folder.</p>
+</div>
+
+<div class="step">
+<h3>1.3 — Turn on the security code, and write down your backup codes</h3>
+<p>Cloudflare will ask you to set up two-factor authentication — a six-digit code from your phone
+that you enter when logging in. Follow its instructions using an app such as Google Authenticator
+or your phone's built-in password manager.</p>
+
+<div class="box warn">
+  <h4>⚠ This is the one step where a mistake cannot be undone</h4>
+  <p>When it offers you <strong>recovery codes</strong> — a list of one-time backup codes —
+  <strong>print them, or write them on paper, and keep them somewhere safe in the café</strong>
+  (with your business papers, not in your email).</p>
+  <p style="margin:0">If you ever lose your phone and you do not have these codes, <strong>nobody
+  can get you back into your account — not Cloudflare's support, and not us.</strong> Your website
+  would keep running, but no one could change it again. Two minutes with a pen now removes that
+  risk permanently.</p>
+</div>
+</div>
+
+<h2><span class="num">2.</span> Put your website online</h2>
+
+<div class="step">
+<h3>2.1 — Find the hosting section</h3>
+<p>In the menu on the left of the Cloudflare dashboard, click <strong>Workers &amp; Pages</strong>.</p>
+<div class="slot"><b>SCREENSHOT</b>Cloudflare dashboard, left menu, “Workers &amp; Pages” highlighted</div>
+</div>
+
+<div class="step">
+<h3>2.2 — Create the project</h3>
+<ol>
+  <li>Click <strong>Create application</strong>.</li>
+  <li>Choose the <strong>Pages</strong> tab.</li>
+  <li>Choose <strong>Upload assets</strong> (sometimes shown as “Drag and drop your files”).</li>
+</ol>
+<div class="slot"><b>SCREENSHOT</b>“Create application” → Pages tab → Upload assets</div>
+</div>
+
+<div class="step">
+<h3>2.3 — Name it and upload</h3>
+<p>Give the project this name, exactly:</p>
+<span class="type">oudkempeneet-cafe</span>
+<p>Then drag the website folder we sent you into the upload area, and click
+<strong>Deploy site</strong>. It takes under a minute.</p>
+<div class="slot"><b>SCREENSHOT</b>Project name filled in and the folder being dropped onto the upload area</div>
+</div>
+
+<div class="step">
+<h3>2.4 — Look at your site</h3>
+<p>Cloudflare gives you a temporary address ending in <code>.pages.dev</code>. Click it. Your new
+website should appear.</p>
+<p><strong>This is your site, already online.</strong> It is not yet at your own address — that is
+the next two steps.</p>
+</div>
+
+<h2><span class="num">3.</span> Add your domain to Cloudflare</h2>
+
+<div class="step">
+<h3>3.1 — Add the site</h3>
+<p>Go to the account home (click the Cloudflare logo, top left), then click
+<strong>Add a domain</strong> — sometimes shown as “Add site”. Type your domain, without
+<code>www</code>:</p>
+<span class="type">oudkempeneetcafe.nl</span>
+<div class="slot"><b>SCREENSHOT</b>The “Add a domain” box with the domain typed in</div>
+</div>
+
+<div class="step">
+<h3>3.2 — Choose the Free plan</h3>
+<p>You will be shown a list of plans. Scroll down and choose <strong>Free</strong>. Cloudflare will
+then look at your current settings and copy them across automatically.</p>
+<div class="slot"><b>SCREENSHOT</b>Plan selection, Free plan highlighted</div>
+</div>
+
+<div class="step">
+<h3>3.3 — Check the copied records, then continue</h3>
+<p>You will see a list of DNS records it found. You do not need to understand them. Just confirm
+one line is present — a <strong>TXT</strong> record containing:</p>
+<span class="type">v=spf1 -all</span>
+<p>If it is there, click <strong>Continue</strong>. If it is missing, add it before continuing, or
+call us.</p>
+<div class="slot"><b>SCREENSHOT</b>The scanned DNS records list with the TXT record visible</div>
+</div>
+
+<div class="step">
+<h3>3.4 — Write down your two nameservers</h3>
+<p>Cloudflare now shows you <strong>two addresses</strong> that look like
+<code>anna.ns.cloudflare.com</code> and <code>rick.ns.cloudflare.com</code>. Every account gets a
+different pair, so yours will have different names.</p>
+<p><strong>Write both of them down.</strong> You need them in the next step.</p>
+<div class="slot"><b>SCREENSHOT</b>The two assigned Cloudflare nameservers</div>
+</div>
+
+<h2><span class="num">4.</span> Point your domain at Cloudflare</h2>
+
+<p>This is the only step that happens outside Cloudflare, and it is the one that actually moves your
+website address. Sign in to the company you bought <code>oudkempeneetcafe.nl</code> from
+(<strong>Key-Systems</strong>, or the reseller you bought through).</p>
+
+<p>Find the setting called <strong>Nameservers</strong>, <strong>DNS servers</strong>, or
+<strong>NS records</strong>. You will see these four values:</p>
+
+<table>
+  <tr><th>Remove these four (your current ones)</th></tr>
+  <tr><td><code>ns-cloud-e1.googledomains.com</code></td></tr>
+  <tr><td><code>ns-cloud-e2.googledomains.com</code></td></tr>
+  <tr><td><code>ns-cloud-e3.googledomains.com</code></td></tr>
+  <tr><td><code>ns-cloud-e4.googledomains.com</code></td></tr>
+</table>
+
+<p>Replace them with the <strong>two Cloudflare addresses</strong> you wrote down in Step 3.4, and
+save.</p>
+
+<div class="box">
+  <h4>Keep this page</h4>
+  <p style="margin:0">Those four Google addresses above are your way back. If anything ever goes
+  wrong, putting them back exactly as they were returns your site to how it is today, usually within
+  the hour. That is why we do not cancel Squarespace until the very end.</p>
+</div>
+
+<p>If you cannot find the nameserver setting, take a screenshot of what you can see and send it to
+us — we will point at the exact box. Do not guess: changing the wrong field usually does nothing,
+which is confusing but harmless.</p>
+
+<h2><span class="num">5.</span> Connect your domain to your website</h2>
+
+<div class="step">
+<p>Back in Cloudflare: <strong>Workers &amp; Pages</strong> → click your
+<strong>oudkempeneet-cafe</strong> project → the <strong>Custom domains</strong> tab →
+<strong>Set up a custom domain</strong>.</p>
+<p>Add each of these, one at a time:</p>
+<span class="type">oudkempeneetcafe.nl</span>
+<span class="type">www.oudkempeneetcafe.nl</span>
+<div class="slot"><b>SCREENSHOT</b>Custom domains tab with both domains added and active</div>
+<p>Cloudflare handles the security certificate — the padlock in the browser — by itself. It is
+usually ready within minutes and occasionally takes a few hours.</p>
+</div>
+
+<h2><span class="num">6.</span> Check that everything works</h2>
+
+<p>Wait until the nameserver change has spread — usually under an hour. Then check all of this:</p>
+<ul>
+  <li><code>https://oudkempeneetcafe.nl</code> shows your new site, with a padlock</li>
+  <li><code>https://www.oudkempeneetcafe.nl</code> does the same</li>
+  <li>It looks right <strong>on your phone</strong>, not just on a computer</li>
+  <li>Send yourself a <strong>test reservation</strong> through the form and confirm the email arrives</li>
+</ul>
+
+<p><strong>Tell us when you have checked these.</strong> We check from our side too, before you do
+anything in Step 7.</p>
+
+<h2><span class="num">7.</span> Cancel Squarespace — last, not first</h2>
+
+<p>Only once Step 6 is fully working:</p>
+<ol>
+  <li><strong>Export your old content</strong> as a keepsake: Squarespace →
+      <strong>Settings</strong> → <strong>Import/Export</strong> → <strong>Export</strong>. Keep the
+      file. You will probably never need it.</li>
+  <li><strong>Save any photos</strong> from the old site that we do not already have.</li>
+  <li><strong>Cancel the subscription.</strong> That is the last payment.</li>
+</ol>
+
+<div class="box">
+  <h4>Your domain name is safe</h4>
+  <p style="margin:0">Your domain is registered at Key-Systems, not at Squarespace. Cancelling their
+  subscription <strong>cannot</strong> take your domain name with it. That is the one genuinely
+  serious risk in a move like this, and your setup does not have it.</p>
+</div>
+
+<h2><span class="num">8.</span> Changing your site later</h2>
+
+<p>When you want changes — a new menu, seasonal hours, new photos — ask us. We will make them and
+email you a new folder. Then:</p>
+<ol>
+  <li>Cloudflare → <strong>Workers &amp; Pages</strong> → your <strong>oudkempeneet-cafe</strong> project</li>
+  <li>Click <strong>Create a new deployment</strong></li>
+  <li>Drag the new folder in, and deploy</li>
+</ol>
+<p>That is the whole process, and it is yours to run. Nothing obliges you to come back to us — we
+would simply like you to, on the strength of the work.</p>
+
+<h2><span class="num">9.</span> If something looks wrong</h2>
+
+<table>
+  <tr><th>What you see</th><th>What to do</th></tr>
+  <tr><td>Site not loading, an hour after Step 4</td>
+      <td>Usually the change still spreading. Give it a few more hours before doing anything.</td></tr>
+  <tr><td>A security or certificate warning</td>
+      <td>Normal in the first hours while the padlock is issued. It resolves itself.</td></tr>
+  <tr><td>The old Squarespace site still appears</td>
+      <td>Your browser is remembering it. Try a private window, or your phone on mobile data.</td></tr>
+  <tr><td>Something is genuinely broken</td>
+      <td><strong>Call us before changing anything back.</strong> If you want to revert yourself,
+          restore the four Google nameservers from Step 4.</td></tr>
+</table>
+
+<h2><span class="num">10.</span> Your details — fill this in and keep it</h2>
+
+<table class="worksheet">
+  <tr><th style="width:45%">What</th><th>Yours</th></tr>
+  <tr><td>Cloudflare email address</td><td></td></tr>
+  <tr><td>Where the recovery codes are kept</td><td></td></tr>
+  <tr><td>Your two Cloudflare nameservers</td><td></td></tr>
+  <tr><td>Domain registrar login (which company)</td><td></td></tr>
+  <tr><td>Date Squarespace was cancelled</td><td></td></tr>
+</table>
+
+<div class="foot">
+  Merritt Digital · Alameda · your website, your hosting, your domain — no subscription to us
+</div>
+
+</div>
+</body>
+</html>
