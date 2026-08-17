@@ -1117,7 +1117,7 @@ document.querySelectorAll('.lang button').forEach(b=>{
      address out of the source entirely. When that alias is to hand, delete the two
      lines below and replace with:
          var RES_ENDPOINT='https://formsubmit.co/ajax/<alias>';           */
-  var RES_BOX=['oke','rvb.nl'];
+  var RES_BOX=['reservationsoke','gmail.com'];
   var RES_ENDPOINT='https://formsubmit.co/ajax/'+RES_BOX[0]+String.fromCharCode(64)+RES_BOX[1];
   function deliverReservation(service,data){
     return fetch(RES_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},
