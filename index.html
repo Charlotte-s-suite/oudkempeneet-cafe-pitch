@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>document.documentElement.classList.add('js');</script>
 <title>Oud-Kempen Eetcafé — Stavenisse, Zeeland</title>
-<meta name="description" content="Oud-Kempen Eetcafé in Stavenisse, Zeeland. Verse gerechten, steengrill en Zeeuwse gastvrijheid op een sfeervol terras. Reserveer een tafel, huur een fiets, boek de jacuzzi of het vakantiehuis.">
+<meta name="description" content="Oud-Kempen Eetcafé in Stavenisse, Zeeland. Verse gerechten, kaasfondue, verse vis en authentieke Indonesische specialiteiten, 7 dagen per week open. Reserveer een tafel, huur een fiets, boek de jacuzzi of het vakantiehuis.">
 <meta property="og:title" content="Oud-Kempen Eetcafé — Stavenisse, Zeeland">
-<meta property="og:description" content="Verse gerechten, steengrill en Zeeuwse gastvrijheid op een sfeervol terras aan de rand van Stavenisse.">
+<meta property="og:description" content="Verse gerechten, kaasfondue en authentieke Indonesische specialiteiten, 7 dagen per week open, met een ruim terras aan de rand van Stavenisse.">
 <meta property="og:type" content="restaurant">
 <meta property="og:image" content="assets/plate.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23241813'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23E7C079' text-anchor='middle'%3EOK%3C/text%3E%3C/svg%3E">
@@ -329,7 +329,10 @@ header.hero{position:relative;overflow:clip;padding:0;background:transparent}
   margin:0 -8px;padding:8px 10px;border-radius:2px;font-weight:600}
 .hours li.today .d::before{content:"● ";color:var(--accent-2);font-size:9px;vertical-align:middle}
 .contact-rows{display:flex;flex-direction:column;gap:9px;font-size:14px}
-.contact-rows a{color:var(--accent-3);text-decoration:none;display:inline-flex;align-items:center;gap:9px}
+.contact-rows a{color:var(--accent-3);text-decoration:none;display:inline-flex;align-items:center;gap:9px;
+  min-height:44px}                                  /* tap target (law 2) */
+a[href^="tel:"]{display:inline-block;min-height:44px;padding:11px 0;line-height:1.45;text-decoration:none}  /* tap-to-call target (law 2) */
+.contact-rows a.call{font-size:16.5px;font-weight:600;color:#7A4E1C}
 .contact-rows a:hover{color:var(--accent-2)}
 .contact-rows svg{width:17px;height:17px;stroke:var(--accent-3);fill:none;stroke-width:1.5;flex:none}
 .map-window{background:var(--paper);border-radius:3px;padding:9px;
@@ -449,8 +452,8 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
         <circle cx="84" cy="8" r="2.3" fill="currentColor"/>
       </svg>
     </h1>
-    <div class="sub" data-i18n="hero.sub">Genieten van rust, sfeer en goed eten</div>
-    <p class="lede" data-i18n="hero.lede">Verse gerechten, steengrill en Zeeuwse gastvrijheid in een warm, ontspannen café aan de rand van Stavenisse, met een ruim terras omgeven door natuur.</p>
+    <div class="sub" data-i18n="hero.sub">Verse smaken, warme gastvrijheid en voor ieder wat wils</div>
+    <p class="lede" data-i18n="hero.lede">Geniet van verse gerechten, heerlijke kaasfondue, verse vis, hartige snacks en authentieke Indonesische specialiteiten in een warm en gastvrij restaurant. Of u nu komt voor de lunch, het diner of een borrel: u geniet van echte Zeeuwse gastvrijheid, vriendelijke service en een ontspannen sfeer. Ontspan in ons restaurant met volledige airconditioning of op ons ruime terras, omgeven door natuur.</p>
     <div class="hero-rule"></div>
     <div class="hero-cta">
       <a class="btn btn-gold" href="#services" data-i18n="hero.cta1">Reserveer een tafel</a>
@@ -492,18 +495,21 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
   <div class="wrap">
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="rest.kicker">Het restaurant</div>
-      <h2 data-i18n="rest.title">Vers, eerlijk en Zeeuws</h2>
-      <p data-i18n="rest.dek">Of u nu komt voor de lunch, het diner of een borrel: bij Oud-Kempen staat goed eten in een gemoedelijke sfeer altijd centraal.</p>
+      <h2 data-i18n="rest.title">Verse smaken en Zeeuwse gastvrijheid</h2>
+      <p data-i18n="rest.dek">Of u nu komt voor de lunch, het diner of een borrel: u geniet van een afwisselende kaart met verse gerechten, heerlijke kaasfondue en authentieke Indonesische specialiteiten, in een warme en ontspannen sfeer.</p>
     </div>
     <div class="rest-grid">
       <div class="rest-copy reveal">
-        <h3 data-i18n="rest.h3">Van steengrill tot een frisse borrel</h3>
-        <p data-i18n="rest.p1">Ontdek verse gerechten, onze populaire steengrill-specials, hartige snacks en heerlijke desserts, geserveerd in een warme, comfortabele setting. Binnen gezellig aan tafel, of buiten op het ruime terras omgeven door natuur.</p>
+        <h3 data-i18n="rest.h3">Van lunch en diner tot borrel en dessert</h3>
+        <p data-i18n="rest.p1">Ontdek verse gerechten, onze populaire kaasfondue, verse vis, hartige snacks en authentieke Indonesische specialiteiten, geserveerd in een warme, comfortabele setting. Gezellig binnen aan tafel of buiten op het ruime terras, omgeven door natuur.</p>
         <ul class="assure">
-          <li data-i18n="rest.a1">Verse dag- en seizoensgerechten</li>
-          <li data-i18n="rest.a2">Steengrill & gourmet, samen aan tafel</li>
-          <li data-i18n="rest.a3">Ruim terras, kindvriendelijk met speeltuin</li>
-          <li data-i18n="rest.a4">Zes dagen open, woensdag gesloten</li>
+          <li data-i18n="rest.a1">Verse gerechten voor iedereen</li>
+          <li data-i18n="rest.a2">Kaasfondue (op reservering)</li>
+          <li data-i18n="rest.a3">Authentieke Indonesische specialiteiten</li>
+          <li data-i18n="rest.a4">Restaurant met volledige airconditioning</li>
+          <li data-i18n="rest.a5">Ruim terras, omgeven door natuur</li>
+          <li data-i18n="rest.a6">Speeltuin voor kinderen</li>
+          <li data-i18n="rest.a7">7 dagen per week open</li>
         </ul>
         <div class="hero-cta" style="justify-content:flex-start;margin-top:22px">
           <a class="btn btn-gold" href="#services" data-i18n="rest.cta1">Reserveer een tafel</a>
@@ -600,14 +606,14 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
       <div class="res-grid">
         <div class="res-persuade reveal">
           <div class="kicker" style="color:var(--accent-1)" data-i18n="res.kicker">Reserveren</div>
-          <h3 data-i18n="res.h3">Uw plek bij <span class="gold">Oud-Kempen</span> is zo geregeld</h3>
+          <h3 data-i18n="res.h3">Uw tafel bij Oud-Kempen is zo geregeld</h3>
           <p data-i18n="res.p">Kies een dienst en vul het korte formulier in. Elke dienst heeft z'n eigen formulier. Wij bevestigen persoonlijk. Geen account, geen gedoe.</p>
           <ul class="assure">
             <li data-i18n="res.a1">Tafel, fiets, jacuzzi, vakantiehuis of feest</li>
             <li data-i18n="res.a2">Persoonlijke bevestiging per e-mail</li>
             <li data-i18n="res.a3">Groepen en gelegenheden welkom</li>
           </ul>
-          <p class="contact-line"><span data-i18n="res.or">Liever direct mailen? </span><a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></p>
+          <p class="contact-line"><span data-i18n="res.call">Of bel ons: </span><a href="tel:+31627894034">+31 6 27 89 40 34</a><br><span data-i18n="res.or">Liever direct mailen? </span><a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></p>
         </div>
         <div class="form-window res-prompt reveal">
           <h3 data-i18n="res.picktitle">Kies uw dienst</h3>
@@ -637,7 +643,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="gal.kicker">Galerij</div>
       <h2 data-i18n="gal.title">Sfeer proeven</h2>
-      <p data-i18n="gal.dek">Een indruk van het café, het terras en de tafel, van zonnige middagen tot gezellige avonden.</p>
+      <p data-i18n="gal.dek">Een indruk van het restaurant, het terras en de tafel, van zonnige middagen tot gezellige avonden.</p>
     </div>
     <div class="gal-grid">
       <figure class="plate wide reveal"><div class="pic"><img src="assets/terrace.webp" width="1200" height="653" loading="lazy" alt="Terras van Oud-Kempen op een zonnige dag"></div></figure>
@@ -655,7 +661,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <div class="sec-head reveal">
       <div class="kicker" data-i18n="visit.kicker">Bezoek ons</div>
       <h2 data-i18n="visit.title">Openingstijden & route</h2>
-      <p data-i18n="visit.dek">U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland.</p>
+      <p data-i18n="visit.dek">U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland. We zijn 7 dagen per week open.</p>
     </div>
     <div class="visit-grid">
       <div class="info-window reveal">
@@ -664,13 +670,14 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
         <ul class="hours" id="hours-list">
           <li data-day="1"><span class="d" data-i18n="day.mon">Maandag</span><span class="h">15:00 – 21:00</span></li>
           <li data-day="2"><span class="d" data-i18n="day.tue">Dinsdag</span><span class="h">15:00 – 21:00</span></li>
-          <li data-day="3" class="closed"><span class="d" data-i18n="day.wed">Woensdag</span><span class="h" data-i18n="visit.closed">Gesloten</span></li>
+          <li data-day="3"><span class="d" data-i18n="day.wed">Woensdag</span><span class="h">15:00 – 21:00</span></li>
           <li data-day="4"><span class="d" data-i18n="day.thu">Donderdag</span><span class="h">15:00 – 21:00</span></li>
-          <li data-day="5"><span class="d" data-i18n="day.fri">Vrijdag</span><span class="h">15:00 – 21:00</span></li>
-          <li data-day="6"><span class="d" data-i18n="day.sat">Zaterdag</span><span class="h">15:00 – 21:00</span></li>
-          <li data-day="0"><span class="d" data-i18n="day.sun">Zondag</span><span class="h">15:00 – 21:00</span></li>
+          <li data-day="5"><span class="d" data-i18n="day.fri">Vrijdag</span><span class="h">12:30 – 21:00</span></li>
+          <li data-day="6"><span class="d" data-i18n="day.sat">Zaterdag</span><span class="h">12:30 – 21:00</span></li>
+          <li data-day="0"><span class="d" data-i18n="day.sun">Zondag</span><span class="h">12:30 – 21:00</span></li>
         </ul>
         <div class="contact-rows">
+          <a class="call" href="tel:+31627894034" aria-label="Bel Oud-Kempen Eetcafé"><svg viewBox="0 0 24 24"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 005.5 5.5L16 12l4 1.5v3a2 2 0 01-2.2 2A15.5 15.5 0 014.5 5.2A2 2 0 016.5 3z"/></svg>+31 6 27 89 40 34</a>
           <a href="mailto:Eetcafeeoudkempen@Gmail.com"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>Eetcafeeoudkempen@Gmail.com</a>
           <a href="https://www.instagram.com/oudkempen_zeeland" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>@oudkempen_zeeland</a>
           <a href="https://www.openstreetmap.org/?mlat=51.5906&mlon=4.0128#map=16/51.5906/4.0128" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.5 7-11a7 7 0 10-14 0c0 4.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span data-i18n="visit.route">Routebeschrijving</span></a>
@@ -836,12 +843,12 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
       </svg>
     </div>
     <div class="hallmarks">
-      <span class="hallmark" data-i18n="hall.1">Zes dagen open</span>
+      <span class="hallmark" data-i18n="hall.1">7 dagen per week open</span>
       <span class="hallmark" data-i18n="hall.2">Terras & speeltuin</span>
-      <span class="hallmark" data-i18n="hall.3">Steengrill-specials</span>
+      <span class="hallmark" data-i18n="hall.3">Kaasfondue &amp; Indonesisch</span>
       <span class="hallmark" data-i18n="hall.4">Hart van Zeeland</span>
     </div>
-    <div class="fine">© 2026 Oud-Kempen Eetcafé · Buurtweg 5, 4696 RT Stavenisse · <a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></div>
+    <div class="fine">© 2026 Oud-Kempen Eetcafé · Buurtweg 5, 4696 RT Stavenisse · <a href="tel:+31627894034">+31 6 27 89 40 34</a> · <a href="mailto:Eetcafeeoudkempen@Gmail.com">Eetcafeeoudkempen@Gmail.com</a></div>
     <div class="provenance" data-i18n="prov">Website door Merritt Digital</div>
   </div>
 </footer>
@@ -853,15 +860,15 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 const I18N = {
   nl:{
     "nav.restaurant":"Restaurant","nav.menu":"Menu","nav.services":"Reserveren","nav.gallery":"Galerij","nav.visit":"Bezoek","nav.cta":"Reserveer",
-    "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Genieten van rust, sfeer en goed eten",
-    "hero.lede":"Verse gerechten, steengrill en Zeeuwse gastvrijheid in een warm, ontspannen café aan de rand van Stavenisse, met een ruim terras omgeven door natuur.",
+    "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Verse smaken, warme gastvrijheid en voor ieder wat wils",
+    "hero.lede":"Geniet van verse gerechten, heerlijke kaasfondue, verse vis, hartige snacks en authentieke Indonesische specialiteiten in een warm en gastvrij restaurant. Of u nu komt voor de lunch, het diner of een borrel: u geniet van echte Zeeuwse gastvrijheid, vriendelijke service en een ontspannen sfeer. Ontspan in ons restaurant met volledige airconditioning of op ons ruime terras, omgeven door natuur.",
     "hero.cta1":"Reserveer een tafel","hero.cta2":"Bekijk het restaurant","hero.capk":"Aan de rand van het dorp","hero.capt":"Stavenisse, Zeeland",
     "live.label":"Terrasweer · Stavenisse","live.clear":"Helder","live.open":"Open","live.until":"tot 21:00","live.seed":"indicatief; live gegevens laden…",
-    "rest.kicker":"Het restaurant","rest.title":"Vers, eerlijk en Zeeuws",
-    "rest.dek":"Of u nu komt voor de lunch, het diner of een borrel: bij Oud-Kempen staat goed eten in een gemoedelijke sfeer altijd centraal.",
-    "rest.h3":"Van steengrill tot een frisse borrel",
-    "rest.p1":"Ontdek verse gerechten, onze populaire steengrill-specials, hartige snacks en heerlijke desserts, geserveerd in een warme, comfortabele setting. Binnen gezellig aan tafel, of buiten op het ruime terras omgeven door natuur.",
-    "rest.a1":"Verse dag- en seizoensgerechten","rest.a2":"Steengrill & gourmet, samen aan tafel","rest.a3":"Ruim terras, kindvriendelijk met speeltuin","rest.a4":"Zes dagen open, woensdag gesloten",
+    "rest.kicker":"Het restaurant","rest.title":"Verse smaken en Zeeuwse gastvrijheid",
+    "rest.dek":"Of u nu komt voor de lunch, het diner of een borrel: u geniet van een afwisselende kaart met verse gerechten, heerlijke kaasfondue en authentieke Indonesische specialiteiten, in een warme en ontspannen sfeer.",
+    "rest.h3":"Van lunch en diner tot borrel en dessert",
+    "rest.p1":"Ontdek verse gerechten, onze populaire kaasfondue, verse vis, hartige snacks en authentieke Indonesische specialiteiten, geserveerd in een warme, comfortabele setting. Gezellig binnen aan tafel of buiten op het ruime terras, omgeven door natuur.",
+    "rest.a1":"Verse gerechten voor iedereen","rest.a2":"Kaasfondue (op reservering)","rest.a3":"Authentieke Indonesische specialiteiten","rest.a4":"Restaurant met volledige airconditioning","rest.a5":"Ruim terras, omgeven door natuur","rest.a6":"Speeltuin voor kinderen","rest.a7":"7 dagen per week open",
     "rest.cta1":"Reserveer een tafel","rest.cta2":"Bekijk het menu",
     "svc.kicker":"Alles bij Oud-Kempen","svc.title":"Meer dan alleen eten",
     "svc.dek":"Reserveer direct wat u zoekt: een tafel, een fiets, de jacuzzi, het vakantiehuis of uw eigen feest. Kies en wij nemen contact op ter bevestiging.",
@@ -870,32 +877,32 @@ const I18N = {
     "svc.jac.t":"Jacuzzi huren","svc.jac.d":"Ontspan onder de Zeeuwse hemel na een dag uit.","svc.jac.tag":"Op reservering",
     "svc.house.t":"Vakantiehuis","svc.house.d":"Vraag vrijblijvend naar beschikbaarheid en tarieven.","svc.house.tag":"Aanvraag",
     "svc.event.t":"Vier uw feest","svc.event.d":"Verjaardag, bruiloft of borrel; wij regelen het.","svc.event.tag":"Op maat",
-    "res.kicker":"Reserveren","res.h3":"Uw plek bij Oud-Kempen is zo geregeld",
+    "res.kicker":"Reserveren","res.h3":"Uw tafel bij Oud-Kempen is zo geregeld",
     "res.p":"Kies een dienst en vul het korte formulier in — elke dienst heeft z'n eigen formulier. Wij bevestigen persoonlijk. Geen account, geen gedoe.",
     "res.a1":"Tafel, fiets, jacuzzi, vakantiehuis of feest","res.a2":"Persoonlijke bevestiging per e-mail","res.a3":"Groepen en gelegenheden welkom",
-    "res.or":"Liever direct mailen? ","res.fk":"Reserveringsaanvraag","res.ftitle":"Vertel ons uw wensen",
+    "res.or":"Liever direct mailen? ","res.call":"Of bel ons: ","res.fk":"Reserveringsaanvraag","res.ftitle":"Vertel ons uw wensen",
     "res.l.service":"Wat wilt u reserveren? (meerdere mogelijk)","res.l.name":"Naam","res.l.guests":"Aantal personen","res.l.date":"Datum","res.l.time":"Tijd","res.l.note":"Opmerking (optioneel)",
-    "res.submit":"Verstuur aanvraag","res.note":"Demonstratie — opent een klaargezette e-mail. Online betaling volgt in de productieversie.",
+    "res.submit":"Verstuur aanvraag",
     "res.l.email":"E-mailadres","res.l.startdate":"Startdatum","res.l.starttime":"Starttijd","res.l.enddate":"Einddatum","res.l.endtime":"Eindtijd","res.b.std":"Aantal gewone fietsen","res.b.e":"Aantal e-bikes","res.b.pud":"Ophaaldatum","res.b.put":"Ophaaltijd","res.b.dod":"Inleverdatum","res.b.dot":"Inlevertijd","res.j.room":"Villanummer","res.h.ci":"Aankomstdatum","res.h.co":"Vertrekdatum","res.h.adults":"Volwassenen","res.h.children":"Kinderen","res.e.type":"Type gelegenheid","res.e.guests":"Verwacht aantal gasten","res.note2":"Wij bevestigen uw reservering persoonlijk.","res.ok":"Bedankt voor uw aanvraag! Wij nemen spoedig contact op.","res.err":"Er ging iets mis. Probeer het opnieuw of mail ons direct.","res.sending":"Versturen…","res.close":"Sluiten","res.picktitle":"Kies uw dienst","res.pick":"Elke dienst heeft een eigen snel formulier. Klik hieronder of op een kaart hierboven om te openen.",
     "fb.kicker":"Buiten bij Oud-Kempen","fb.title":"Een terras omgeven door natuur","fb.p":"Zonnige middagen en lange zomeravonden op ons ruime terras, aan de rand van het dorp, met de Zeeuwse natuur als uitzicht.",
-    "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het café, het terras en de tafel, van zonnige middagen tot gezellige avonden.",
-    "visit.kicker":"Bezoek ons","visit.title":"Openingstijden & route","visit.dek":"U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland.",
+    "gal.kicker":"Galerij","gal.title":"Sfeer proeven","gal.dek":"Een indruk van het restaurant, het terras en de tafel, van zonnige middagen tot gezellige avonden.",
+    "visit.kicker":"Bezoek ons","visit.title":"Openingstijden & route","visit.dek":"U vindt ons aan de Buurtweg 5 in Stavenisse, aan de rand van het dorp in het hart van Zeeland. We zijn 7 dagen per week open.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Gesloten","visit.route":"Routebeschrijving",
     "day.mon":"Maandag","day.tue":"Dinsdag","day.wed":"Woensdag","day.thu":"Donderdag","day.fri":"Vrijdag","day.sat":"Zaterdag","day.sun":"Zondag",
-    "hall.1":"Zes dagen open","hall.2":"Terras & speeltuin","hall.3":"Steengrill-specials","hall.4":"Hart van Zeeland",
+    "hall.1":"7 dagen per week open","hall.2":"Terras & speeltuin","hall.3":"Kaasfondue & Indonesisch","hall.4":"Hart van Zeeland",
     "prov":"Website door Merritt Digital"
   },
   en:{
     "nav.restaurant":"Restaurant","nav.menu":"Menu","nav.services":"Book","nav.gallery":"Gallery","nav.visit":"Visit","nav.cta":"Reserve",
-    "hero.kicker":"Eatery · Stavenisse · Zeeland","hero.sub":"Rest, atmosphere and good food",
-    "hero.lede":"Fresh dishes, stone-grill specials and Zeeland hospitality in a warm, relaxed café on the edge of Stavenisse, with a spacious terrace surrounded by nature.",
+    "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Fresh flavours, warm hospitality and something for everyone",
+    "hero.lede":"Enjoy fresh dishes, delicious cheese fondue, fresh fish, tasty snacks and authentic Indonesian specialities in a warm and welcoming restaurant. Whether you join us for lunch, dinner or drinks, you'll enjoy genuine Zeeland hospitality, friendly service and a relaxed atmosphere. Relax in our fully air-conditioned restaurant or on our spacious terrace surrounded by nature.",
     "hero.cta1":"Reserve a table","hero.cta2":"See the restaurant","hero.capk":"On the edge of the village","hero.capt":"Stavenisse, Zeeland",
     "live.label":"Terrace weather · Stavenisse","live.clear":"Clear","live.open":"Open","live.until":"until 9:00 pm","live.seed":"indicative; loading live data…",
-    "rest.kicker":"The restaurant","rest.title":"Fresh, honest and Zeeland",
-    "rest.dek":"Whether you come for lunch, dinner or a drink: at Oud-Kempen, good food in a cosy atmosphere is always at the heart of it.",
-    "rest.h3":"From stone grill to a crisp drink",
-    "rest.p1":"Discover fresh dishes, our popular stone-grill specials, savoury snacks and delicious desserts, served in a warm, comfortable setting. Cosy at the table indoors, or out on the spacious terrace surrounded by nature.",
-    "rest.a1":"Fresh daily and seasonal dishes","rest.a2":"Stone grill & gourmet, together at the table","rest.a3":"Spacious terrace, child-friendly with playground","rest.a4":"Open six days, closed Wednesday",
+    "rest.kicker":"The restaurant","rest.title":"Fresh flavours and Zeeland hospitality",
+    "rest.dek":"Whether you join us for lunch, dinner or drinks, you'll enjoy a varied menu with fresh dishes, delicious cheese fondue and authentic Indonesian specialities, all served in a warm and relaxed atmosphere.",
+    "rest.h3":"From lunch and dinner to drinks and desserts",
+    "rest.p1":"Discover fresh dishes, our popular cheese fondue, fresh fish, savoury snacks and authentic Indonesian specialities, served in a warm, comfortable setting. Cosy at the table indoors, or out on the spacious terrace surrounded by nature.",
+    "rest.a1":"Fresh dishes for everyone","rest.a2":"Cheese fondue (reservation required)","rest.a3":"Authentic Indonesian specialities","rest.a4":"Fully air-conditioned restaurant","rest.a5":"Spacious terrace surrounded by nature","rest.a6":"Children's playground","rest.a7":"Open 7 days a week",
     "rest.cta1":"Reserve a table","rest.cta2":"View the menu",
     "svc.kicker":"Everything at Oud-Kempen","svc.title":"More than just dining",
     "svc.dek":"Book exactly what you need: a table, a bike, the jacuzzi, the holiday home or your own event. Choose and we'll be in touch to confirm.",
@@ -903,54 +910,54 @@ const I18N = {
     "svc.bike.t":"Bike rental","svc.bike.d":"Explore Zeeland by bike, straight from the terrace.","svc.bike.tag":"By the day",
     "svc.jac.t":"Jacuzzi rental","svc.jac.d":"Unwind under the Zeeland sky after a day out.","svc.jac.tag":"On reservation",
     "svc.house.t":"Holiday home","svc.house.d":"Enquire about availability and rates, no obligation.","svc.house.tag":"Enquiry",
-    "svc.event.t":"Host your event","svc.event.d":"Birthday, wedding or party; we'll arrange it.","svc.event.tag":"Tailored",
-    "res.kicker":"Reservations","res.h3":"Your place at Oud-Kempen is quickly sorted",
-    "res.p":"Pick a service and fill in the short form — each service has its own. We confirm personally. No account, no fuss.",
+    "svc.event.t":"Host your event","svc.event.d":"Birthday, wedding or party: we'll arrange it all.","svc.event.tag":"Tailored",
+    "res.kicker":"Reservations","res.h3":"Your table at Oud-Kempen is quickly booked",
+    "res.p":"Pick a service and fill in the short form. Each one has its own. We confirm personally, with no account and no fuss.",
     "res.a1":"Table, bike, jacuzzi, holiday home or event","res.a2":"Personal confirmation by email","res.a3":"Groups and occasions welcome",
-    "res.or":"Prefer to email directly? ","res.fk":"Reservation request","res.ftitle":"Tell us what you'd like",
+    "res.or":"Prefer to email directly? ","res.call":"Or call us: ","res.fk":"Reservation request","res.ftitle":"Tell us what you'd like",
     "res.l.service":"What would you like to book? (select any)","res.l.name":"Name","res.l.guests":"Number of guests","res.l.date":"Date","res.l.time":"Time","res.l.note":"Note (optional)",
-    "res.submit":"Send request","res.note":"Demonstration — opens a pre-filled email. Online payment follows in the production version.",
-    "res.l.email":"Email address","res.l.startdate":"Start date","res.l.starttime":"Start time","res.l.enddate":"End date","res.l.endtime":"End time","res.b.std":"Standard bikes","res.b.e":"E-bikes","res.b.pud":"Pick-up date","res.b.put":"Pick-up time","res.b.dod":"Drop-off date","res.b.dot":"Drop-off time","res.j.room":"Villa number","res.h.ci":"Check-in date","res.h.co":"Check-out date","res.h.adults":"Adults","res.h.children":"Children","res.e.type":"Event type","res.e.guests":"Expected number of guests","res.note2":"We confirm your reservation personally.","res.ok":"Thank you for your request! We'll be in touch shortly.","res.err":"Something went wrong. Please try again or email us directly.","res.sending":"Sending…","res.close":"Close","res.picktitle":"Choose your service","res.pick":"Each service has its own quick form. Tap below — or a card above — to open.",
-    "fb.kicker":"Outdoors at Oud-Kempen","fb.title":"A terrace surrounded by nature","fb.p":"Sunny afternoons and long summer evenings on our spacious terrace — on the edge of the village, with the Zeeland countryside as your view.",
-    "gal.kicker":"Gallery","gal.title":"A taste of the atmosphere","gal.dek":"A glimpse of the café, the terrace and the table — from sunny afternoons to cosy evenings.",
-    "visit.kicker":"Visit us","visit.title":"Opening hours & directions","visit.dek":"Find us at Buurtweg 5 in Stavenisse, on the edge of the village in the heart of Zeeland.",
+    "res.submit":"Send request",
+    "res.l.email":"Email address","res.l.startdate":"Start date","res.l.starttime":"Start time","res.l.enddate":"End date","res.l.endtime":"End time","res.b.std":"Standard bikes","res.b.e":"E-bikes","res.b.pud":"Pick-up date","res.b.put":"Pick-up time","res.b.dod":"Drop-off date","res.b.dot":"Drop-off time","res.j.room":"Villa number","res.h.ci":"Check-in date","res.h.co":"Check-out date","res.h.adults":"Adults","res.h.children":"Children","res.e.type":"Event type","res.e.guests":"Expected number of guests","res.note2":"We confirm your reservation personally.","res.ok":"Thank you for your request! We'll be in touch shortly.","res.err":"Something went wrong. Please try again or email us directly.","res.sending":"Sending…","res.close":"Close","res.picktitle":"Choose your service","res.pick":"Each service has its own short form. Tap one below, or a card above, to open it.",
+    "fb.kicker":"Outdoors at Oud-Kempen","fb.title":"A terrace surrounded by nature","fb.p":"Sunny afternoons and long summer evenings on our spacious terrace, on the edge of the village, with the Zeeland countryside as your view.",
+    "gal.kicker":"Gallery","gal.title":"A taste of the atmosphere","gal.dek":"A glimpse of the restaurant, the terrace and the table, from sunny afternoons to cosy evenings.",
+    "visit.kicker":"Visit us","visit.title":"Opening hours & directions","visit.dek":"Find us at Buurtweg 5 in Stavenisse, on the edge of the village in the heart of Zeeland. We are open 7 days a week.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Closed","visit.route":"Get directions",
     "day.mon":"Monday","day.tue":"Tuesday","day.wed":"Wednesday","day.thu":"Thursday","day.fri":"Friday","day.sat":"Saturday","day.sun":"Sunday",
-    "hall.1":"Open six days","hall.2":"Terrace & playground","hall.3":"Stone-grill specials","hall.4":"Heart of Zeeland",
+    "hall.1":"Open 7 days a week","hall.2":"Terrace & playground","hall.3":"Cheese fondue & Indonesian","hall.4":"Heart of Zeeland",
     "prov":"Website by Merritt Digital"
   },
   de:{
     "nav.restaurant":"Restaurant","nav.menu":"Menü","nav.services":"Reservieren","nav.gallery":"Galerie","nav.visit":"Besuch","nav.cta":"Reservieren",
-    "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Ruhe, Atmosphäre und gutes Essen",
-    "hero.lede":"Frische Gerichte, Steingrill-Spezialitäten und zeeländische Gastfreundschaft — in einem warmen, entspannten Café am Rande von Stavenisse, mit großzügiger Terrasse umgeben von Natur.",
+    "hero.kicker":"Eetcafé · Stavenisse · Zeeland","hero.sub":"Frische Aromen, herzliche Gastfreundschaft und für jeden Geschmack etwas",
+    "hero.lede":"Genießen Sie frische Gerichte, köstliches Käsefondue, frischen Fisch, herzhafte Snacks und authentische indonesische Spezialitäten in einem warmen, gastfreundlichen Restaurant. Ob zum Mittagessen, zum Abendessen oder auf ein Getränk: Sie erleben echte zeeländische Gastfreundschaft, freundlichen Service und eine entspannte Atmosphäre. Entspannen Sie in unserem vollklimatisierten Restaurant oder auf unserer weitläufigen Terrasse mitten in der Natur.",
     "hero.cta1":"Tisch reservieren","hero.cta2":"Zum Restaurant","hero.capk":"Am Rande des Dorfes","hero.capt":"Stavenisse, Zeeland",
     "live.label":"Terrassenwetter · Stavenisse","live.clear":"Klar","live.open":"Geöffnet","live.until":"bis 21:00","live.seed":"vorläufig; Live-Daten laden…",
-    "rest.kicker":"Das Restaurant","rest.title":"Frisch, ehrlich und zeeländisch",
-    "rest.dek":"Ob zum Mittagessen, Abendessen oder auf ein Getränk — bei Oud-Kempen steht gutes Essen in gemütlicher Atmosphäre immer im Mittelpunkt.",
-    "rest.h3":"Vom Steingrill bis zum frischen Drink",
-    "rest.p1":"Entdecken Sie frische Gerichte, unsere beliebten Steingrill-Spezialitäten, herzhafte Snacks und köstliche Desserts — serviert in warmem, gemütlichem Ambiente. Drinnen behaglich am Tisch oder draußen auf der weitläufigen Terrasse inmitten der Natur.",
-    "rest.a1":"Frische Tages- und Saisongerichte","rest.a2":"Steingrill & Gourmet — gemeinsam am Tisch","rest.a3":"Weitläufige Terrasse, kinderfreundlich mit Spielplatz","rest.a4":"Sechs Tage geöffnet, mittwochs geschlossen",
+    "rest.kicker":"Das Restaurant","rest.title":"Frische Aromen und zeeländische Gastfreundschaft",
+    "rest.dek":"Ob zum Mittagessen, zum Abendessen oder auf ein Getränk: Sie genießen eine abwechslungsreiche Karte mit frischen Gerichten, köstlichem Käsefondue und authentischen indonesischen Spezialitäten, in warmer und entspannter Atmosphäre.",
+    "rest.h3":"Von Mittag- und Abendessen bis zu Drinks und Desserts",
+    "rest.p1":"Entdecken Sie frische Gerichte, unser beliebtes Käsefondue, frischen Fisch, herzhafte Snacks und authentische indonesische Spezialitäten, serviert in warmem, gemütlichem Ambiente. Gemütlich am Tisch drinnen oder draußen auf der weitläufigen Terrasse mitten in der Natur.",
+    "rest.a1":"Frische Gerichte für jeden Geschmack","rest.a2":"Käsefondue (Reservierung erforderlich)","rest.a3":"Authentische indonesische Spezialitäten","rest.a4":"Vollklimatisiertes Restaurant","rest.a5":"Weitläufige Terrasse mitten in der Natur","rest.a6":"Spielplatz für Kinder","rest.a7":"7 Tage in der Woche geöffnet",
     "rest.cta1":"Tisch reservieren","rest.cta2":"Zur Speisekarte",
     "svc.kicker":"Alles bei Oud-Kempen","svc.title":"Mehr als nur Essen",
-    "svc.dek":"Reservieren Sie direkt, was Sie möchten — einen Tisch, ein Fahrrad, den Whirlpool, das Ferienhaus oder Ihre eigene Feier. Wählen Sie, wir melden uns zur Bestätigung.",
-    "svc.table.t":"Tisch reservieren","svc.table.d":"Mittag, Abend oder Drinks — drinnen oder auf der Terrasse.","svc.table.tag":"Direkt reservieren",
+    "svc.dek":"Reservieren Sie direkt, was Sie möchten: einen Tisch, ein Fahrrad, den Whirlpool, das Ferienhaus oder Ihre Feier. Wählen Sie aus, wir melden uns zur Bestätigung.",
+    "svc.table.t":"Tisch reservieren","svc.table.d":"Mittagessen, Abendessen oder Drinks, drinnen oder auf der Terrasse.","svc.table.tag":"Direkt reservieren",
     "svc.bike.t":"Fahrradverleih","svc.bike.d":"Erkunden Sie Zeeland per Rad, direkt von der Terrasse.","svc.bike.tag":"Pro Tag",
-    "svc.jac.t":"Whirlpool mieten","svc.jac.d":"Entspannen Sie unter dem zeeländischen Himmel.","svc.jac.tag":"Auf Reservierung",
+    "svc.jac.t":"Whirlpool mieten","svc.jac.d":"Entspannen Sie unter dem zeeländischen Himmel, nach einem Tag draußen.","svc.jac.tag":"Auf Reservierung",
     "svc.house.t":"Ferienhaus","svc.house.d":"Fragen Sie unverbindlich nach Verfügbarkeit und Preisen.","svc.house.tag":"Anfrage",
-    "svc.event.t":"Feiern Sie","svc.event.d":"Geburtstag, Hochzeit oder Feier — wir organisieren es.","svc.event.tag":"Individuell",
-    "res.kicker":"Reservierung","res.h3":"Ihr Platz bei Oud-Kempen ist schnell geregelt",
-    "res.p":"Wählen Sie einen Dienst und füllen Sie das kurze Formular aus — jeder Dienst hat sein eigenes. Wir bestätigen persönlich. Kein Konto, kein Aufwand.",
+    "svc.event.t":"Feiern bei uns","svc.event.d":"Geburtstag, Hochzeit oder Feier: wir organisieren alles.","svc.event.tag":"Individuell",
+    "res.kicker":"Reservierung","res.h3":"Ihr Tisch bei Oud-Kempen ist schnell reserviert",
+    "res.p":"Wählen Sie einen Dienst und füllen Sie das kurze Formular aus. Jeder Dienst hat sein eigenes. Wir bestätigen persönlich, ohne Konto und ohne Umwege.",
     "res.a1":"Tisch, Fahrrad, Whirlpool, Ferienhaus oder Feier","res.a2":"Persönliche Bestätigung per E-Mail","res.a3":"Gruppen und Anlässe willkommen",
-    "res.or":"Lieber direkt mailen? ","res.fk":"Reservierungsanfrage","res.ftitle":"Nennen Sie uns Ihre Wünsche",
+    "res.or":"Lieber direkt mailen? ","res.call":"Oder rufen Sie uns an: ","res.fk":"Reservierungsanfrage","res.ftitle":"Nennen Sie uns Ihre Wünsche",
     "res.l.service":"Was möchten Sie reservieren? (Mehrfachauswahl)","res.l.name":"Name","res.l.guests":"Anzahl Personen","res.l.date":"Datum","res.l.time":"Uhrzeit","res.l.note":"Anmerkung (optional)",
-    "res.submit":"Anfrage senden","res.note":"Demonstration — öffnet eine vorbereitete E-Mail. Online-Zahlung folgt in der Produktionsversion.",
-    "res.l.email":"E-Mail-Adresse","res.l.startdate":"Startdatum","res.l.starttime":"Startzeit","res.l.enddate":"Enddatum","res.l.endtime":"Endzeit","res.b.std":"Normale Fahrräder","res.b.e":"E-Bikes","res.b.pud":"Abholdatum","res.b.put":"Abholzeit","res.b.dod":"Rückgabedatum","res.b.dot":"Rückgabezeit","res.j.room":"Villa-Nummer","res.h.ci":"Anreisedatum","res.h.co":"Abreisedatum","res.h.adults":"Erwachsene","res.h.children":"Kinder","res.e.type":"Art der Veranstaltung","res.e.guests":"Erwartete Gästezahl","res.note2":"Wir bestätigen Ihre Reservierung persönlich.","res.ok":"Danke für Ihre Anfrage! Wir melden uns in Kürze.","res.err":"Etwas ist schiefgelaufen. Bitte erneut versuchen oder mailen Sie uns direkt.","res.sending":"Senden…","res.close":"Schließen","res.picktitle":"Wählen Sie Ihren Dienst","res.pick":"Jeder Dienst hat ein eigenes Kurzformular. Klicken Sie unten — oder auf eine Karte oben.",
-    "fb.kicker":"Draußen bei Oud-Kempen","fb.title":"Eine Terrasse inmitten der Natur","fb.p":"Sonnige Nachmittage und lange Sommerabende auf unserer weitläufigen Terrasse — am Rande des Dorfes, mit der zeeländischen Natur als Aussicht.",
-    "gal.kicker":"Galerie","gal.title":"Atmosphäre schnuppern","gal.dek":"Ein Eindruck vom Café, der Terrasse und dem Tisch — von sonnigen Nachmittagen bis zu gemütlichen Abenden.",
-    "visit.kicker":"Besuchen Sie uns","visit.title":"Öffnungszeiten & Anfahrt","visit.dek":"Sie finden uns in der Buurtweg 5 in Stavenisse, am Rande des Dorfes im Herzen von Zeeland.",
+    "res.submit":"Anfrage senden",
+    "res.l.email":"E-Mail-Adresse","res.l.startdate":"Startdatum","res.l.starttime":"Startzeit","res.l.enddate":"Enddatum","res.l.endtime":"Endzeit","res.b.std":"Normale Fahrräder","res.b.e":"E-Bikes","res.b.pud":"Abholdatum","res.b.put":"Abholzeit","res.b.dod":"Rückgabedatum","res.b.dot":"Rückgabezeit","res.j.room":"Villa-Nummer","res.h.ci":"Anreisedatum","res.h.co":"Abreisedatum","res.h.adults":"Erwachsene","res.h.children":"Kinder","res.e.type":"Art der Veranstaltung","res.e.guests":"Erwartete Gästezahl","res.note2":"Wir bestätigen Ihre Reservierung persönlich.","res.ok":"Danke für Ihre Anfrage! Wir melden uns in Kürze.","res.err":"Da ist etwas schiefgelaufen. Bitte versuchen Sie es erneut oder schreiben Sie uns direkt.","res.sending":"Senden…","res.close":"Schließen","res.picktitle":"Wählen Sie Ihren Dienst","res.pick":"Jeder Dienst hat ein eigenes Kurzformular. Klicken Sie unten oder auf eine Karte oben.",
+    "fb.kicker":"Draußen bei Oud-Kempen","fb.title":"Eine Terrasse inmitten der Natur","fb.p":"Sonnige Nachmittage und lange Sommerabende auf unserer weitläufigen Terrasse, am Rande des Dorfes, mit der zeeländischen Natur als Aussicht.",
+    "gal.kicker":"Galerie","gal.title":"Atmosphäre schnuppern","gal.dek":"Ein Eindruck vom Restaurant, der Terrasse und dem Tisch, von sonnigen Nachmittagen bis zu gemütlichen Abenden.",
+    "visit.kicker":"Besuchen Sie uns","visit.title":"Öffnungszeiten & Anfahrt","visit.dek":"Sie finden uns in der Buurtweg 5 in Stavenisse, am Rande des Dorfes im Herzen von Zeeland. Wir sind 7 Tage in der Woche geöffnet.",
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Geschlossen","visit.route":"Route anzeigen",
     "day.mon":"Montag","day.tue":"Dienstag","day.wed":"Mittwoch","day.thu":"Donnerstag","day.fri":"Freitag","day.sat":"Samstag","day.sun":"Sonntag",
-    "hall.1":"Sechs Tage geöffnet","hall.2":"Terrasse & Spielplatz","hall.3":"Steingrill-Spezialitäten","hall.4":"Herz von Zeeland",
+    "hall.1":"7 Tage geöffnet","hall.2":"Terrasse & Spielplatz","hall.3":"Käsefondue & indonesisch","hall.4":"Herz von Zeeland",
     "prov":"Website von Merritt Digital"
   }
 };
@@ -1176,23 +1183,31 @@ document.querySelectorAll('.lang button').forEach(b=>{
 /* ============================================================
    LIVE — open/closed (real hours, Europe/Amsterdam) + weather
    ============================================================ */
-const OPEN_H=15, CLOSE_H=21, CLOSED_DAY=3; // Wednesday closed
+const CLOSE_H=21;                       // 21:00 every day, 7 days a week
+/* Mon-Thu open 15:00 · Fri-Sun open 12:30 (minutes matter, hence *_MINS) */
+function openMinsFor(wd){ return (wd>=1&&wd<=4) ? 15*60 : 12*60+30; }
+function fmtTime(mins,lang){var h=Math.floor(mins/60),m=mins%60;
+  if(lang==='en'){var ap=h>=12?'pm':'am',h12=h%12||12;return h12+':'+String(m).padStart(2,'0')+' '+ap;}
+  return h+':'+String(m).padStart(2,'0');}
 function nowInAmsterdam(){
   const p=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Amsterdam',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
   const wd={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6}[p.find(x=>x.type==='weekday').value];
   const hh=parseInt(p.find(x=>x.type==='hour').value,10);
-  return {wd,hh};
+  const mm=parseInt(p.find(x=>x.type==='minute').value,10);
+  return {wd,hh,mm};
 }
 function updateOpenState(lang){
   lang=lang||document.documentElement.lang||'nl';
   const dict=I18N[lang]||I18N.nl;
-  const {wd,hh}=nowInAmsterdam();
+  const {wd,hh,mm}=nowInAmsterdam();
   const fig=document.getElementById('oc-fig'), u=document.getElementById('oc-u');
   if(!fig) return;
-  const open = wd!==CLOSED_DAY && hh>=OPEN_H && hh<CLOSE_H;
-  const opensSoon = wd!==CLOSED_DAY && hh<OPEN_H;
-  const untilBy={nl:'tot 21:00',en:'until 9:00 pm',de:'bis 21:00'};
-  const fromBy={nl:'vanaf 15:00',en:'from 3:00 pm',de:'ab 15:00'};
+  const nowMins=hh*60+mm, openMins=openMinsFor(wd), closeMins=CLOSE_H*60;
+  const open = nowMins>=openMins && nowMins<closeMins;
+  const opensSoon = nowMins<openMins;                       // opens later today
+  const openAt=fmtTime(openMins,lang), closeAt=fmtTime(closeMins,lang);
+  const untilBy={nl:'tot '+closeAt,en:'until '+closeAt,de:'bis '+closeAt};
+  const fromBy={nl:'vanaf '+openAt,en:'from '+openAt,de:'ab '+openAt};
   const closedBy={nl:'nu gesloten',en:'closed now',de:'jetzt geschlossen'};
   const openWord=dict['live.open'];
   const shutWord={nl:'Gesloten',en:'Closed',de:'Geschlossen'}[lang]||'Gesloten';
