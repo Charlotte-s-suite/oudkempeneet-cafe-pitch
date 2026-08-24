@@ -407,6 +407,109 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
    nothing widens the page and CLS stays flat. */
 .parallax-on .hero-plate .pic img,
 .parallax-on .rest-plate .pic img{ will-change:translate }
+/* ============================================================
+   GRAND OPENING — 5 September 2026. Auto-expiring; see the
+   "GRAND OPENING" script block at the foot of this file.
+   Gold-on-dark register, taken from the printed invitation and
+   the site's own espresso band (--field-deep + brass).
+   ============================================================ */
+[hidden]{display:none!important}          /* the splash sets display:flex — hidden must still win */
+
+/* ---------- ribbon (stays after the splash is dismissed) ---------- */
+.open-ribbon{background:linear-gradient(180deg,var(--field-deep),var(--field-deep-2));
+  border-bottom:1px solid rgba(231,192,121,.28);color:var(--paper-on-dark)}
+.open-ribbon-in{max-width:1080px;margin:0 auto;padding:11px 22px;display:flex;flex-wrap:wrap;
+  align-items:center;justify-content:center;gap:8px 16px;text-align:center}
+.open-ribbon .orb-t{font-family:var(--serif);font-size:clamp(14px,3vw,17px);letter-spacing:.03em;color:#F6ECDA}
+.open-ribbon .orb-a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-1);
+  text-decoration:none;border-bottom:1px solid rgba(231,192,121,.5);padding:4px 0;min-height:24px}
+.open-ribbon .orb-a:hover,.open-ribbon .orb-a:focus-visible{color:#F6DFAF;border-bottom-color:var(--accent-1)}
+
+/* ---------- splash overlay ---------- */
+.open-splash{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-start;justify-content:center;
+  overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(14,8,4,.9);
+  padding:clamp(10px,3vh,40px) 14px 40px;opacity:0;transition:opacity .32s ease}
+.open-splash.on{opacity:1}
+@media (prefers-reduced-motion: reduce){.open-splash{transition:none}}
+.open-panel{position:relative;width:min(760px,100%);margin:auto}
+.open-x{position:absolute;top:10px;right:10px;z-index:5;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(231,192,121,.45);background:rgba(20,12,6,.72);color:var(--accent-1);
+  font-size:22px;line-height:1;cursor:pointer;backdrop-filter:blur(4px)}
+.open-x:hover,.open-x:focus-visible{color:#F6DFAF;border-color:var(--accent-1);outline:none}
+/* The overlay covers the nav, so the language switch has to come with it: a visitor
+   who lands here from the printed QR code must be able to change language without
+   first dismissing the invitation. Reuses the .lang markup, so the site's existing
+   handlers bind to it and keep aria-pressed in sync for free. */
+.open-lang{position:absolute;top:10px;left:10px;z-index:5;border-color:rgba(231,192,121,.45);
+  background:rgba(20,12,6,.72);backdrop-filter:blur(4px)}
+.open-lang button{color:#E4D3B4;border-right-color:rgba(231,192,121,.32);min-height:40px;min-width:40px}
+.open-lang button:hover{color:#F6DFAF}
+.open-lang button[aria-pressed="true"]{background:var(--accent-2);color:#241300;font-weight:600}
+.open-skip{display:block;width:100%;margin:16px auto 0;background:none;border:0;cursor:pointer;
+  font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:#C9B79C;padding:14px 8px;min-height:46px}
+.open-skip:hover,.open-skip:focus-visible{color:var(--accent-1);outline:none}
+
+/* ---------- the invitation itself (shared with opening.html) ---------- */
+.inv{background:linear-gradient(180deg,var(--field-deep),var(--field-deep-2));
+  border:1px solid rgba(231,192,121,.34);border-radius:4px;overflow:clip;padding:10px}
+.inv-photo{position:relative;aspect-ratio:16/7;overflow:clip;border-radius:2px}
+@media(max-width:560px){.inv-photo{aspect-ratio:16/9}}   /* phones: a band, not a sliver */
+.inv-photo img{width:100%;height:100%;object-fit:cover}
+.inv-photo::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(20,12,6,.18) 0,rgba(20,12,6,.15) 45%,var(--field-deep) 100%)}
+.inv-body{padding:clamp(16px,3.4vw,30px) clamp(10px,3vw,30px) clamp(18px,3vw,28px);
+  color:var(--paper-on-dark);text-align:center;margin-top:-6px;position:relative;z-index:2}
+.inv-kicker{display:block;font-family:var(--serif);font-weight:700;color:var(--accent-1);
+  font-size:clamp(30px,8vw,54px);letter-spacing:.16em;text-indent:.16em;text-transform:uppercase;line-height:1.05}
+.inv-script{display:block;font-family:var(--serif);font-style:italic;color:#F1D9A8;
+  font-size:clamp(15px,3.4vw,23px);margin-top:6px;letter-spacing:.01em}
+.inv-rule{width:130px;height:1px;margin:16px auto 18px;
+  background:linear-gradient(90deg,transparent,var(--accent-2),transparent)}
+.inv-h{font-size:clamp(19px,4.2vw,29px);color:#F6ECDA;line-height:1.2;letter-spacing:.01em}
+.inv-lede{max-width:52ch;margin:14px auto 0;color:#CBB99E;font-size:clamp(14px,2.5vw,16px)}
+
+.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;text-align:left}
+@media(max-width:640px){.inv-grid{grid-template-columns:1fr}}
+.inv-box{border:1px solid rgba(231,192,121,.26);border-radius:4px;padding:20px 20px 18px;
+  background:rgba(231,192,121,.04)}
+.inv-box h3{font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-1);margin-bottom:9px}
+.inv-box p{margin:0 0 9px;color:#CBB99E;font-size:14.5px;line-height:1.55}
+.inv-box p:last-child{margin-bottom:0}
+
+.inv-when{display:flex;flex-direction:column;justify-content:center;text-align:center}
+.inv-day{font-family:var(--serif);font-weight:700;color:var(--accent-1);
+  font-size:clamp(20px,4.6vw,28px);letter-spacing:.1em;text-indent:.1em;text-transform:uppercase;line-height:1.1}
+.inv-date{font-family:var(--serif);font-weight:700;color:#F6ECDA;font-size:clamp(17px,3.6vw,22px);margin-top:4px}
+.inv-when .inv-rule{margin:14px auto}
+.inv-time{font-family:var(--serif);font-weight:700;color:var(--accent-1);font-size:clamp(16px,3.4vw,21px);letter-spacing:.04em}
+
+.inv-what{list-style:none;margin:0;padding:20px;display:flex;flex-direction:column;justify-content:center;gap:2px}
+.inv-what li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;
+  border-bottom:1px solid rgba(231,192,121,.14)}
+.inv-what li:last-child{border-bottom:0}
+.inv-what svg{width:22px;height:22px;flex:none;margin-top:1px;stroke:var(--accent-1);fill:none;
+  stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
+.inv-what .t{display:block;color:#F3ECE0;font-size:14.5px;line-height:1.35}
+.inv-what .s{display:block;color:#A89478;font-size:12.5px;margin-top:3px;line-height:1.35}
+
+/* the paper form window is light — the on-dark box colour must not follow it in */
+.inv-reg .form-window p{color:var(--muted)}
+.inv-reg{margin-top:14px;text-align:center}
+.inv-reg .inv-cta{margin-top:16px}
+.inv-reg p{max-width:46ch;margin-left:auto;margin-right:auto}
+
+.inv-sign{margin-top:26px}
+.inv-close{font-family:var(--serif);font-style:italic;color:var(--accent-1);
+  font-size:clamp(16px,3.4vw,22px);line-height:1.35;margin:0 auto;max-width:34ch}
+.inv-team{font-family:var(--serif);color:#F6ECDA;font-size:clamp(15px,3vw,18px);margin-top:8px}
+.inv-place{font-size:11.5px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:#A89478;margin-top:10px}
+
+/* the opening's own reservation form (reuses the site's form machinery) */
+.res-front .rf-ic{display:block;margin-bottom:12px}
+.open-when{text-align:center;font-family:var(--serif);color:var(--accent-3);
+  font-size:15px;margin:-8px 0 16px}
 </style>
 </head>
 <body>
@@ -435,6 +538,14 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     </div>
   </div>
 </nav>
+
+<!-- ===== GRAND OPENING ribbon — revealed by the opening script only while the event is ahead ===== -->
+<div class="open-ribbon" id="openRibbon" hidden>
+  <div class="open-ribbon-in">
+    <span class="orb-t" data-i18n="open.ribbon">Grand opening · Saturday 5 September</span>
+    <a class="orb-a" href="opening.html" data-i18n="open.ribbon.cta">View invitation</a>
+  </div>
+</div>
 
 <!-- ============================== HERO ============================== -->
 <header class="hero" id="top">
@@ -709,6 +820,90 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 </section>
 </main>
 
+<!-- ============================== GRAND OPENING SPLASH ==============================
+     Shown on "/" (where the printed poster's QR code lands) only while the event is
+     ahead of us. `hidden` in source: the script must actively decide to reveal it, so
+     any failure of the date logic leaves it invisible. Dismissible — it never blocks
+     the rest of the site.                                                            -->
+<div class="open-splash" id="openSplash" role="dialog" aria-modal="true" aria-labelledby="openSplashT" hidden>
+  <div class="open-panel">
+    <div class="lang open-lang" role="group" aria-label="Language">
+      <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
+    </div>
+    <button type="button" class="open-x" id="openX" aria-label="Sluiten">&times;</button>
+    <div class="inv">
+      <div class="inv-photo">
+        <img src="assets/terrace.webp" width="1200" height="653" alt="Het terras van Oud-Kempen op een zonnige dag" loading="lazy">
+      </div>
+      <div class="inv-body">
+        <span class="inv-kicker" data-i18n="open.kicker">Invitation</span>
+        <span class="inv-script" data-i18n="open.script">to our grand opening celebration!</span>
+        <div class="inv-rule"></div>
+        <h2 class="inv-h" id="openSplashT" data-i18n="open.h">Eetcafé Oud Kempen officially opens its doors!</h2>
+        <p class="inv-lede" data-i18n="open.body">After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!</p>
+
+        <div class="inv-grid">
+          <div class="inv-box inv-when">
+            <div class="inv-day" data-i18n="open.day">Saturday</div>
+            <div class="inv-date" data-i18n="open.date">5 September 2026</div>
+            <div class="inv-rule"></div>
+            <div class="inv-time" data-i18n="open.time">17.00 – 23.00 hrs</div>
+          </div>
+          <ul class="inv-box inv-what">
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l-1.6 6.2a4 4 0 01-3.4 3H12a4 4 0 01-3.4-3zM12 13.2V20M9 20h6"/></svg>
+              <span><span class="t" data-i18n="open.b1">1 free low-alcoholic drink per person</span><span class="s" data-i18n="open.b1s">Non-alcoholic alternative available</span></span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15h16a8 8 0 00-16 0zM3 18h18M9 15c0-3 1.5-5 3-5"/></svg>
+              <span class="t" data-i18n="open.b2">Delicious bites</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="16" r="2"/></svg>
+              <span class="t" data-i18n="open.b3">Live music</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="7" ry="2.6"/><path d="M5 7v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7M5 11v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg>
+              <span class="t" data-i18n="open.b4">Token system</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg>
+              <span class="t" data-i18n="open.b5">Hopefully nice weather</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="inv-grid">
+          <div class="inv-box">
+            <h3 data-i18n="open.tok.t">Token system</h3>
+            <p data-i18n="open.tok.p">During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.</p>
+          </div>
+          <div class="inv-box">
+            <h3 data-i18n="open.gift.t">A gift?</h3>
+            <p data-i18n="open.gift.p1">Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.</p>
+            <p data-i18n="open.gift.p2">We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.</p>
+          </div>
+        </div>
+
+        <div class="inv-box inv-reg">
+          <h3 data-i18n="open.reg.t">Please register</h3>
+          <p data-i18n="open.reg.p">So that we can prepare well, please let us know if you will be joining us.</p>
+          <button type="button" class="btn btn-gold inv-cta" data-open="opening" data-i18n="open.cta">Register</button>
+        </div>
+
+        <div class="inv-sign">
+          <p class="inv-close" data-i18n="open.close">We look forward to an unforgettable evening with you!</p>
+          <div class="inv-team" data-i18n="open.team">Team Eetcafé Oud Kempen</div>
+          <div class="inv-place" data-i18n="open.place">Stavenisse – Zeeland</div>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="open-skip" id="openSkip" data-i18n="open.continue">Continue to the website</button>
+  </div>
+</div>
+
 <!-- ============================== RESERVATION FORMS (per category) ============================== -->
 <div id="res-form-store" hidden>
   <form class="res-form" data-service="table" novalidate>
@@ -827,6 +1022,26 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <p class="form-note" data-i18n="res.note2">Wij bevestigen uw reservering persoonlijk.</p>
     <div class="form-status" role="status" aria-live="polite"></div>
   </form>
+  <!-- Grand opening registration. Same delivery path as every other request on this
+       site (FormSubmit -> the cafe's reservation inbox); its own service type so Dave
+       can tell an opening sign-up from a table booking at a glance. Removed from the
+       DOM by the opening script once the event has passed. -->
+  <form class="res-form" data-service="opening" novalidate>
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <span class="ic rf-ic" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M8 13h28v18H8zM8 14l14 10 14-10"/></svg></span>
+    <div class="fk" data-i18n="open.fk">Aanmelding opening</div>
+    <h3 data-i18n="svc.opening.t">Aanmelden voor de opening</h3>
+    <p class="open-when"><span data-i18n="open.date">5 September 2026</span> · <span data-i18n="open.time">17.00 – 23.00 hrs</span></p>
+    <div class="frow">
+      <div class="field"><label for="f-open-name" data-i18n="res.l.name">Naam</label><input id="f-open-name" name="name" type="text" autocomplete="name" required></div>
+      <div class="field"><label for="f-open-email" data-i18n="res.l.email">E-mailadres</label><input id="f-open-email" name="email" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="field"><label for="f-open-guests" data-i18n="res.l.guests">Aantal personen</label><input id="f-open-guests" name="guests" type="number" min="1" value="2"></div>
+    <div class="field"><label for="f-open-note" data-i18n="res.l.note">Opmerking (optioneel)</label><textarea id="f-open-note" name="note"></textarea></div>
+    <button type="submit" class="btn btn-gold" data-i18n="open.cta">Aanmelden</button>
+    <p class="form-note" data-i18n="open.note2">Wij noteren u op de gastenlijst voor 5 september.</p>
+    <div class="form-status" role="status" aria-live="polite"></div>
+  </form>
 </div>
 
 <div class="res-dim" id="resDim" hidden></div>
@@ -915,6 +1130,22 @@ const I18N = {
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Gesloten","visit.route":"Routebeschrijving",
     "day.mon":"Maandag","day.tue":"Dinsdag","day.wed":"Woensdag","day.thu":"Donderdag","day.fri":"Vrijdag","day.sat":"Zaterdag","day.sun":"Zondag",
     "hall.1":"7 dagen per week open","hall.2":"Terras & speeltuin","hall.3":"Kaasfondue & Indonesisch","hall.4":"Hart van Zeeland",
+
+    /* --- GRAND OPENING ------------------------------------------------------
+       PROSE (open.kicker .. open.place) is the client's own invitation text,
+       transcribed verbatim from the printed poster he supplied. That poster
+       exists in ENGLISH only, so all three languages deliberately carry the
+       English wording for now — we do not machine-translate a client's
+       invitation. Zach has been asked for the Dutch and German versions; when
+       they arrive, replace the values in this block for nl and de and nothing
+       else has to change.
+       CHROME (open.cta, open.continue, open.ribbon*, open.fk, open.note2,
+       svc.opening.t, open.past.*) is our own interface wording and IS
+       translated, as is every field label in the form, which reuses the
+       site's existing res.l.* keys.
+       ----------------------------------------------------------------------- */
+    "open.kicker":"Invitation","open.script":"to our grand opening celebration!","open.h":"Eetcafé Oud Kempen officially opens its doors!","open.body":"After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!","open.day":"Saturday","open.date":"5 September 2026","open.time":"17.00 – 23.00 hrs","open.b1":"1 free low-alcoholic drink per person","open.b1s":"Non-alcoholic alternative available","open.b2":"Delicious bites","open.b3":"Live music","open.b4":"Token system","open.b5":"Hopefully nice weather","open.tok.t":"Token system","open.tok.p":"During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.","open.reg.t":"Please register","open.reg.p":"So that we can prepare well, please let us know if you will be joining us.","open.gift.t":"A gift?","open.gift.p1":"Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.","open.gift.p2":"We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.","open.close":"We look forward to an unforgettable evening with you!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
+    "open.cta":"Aanmelden","open.continue":"Verder naar de website","open.ribbon":"Grote opening · zaterdag 5 september","open.ribbon.cta":"Bekijk de uitnodiging","open.fk":"Aanmelding opening","svc.opening.t":"Aanmelden voor de opening","open.note2":"Wij noteren u op de gastenlijst voor 5 september.","open.past.t":"De opening heeft plaatsgevonden","open.past.p":"Bedankt aan iedereen die erbij was. Oud-Kempen Eetcafé is 7 dagen per week open.","open.past.cta":"Naar de website","open.title":"Grote opening · zaterdag 5 september 2026",
     "prov":"Website door Merritt Digital"
   },
   en:{
@@ -949,6 +1180,22 @@ const I18N = {
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Closed","visit.route":"Get directions",
     "day.mon":"Monday","day.tue":"Tuesday","day.wed":"Wednesday","day.thu":"Thursday","day.fri":"Friday","day.sat":"Saturday","day.sun":"Sunday",
     "hall.1":"Open 7 days a week","hall.2":"Terrace & playground","hall.3":"Cheese fondue & Indonesian","hall.4":"Heart of Zeeland",
+
+    /* --- GRAND OPENING ------------------------------------------------------
+       PROSE (open.kicker .. open.place) is the client's own invitation text,
+       transcribed verbatim from the printed poster he supplied. That poster
+       exists in ENGLISH only, so all three languages deliberately carry the
+       English wording for now — we do not machine-translate a client's
+       invitation. Zach has been asked for the Dutch and German versions; when
+       they arrive, replace the values in this block for nl and de and nothing
+       else has to change.
+       CHROME (open.cta, open.continue, open.ribbon*, open.fk, open.note2,
+       svc.opening.t, open.past.*) is our own interface wording and IS
+       translated, as is every field label in the form, which reuses the
+       site's existing res.l.* keys.
+       ----------------------------------------------------------------------- */
+    "open.kicker":"Invitation","open.script":"to our grand opening celebration!","open.h":"Eetcafé Oud Kempen officially opens its doors!","open.body":"After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!","open.day":"Saturday","open.date":"5 September 2026","open.time":"17.00 – 23.00 hrs","open.b1":"1 free low-alcoholic drink per person","open.b1s":"Non-alcoholic alternative available","open.b2":"Delicious bites","open.b3":"Live music","open.b4":"Token system","open.b5":"Hopefully nice weather","open.tok.t":"Token system","open.tok.p":"During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.","open.reg.t":"Please register","open.reg.p":"So that we can prepare well, please let us know if you will be joining us.","open.gift.t":"A gift?","open.gift.p1":"Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.","open.gift.p2":"We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.","open.close":"We look forward to an unforgettable evening with you!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
+    "open.cta":"Register","open.continue":"Continue to the website","open.ribbon":"Grand opening · Saturday 5 September","open.ribbon.cta":"View invitation","open.fk":"Opening registration","svc.opening.t":"Register for the opening","open.note2":"We will add you to the guest list for 5 September.","open.past.t":"The grand opening has taken place","open.past.p":"Thank you to everyone who was there. Oud-Kempen Eetcafé is open seven days a week.","open.past.cta":"Go to the website","open.title":"Grand opening · Saturday 5 September 2026",
     "prov":"Website by Merritt Digital"
   },
   de:{
@@ -983,6 +1230,22 @@ const I18N = {
     "visit.h3":"Oud-Kempen Eetcafé","visit.closed":"Geschlossen","visit.route":"Route anzeigen",
     "day.mon":"Montag","day.tue":"Dienstag","day.wed":"Mittwoch","day.thu":"Donnerstag","day.fri":"Freitag","day.sat":"Samstag","day.sun":"Sonntag",
     "hall.1":"7 Tage geöffnet","hall.2":"Terrasse & Spielplatz","hall.3":"Käsefondue & indonesisch","hall.4":"Herz von Zeeland",
+
+    /* --- GRAND OPENING ------------------------------------------------------
+       PROSE (open.kicker .. open.place) is the client's own invitation text,
+       transcribed verbatim from the printed poster he supplied. That poster
+       exists in ENGLISH only, so all three languages deliberately carry the
+       English wording for now — we do not machine-translate a client's
+       invitation. Zach has been asked for the Dutch and German versions; when
+       they arrive, replace the values in this block for nl and de and nothing
+       else has to change.
+       CHROME (open.cta, open.continue, open.ribbon*, open.fk, open.note2,
+       svc.opening.t, open.past.*) is our own interface wording and IS
+       translated, as is every field label in the form, which reuses the
+       site's existing res.l.* keys.
+       ----------------------------------------------------------------------- */
+    "open.kicker":"Invitation","open.script":"to our grand opening celebration!","open.h":"Eetcafé Oud Kempen officially opens its doors!","open.body":"After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!","open.day":"Saturday","open.date":"5 September 2026","open.time":"17.00 – 23.00 hrs","open.b1":"1 free low-alcoholic drink per person","open.b1s":"Non-alcoholic alternative available","open.b2":"Delicious bites","open.b3":"Live music","open.b4":"Token system","open.b5":"Hopefully nice weather","open.tok.t":"Token system","open.tok.p":"During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.","open.reg.t":"Please register","open.reg.p":"So that we can prepare well, please let us know if you will be joining us.","open.gift.t":"A gift?","open.gift.p1":"Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.","open.gift.p2":"We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.","open.close":"We look forward to an unforgettable evening with you!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
+    "open.cta":"Anmelden","open.continue":"Weiter zur Website","open.ribbon":"Große Eröffnung · Samstag, 5. September","open.ribbon.cta":"Einladung ansehen","open.fk":"Anmeldung Eröffnung","svc.opening.t":"Für die Eröffnung anmelden","open.note2":"Wir setzen Sie auf die Gästeliste für den 5. September.","open.past.t":"Die Eröffnung hat stattgefunden","open.past.p":"Danke an alle, die dabei waren. Oud-Kempen Eetcafé ist 7 Tage die Woche geöffnet.","open.past.cta":"Zur Website","open.title":"Große Eröffnung · Samstag, 5. September 2026",
     "prov":"Website von Merritt Digital"
   }
 };
@@ -1023,10 +1286,11 @@ document.querySelectorAll('.lang button').forEach(b=>{
   var curSrc=null,busy=false;
   function lang(){return document.documentElement.lang||'nl';}
   function t(k){var d=(typeof I18N!=='undefined'&&(I18N[lang()]||I18N.nl))||{};return d[k]||'';}
-  var SVCKEY={table:'table',bike:'bike',jacuzzi:'jac',house:'house',event:'event'};
+  var SVCKEY={table:'table',bike:'bike',jacuzzi:'jac',house:'house',event:'event',opening:'opening'};
   /* The cafe always receives the inquiry in Dutch, whatever language the customer
      browsed in — FormSubmit uses the JSON keys as the email's field labels. */
-  var NLCAT={table:'Reserveer een tafel',bike:'Fietsverhuur',jacuzzi:'Jacuzzi huren',house:'Vakantiehuis',event:'Vier uw feest'};
+  var NLCAT={table:'Reserveer een tafel',bike:'Fietsverhuur',jacuzzi:'Jacuzzi huren',house:'Vakantiehuis',event:'Vier uw feest',
+    opening:'Aanmelding opening 5 september 2026'};
   var NLLABEL={name:'Naam',email:'E-mailadres',guests:'Aantal personen',date:'Datum',time:'Tijd',note:'Opmerking',
     standard_bikes:'Aantal gewone fietsen',e_bikes:'Aantal e-bikes',pickup_date:'Ophaaldatum',pickup_time:'Ophaaltijd',
     dropoff_date:'Inleverdatum',dropoff_time:'Inlevertijd',start_date:'Startdatum',start_time:'Starttijd',
@@ -1066,7 +1330,8 @@ document.querySelectorAll('.lang button').forEach(b=>{
     curSrc=src;
     slot.appendChild(form);
     var card=document.querySelector('.card[data-service="'+service+'"]');
-    var ic=card&&card.querySelector('.ic'),h=card&&card.querySelector('h3');
+    var ic=(card&&card.querySelector('.ic'))||form.querySelector('.rf-ic');
+    var h=(card&&card.querySelector('h3'))||form.querySelector('h3');
     front.innerHTML=(ic?ic.outerHTML:'')+'<div class="rf-front-title">'+(h?h.textContent:'')+'</div>';
     if(typeof applyLang==='function')applyLang(lang());
     xbtn.setAttribute('aria-label',t('res.close')||'Sluiten');
@@ -1152,7 +1417,9 @@ document.querySelectorAll('.lang button').forEach(b=>{
     data['Website-taal']=({nl:'Nederlands',en:'Engels',de:'Duits'}[lang()]||'Nederlands');
     // scannable at a glance in the cafe's inbox: what was booked, and by whom
     if(wantsFondue) data['Kaasfondue']='JA — € 25,95 p.p. (min. 2 personen, 1 dag vooraf)';
-    data._subject='Reservering — '+(wantsFondue?'Kaasfondue':(NLCAT[svc]||svcName))+(raw.name?' — '+raw.name:'');
+    data._subject=(svc==='opening'
+      ? 'Aanmelding opening 5 september 2026'
+      : 'Reservering — '+(wantsFondue?'Kaasfondue':(NLCAT[svc]||svcName)))+(raw.name?' — '+raw.name:'');
     data._replyto=custEmail;                               // reply goes straight to the guest
     data._template='table';data._captcha='false';
     busy=true;if(btn)btn.disabled=true;
@@ -1390,6 +1657,97 @@ async function loadWeather(){
   window.addEventListener('scroll', onScroll, {passive:true});
   window.addEventListener('resize', onScroll, {passive:true});
   update();
+})();
+/* ============================================================
+   GRAND OPENING — Saturday 5 September 2026, 17.00–23.00 (Europe/Amsterdam).
+   The printed invitation's QR code points at "/", so the splash lives here, on
+   the homepage, and not only on opening.html.
+
+   It takes itself down. Nobody has to remember to remove it:
+     - every opening element is `hidden` in the source, so the page's resting
+       state is "no splash"; this script has to actively decide to show it;
+     - past the window the elements are removed from the DOM entirely;
+     - FAIL SAFE: any error, any missing Intl support, any result that does not
+       look like a timestamp => treated as expired => nothing is shown. The
+       failure mode is an invisible splash, never a permanent one.
+
+   It never blocks the site: X, "Continue to the website", Escape and a click on
+   the backdrop all dismiss it, the choice is remembered, and it stays out of the
+   way of anyone who arrived with a #hash target in mind.
+   ============================================================ */
+(function(){
+  var OPENING_ENDS = 202609060000;   /* YYYYMMDDHHMM Amsterdam wall clock: midnight at
+                                        the end of the party day — an hour past its 23.00 close. */
+
+  /* Amsterdam wall clock as a comparable YYYYMMDDHHMM integer. Intl owns the time zone
+     and the DST rules; we never parse or do arithmetic on a Date, which is where this
+     kind of code usually goes wrong. Refuses to guess: throws unless the result is
+     exactly the shape we expect. */
+  function amsStamp(){
+    var parts = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Amsterdam',
+      year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false
+    }).formatToParts(new Date());
+    var g={},i;
+    for(i=0;i<parts.length;i++) g[parts[i].type]=parts[i].value;
+    if(g.hour==='24') g.hour='00';                       /* some engines render midnight as 24 */
+    var n = Number(g.year+g.month+g.day+g.hour+g.minute);
+    if(!isFinite(n) || String(n).length!==12) throw new Error('unusable clock');
+    return n;
+  }
+  function openingAhead(){ try{ return amsStamp() < OPENING_ENDS; }catch(e){ return false; } }
+
+  var splash = document.getElementById('openSplash'),
+      ribbon = document.getElementById('openRibbon'),
+      regform= document.querySelector('.res-form[data-service="opening"]');
+  function drop(el){ if(el && el.parentNode) el.parentNode.removeChild(el); }
+
+  if(!openingAhead()){ drop(splash); drop(ribbon); drop(regform); return; }
+  if(ribbon) ribbon.hidden = false;
+  if(!splash) return;
+
+  var xb    = document.getElementById('openX'),
+      skip  = document.getElementById('openSkip'),
+      modal = document.getElementById('resModal'),
+      shown = false, lastFocus = null;
+
+  function modalOpen(){ return !!(modal && modal.classList.contains('open')); }
+  function seen(){ try{ return localStorage.getItem('ok-opening-seen')==='1'; }catch(e){ return false; } }
+  function markSeen(){ try{ localStorage.setItem('ok-opening-seen','1'); }catch(e){} }
+
+  function show(){
+    if(shown) return; shown = true;
+    lastFocus = document.activeElement;
+    splash.hidden = false;
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function(){ splash.classList.add('on'); });
+    if(xb){ try{ xb.focus({preventScroll:true}); }catch(e){} }
+  }
+  function hide(){
+    if(!shown) return; shown = false;
+    markSeen();
+    splash.classList.remove('on');
+    var toModal = modalOpen();          /* the registration form has taken the screen */
+    setTimeout(function(){
+      splash.hidden = true;
+      /* the reservation modal owns the scroll lock until it closes — don't yank it */
+      if(!modalOpen()) document.body.style.overflow = '';
+    }, 320);
+    if(lastFocus && !toModal){ try{ lastFocus.focus({preventScroll:true}); }catch(e){} }
+  }
+
+  if(xb)   xb.addEventListener('click', hide);
+  if(skip) skip.addEventListener('click', hide);
+  splash.addEventListener('click', function(e){ if(e.target===splash) hide(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && shown) hide(); });
+
+  /* "Register" carries data-open="opening", so the site's own reservation modal opens it.
+     That handler was bound before this script, so it runs first; we just step aside. */
+  var reg = splash.querySelector('[data-open="opening"]');
+  if(reg) reg.addEventListener('click', hide);
+
+  /* ?opening=1 forces it back up (for review, and for anyone re-sharing the link). */
+  var forced = /[?&]opening=1(&|$)/.test(location.search);
+  if(forced || (!seen() && !location.hash)) show();
 })();
 </script>
 </body>
