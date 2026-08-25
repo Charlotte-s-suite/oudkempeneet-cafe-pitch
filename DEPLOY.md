@@ -1,0 +1,78 @@
+# DEPLOY.md — how this site actually goes live
+
+_Written 2026-08-20 after an hour was lost assuming otherwise. Read this before touching anything
+about publishing._
+
+## ⚠ Pushing to GitHub does NOT update the live site
+
+`git push` updates the repo and rebuilds GitHub Pages at
+`https://charlotte-s-suite.github.io/oudkempeneet-cafe-pitch/`. That address is the **pitch
+artifact**. It is *not* what the client's customers see, and for a long time the registry listed
+it as "live", which is exactly what caused the confusion.
+
+**The client's real site is `https://www.oudkempeneetcafe.nl/`** and it is served by a **Cloudflare
+Worker** in Dave's account:
+
+```
+worker:   aged-mountain-afcf        (Workers static assets)
+domains:  oudkempeneetcafe.nl, www.oudkempeneetcafe.nl   (Worker custom domains)
+account:  DAVE_CF_ACCOUNT   token: DAVE_CF_TOKEN   (~/.config/shmorganism/secrets.env)
+```
+
+Because both hostnames are **Worker custom domains**, there is no proxied origin. Consequences
+that wasted a lot of time and will waste yours:
+
+- Zone **cache purge does nothing** — there is no zone cache in front of this.
+- **Development mode does nothing**, for the same reason.
+- A cache-busting query string returns the *old* page, because it is not a caching problem at all.
+- `dig` shows `AAAA -> 100::`, Cloudflare's placeholder address. **That record is the tell**: it
+  means a Worker or Pages custom domain serves the hostname, never a proxied origin.
+
+## To publish
+
+```sh
+set -a; . ~/.config/shmorganism/secrets.env; set +a
+export CLOUDFLARE_API_TOKEN="$DAVE_CF_TOKEN" CLOUDFLARE_ACCOUNT_ID="$DAVE_CF_ACCOUNT"
+
+mkdir -p /tmp/cafe/site && git archive HEAD | tar -x -C /tmp/cafe/site
+cat > /tmp/cafe/wrangler.toml <<'TOML'
+name = "aged-mountain-afcf"
+compatibility_date = "2026-08-01"
+[assets]
+directory = "./site"
+not_found_handling = "404-page"
+TOML
+cd /tmp/cafe && npx --yes wrangler@latest deploy
+```
+
+Takes effect **immediately** — no cache wait. Wrangler only uploads changed files.
+
+**Rollback**: previous versions are retained on the Worker; roll back with
+`wrangler rollback` or via the Cloudflare dashboard. Check before assuming a bad deploy is fatal.
+
+## Verify after publishing — on the real domain, not localhost
+
+An HTTP `200` proves bytes exist, not that the page is right. Compare content:
+
+```sh
+curl -sL https://www.oudkempeneetcafe.nl/menu -o /tmp/live.html
+md5sum /tmp/live.html menu.html      # must match
+```
+
+Then load it in a browser at 390px and count what actually renders. On 2026-08-20 the menu was
+verified at **110 prices visible in each of nl/de/en**, no overflow, no JS errors.
+
+## Menu content rules
+
+The menus come from the client as **per-language PDFs** (Menukaart + Drankenkaart). Latest set and
+extracted text: `~/shmorganism/soma/state/merritt/assets/oudkempen-menus-2026-08-19/`.
+
+- Every item and price comes from the PDF **verbatim, per language**. Never translate — each
+  language page carries the client's own wording.
+- **Dutch and German use a comma** (`€ 25,95`); **English uses a point** (`€ 25.95`). Keep each
+  language's own convention; do not normalise.
+- Verify **mechanically**, never by eye: extract every price from each language and diff against
+  that language's PDF, both directions — zero mismatches and zero orphans. These are real prices in
+  front of a customer at a table.
+- All three languages live in the `I18N` object in `menu.html`; the inline markup is only the
+  default rendering, so counting inline prices undercounts badly.
