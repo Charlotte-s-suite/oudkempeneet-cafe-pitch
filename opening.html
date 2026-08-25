@@ -44,17 +44,7 @@ p{margin:0 0 14px}
 /* nav — same lockup as the rest of the site, recoloured for the dark ground */
 .nav{position:relative;z-index:50;background:rgba(7,9,11,.86);
   border-bottom:1px solid rgba(212,168,94,.22)}
-/* the only thing that follows the page */
-.lang-float{position:fixed;top:10px;right:10px;z-index:60;border-radius:3px;
-  border:1px solid rgba(212,168,94,.45);background:rgba(7,9,11,.88);
-  backdrop-filter:blur(6px);transition:opacity .18s ease,visibility 0s}
-.lang.lang-float button{min-width:42px;min-height:42px;padding:8px;color:#D8C7A6}
-.lang.lang-float button:not([aria-pressed="true"]):hover{color:#F6DFAF}
-.lang.lang-float button:focus-visible{outline:2px solid var(--accent-1);outline-offset:-2px}
-.lang-float.away{opacity:0;visibility:hidden;pointer-events:none;
-  transition:opacity .18s ease,visibility 0s linear .18s}   /* also out of the tab order */
-@media(max-width:560px){.lang-float{top:8px;right:8px}.lang.lang-float button{min-width:44px;min-height:44px}}
-@media (prefers-reduced-motion: reduce){.lang-float{transition:none}}
+
 .nav-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:11px 22px;max-width:1120px;margin:0 auto}
 .brand{display:inline-flex;flex-direction:column;align-items:center;gap:3px;text-decoration:none;line-height:1}
 .nb-name{font-family:var(--serif);font-weight:700;font-size:clamp(15px,3.4vw,19px);letter-spacing:.01em;text-transform:uppercase;color:#F3E7CE;line-height:1}
@@ -234,6 +224,34 @@ p{margin:0 0 14px}
 .mprov{margin-top:12px;font-size:12px;letter-spacing:.04em;color:#9A8D77}
 a[href^="tel:"]{display:inline-block;min-height:44px;padding:11px 0;line-height:1.45;text-decoration:none}
 
+/* ---------- the floating language control ----------
+   A layout rule, not a set of dodges. The control only exists at widths where the
+   content column can be given a gutter wide enough to hold it; inside that gutter no
+   page content is ever laid out, so it cannot collide at any scroll position. Below
+   that width there is no room for a gutter, so there is no float at all — the header
+   carries one control and the footer carries another, both in the flow.
+   Placed at the END of the sheet on purpose: these override .op-wrap and .nav-in,
+   which are declared above at the same specificity. */
+:root{--float-gutter:60px}
+.lang-float{display:none}
+.lang-foot{display:inline-flex;margin-top:14px}
+.lang.lang-foot button{min-width:48px;min-height:46px;padding:8px}
+.lang.lang-foot button:focus-visible{outline:2px solid var(--accent-1);outline-offset:-2px}
+@media(min-width:900px){
+  .op-wrap{max-width:min(1020px,calc(100vw - 2*var(--float-gutter)))}
+  .nav-in{max-width:min(1120px,calc(100vw - 2*var(--float-gutter)))}
+  .lang-foot{display:none}
+  .lang-float{display:flex;flex-direction:column;position:fixed;right:8px;top:50%;
+    transform:translateY(-50%);z-index:60;width:44px;border-radius:3px;
+    border:1px solid rgba(212,168,94,.45);background:rgba(7,9,11,.88);backdrop-filter:blur(6px)}
+  .lang.lang-float button{min-width:42px;min-height:44px;padding:8px 6px;
+    border-right:0;border-bottom:1px solid rgba(212,168,94,.3)}
+  .lang.lang-float button:not([aria-pressed="true"]){color:#D8C7A6}
+  .lang.lang-float button:last-child{border-bottom:0}
+  .lang.lang-float button:not([aria-pressed="true"]):hover{color:#F6DFAF}
+  .lang.lang-float button:focus-visible{outline:2px solid var(--accent-1);outline-offset:-2px}
+}
+
 </style>
 <link rel="canonical" href="https://www.oudkempeneetcafe.nl/opening">
 </head>
@@ -241,7 +259,7 @@ a[href^="tel:"]{display:inline-block;min-height:44px;padding:11px 0;line-height:
 <canvas class="gold-field" id="openField" aria-hidden="true"></canvas>
 <!-- Only this follows the page. The banner above scrolls away with everything else;
      a whole sticky header riding down a poster was too much. -->
-<div class="lang lang-float away" id="langFloat" role="group" aria-label="Language">
+<div class="lang lang-float" id="langFloat" role="group" aria-label="Language">
   <button type="button" data-lang="nl" aria-pressed="true">NL</button>
   <button type="button" data-lang="en" aria-pressed="false">EN</button>
   <button type="button" data-lang="de" aria-pressed="false">DE</button>
@@ -364,6 +382,11 @@ a[href^="tel:"]{display:inline-block;min-height:44px;padding:11px 0;line-height:
 
 <footer class="mfoot">
   <div class="fine">Oud-Kempen Eetcafé · Buurtweg 5, 4696 RT Stavenisse · <a href="tel:+31627894034">+31 6 27 89 40 34</a> · <a href="mailto:reservationsoke@gmail.com">reservationsoke@gmail.com</a> · <a href="https://www.instagram.com/oudkempen_zeeland" target="_blank" rel="noopener">@oudkempen_zeeland</a></div>
+  <div class="lang lang-foot" role="group" aria-label="Language">
+    <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+    <button type="button" data-lang="en" aria-pressed="false">EN</button>
+    <button type="button" data-lang="de" aria-pressed="false">DE</button>
+  </div>
   <div class="mprov" data-i18n="prov">Website door Merritt Digital</div>
 </footer>
 
@@ -533,50 +556,6 @@ function applyLang(l){
 }
 document.querySelectorAll('.lang button').forEach(function(b){b.addEventListener('click',function(){applyLang(b.dataset.lang);});});
 (function(){var s='nl';try{s=localStorage.getItem('ok-lang')||'nl';}catch(e){}if(!I18N[s])s='nl';applyLang(s);})();
-
-/* The floating language control must never sit over the registration fields; it steps
-   aside while one is focused, which also keeps it clear of an open phone keyboard. */
-(function(){
-  var chip=document.getElementById('langFloat'), form=document.getElementById('openForm');
-  if(!chip) return;
-  var typing=false, covering=false, atTop=true;
-  function sync(){ chip.classList.toggle('away', atTop||typing||covering); }
-  if(form){
-    form.addEventListener('focusin',function(){ typing=true; sync(); });
-    form.addEventListener('focusout',function(){ typing=false; sync(); });
-  }
-  /* It also steps aside while the registration panel or the sign-off is passing under
-     it, so it never sits on those. IntersectionObserver against a shallow band at the
-     top of the viewport — no scroll handler, no layout reads. */
-  /* Guard the things it could actually sit ON — the form controls and the closing
-     script line — not their whole panels: .inv-reg is 560px tall, so guarding the panel
-     hid the chip for most of the page and defeated the point of it floating. */
-  var BAND=60, io=null;
-  var guard=[document.querySelector('.inv-form'), document.querySelector('.inv-close')].filter(Boolean);
-  function arm(){
-    if(!('IntersectionObserver' in window) || !guard.length) return;
-    if(io) io.disconnect();
-    var hits=new Set();
-    io=new IntersectionObserver(function(es){
-      es.forEach(function(e){ e.isIntersecting ? hits.add(e.target) : hits.delete(e.target); });
-      covering = hits.size>0; sync();
-    },{rootMargin:'0px 0px '+(BAND-window.innerHeight)+'px 0px'});
-    guard.forEach(function(el){ io.observe(el); });
-  }
-  arm();
-
-  /* The header carries its own language control, so the float has no business being on
-     screen while the header is: it sat straight on top of the RESERVEER button before a
-     visitor had scrolled at all. It appears only once the header is gone. */
-  var nav=document.querySelector('.nav');
-  if(nav && 'IntersectionObserver' in window){
-    new IntersectionObserver(function(es){ atTop=es[0].isIntersecting; sync(); },
-      {threshold:0}).observe(nav);
-  } else {
-    atTop=false; sync();                 /* no observer: fall back to always available */
-  }
-  var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(arm,200); },{passive:true});
-})();
 
 /* >>> GOLDFIELD — generated, do not edit in place >>> */
 /* ============================================================

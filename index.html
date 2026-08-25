@@ -415,6 +415,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
    ============================================================ */
 [hidden]{display:none!important}          /* the splash sets display:flex — hidden must still win */
 :root{
+  --float-gutter:60px;    /* reserved column the language control lives in — see below */
   --night:#07090B;        /* the invitation's ground: the poster is near-black edge to edge */
   --night-2:#0B0E11;
   --crest:clamp(74px,12.5vw,124px);
@@ -447,15 +448,31 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
   padding:clamp(10px,2.2vh,26px) 0 34px;opacity:0;transition:opacity .32s ease}
 .open-splash.on{opacity:1}
 @media (prefers-reduced-motion: reduce){.open-splash{transition:none}}
+@media(min-width:900px){.open-x{position:fixed;right:8px}}
 .open-splash::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
   background:radial-gradient(120% 62% at 50% 4%,rgba(150,110,50,.2),rgba(7,9,11,0) 62%)}
 .open-panel{--pad:clamp(12px,2vw,20px);position:relative;z-index:2;width:min(980px,100%);margin:auto;padding:0 var(--pad)}
-.open-lang{position:fixed;top:10px;left:10px;z-index:6;border-color:rgba(231,192,121,.45);
+/* Same rule here: the language control only floats where the panel has a gutter for
+   it. Narrower than that it sits in the flow at the top of the invitation and again
+   beside "Continue to the website", so it is reachable at both ends without ever
+   being laid over the words. */
+.open-lang{position:absolute;top:10px;left:10px;z-index:6;border-color:rgba(231,192,121,.45);
   background:rgba(7,9,11,.88);backdrop-filter:blur(6px)}
-.open-lang button{color:#E4D3B4;border-right-color:rgba(231,192,121,.32);min-height:40px;min-width:40px}
+.open-lang button{color:#E4D3B4;border-right-color:rgba(231,192,121,.32);min-height:44px;min-width:44px}
 .open-lang button:not([aria-pressed="true"]):hover{color:#F6DFAF}
 .open-lang button[aria-pressed="true"]{background:var(--accent-2);color:#241300;font-weight:600}
-.open-x{position:fixed;top:10px;right:10px;z-index:6;width:40px;height:40px;border-radius:50%;
+.open-lang-foot{display:inline-flex;margin:2px auto 0}
+.lang.open-lang-foot button{min-width:48px;min-height:46px;padding:8px;color:#E4D3B4}
+.lang.open-lang-foot button[aria-pressed="true"]{background:var(--accent-2);color:#241300;font-weight:600}
+.lang.open-lang-foot button:focus-visible{outline:2px solid var(--accent-1);outline-offset:-2px}
+@media(min-width:900px){
+  .open-panel{width:min(980px,calc(100vw - 2*var(--float-gutter)))}
+  .open-lang{position:fixed;left:8px;top:50%;transform:translateY(-50%);flex-direction:column;width:44px}
+  .open-lang button{border-right:0;border-bottom:1px solid rgba(231,192,121,.32)}
+  .open-lang button:last-child{border-bottom:0}
+  .open-lang-foot{display:none}
+}
+.open-x{position:absolute;top:10px;right:10px;z-index:6;width:40px;height:40px;border-radius:50%;
   border:1px solid rgba(231,192,121,.45);background:rgba(7,9,11,.88);color:var(--accent-1);
   font-size:22px;line-height:1;cursor:pointer;backdrop-filter:blur(4px)}
 .open-x:hover,.open-x:focus-visible{color:#F6DFAF;border-color:var(--accent-1);outline:none}
@@ -1072,6 +1089,11 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
           <div class="inv-place" data-i18n="open.place">Stavenisse – Zeeland</div>
         </div>
       </div>
+    </div>
+    <div class="lang open-lang-foot" role="group" aria-label="Language">
+      <button type="button" data-lang="nl" aria-pressed="true">NL</button>
+      <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      <button type="button" data-lang="de" aria-pressed="false">DE</button>
     </div>
     <button type="button" class="open-skip" id="openSkip" data-i18n="open.continue">Continue to the website</button>
   </div>
