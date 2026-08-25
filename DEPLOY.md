@@ -28,6 +28,24 @@ that wasted a lot of time and will waste yours:
 - `dig` shows `AAAA -> 100::`, Cloudflare's placeholder address. **That record is the tell**: it
   means a Worker or Pages custom domain serves the hostname, never a proxied origin.
 
+## ⚠ Internal docs must never ship as public assets
+
+`wrangler deploy` uploads **everything** in the assets directory. On 2026-08-24 this file itself
+was published to the client's domain and served at `https://www.oudkempeneetcafe.nl/DEPLOY.md`
+until it was noticed — it names the Cloudflare account and token variables, the worker name and our
+internal process. Strip internal files from the staging copy before deploying:
+
+```sh
+rm -f /tmp/cafe/site/DEPLOY.md
+printf 'DEPLOY.md\n*.md\n' > /tmp/cafe/site/.assetsignore
+```
+
+The publish snippet above already does this. **After every deploy, check that it did:**
+
+```sh
+curl -s -o /dev/null -w '%{http_code}\n' https://www.oudkempeneetcafe.nl/DEPLOY.md   # must be 404
+```
+
 ## To publish
 
 ```sh
@@ -42,7 +60,9 @@ compatibility_date = "2026-08-01"
 directory = "./site"
 not_found_handling = "404-page"
 TOML
-cd /tmp/cafe && npx --yes wrangler@latest deploy
+cd /tmp/cafe && rm -f /tmp/cafe/site/DEPLOY.md                      # never ship internal docs
+printf 'DEPLOY.md\n*.md\n' > /tmp/cafe/site/.assetsignore
+npx --yes wrangler@latest deploy
 ```
 
 Takes effect **immediately** — no cache wait. Wrangler only uploads changed files.
