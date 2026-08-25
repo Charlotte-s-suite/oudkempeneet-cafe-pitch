@@ -508,6 +508,10 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 
 /* the opening's own reservation form (reuses the site's form machinery) */
 .res-front .rf-ic{display:block;margin-bottom:12px}
+/* the modal clones this icon out of the card; without an intrinsic size it rendered
+   512px and solid black on the live site. Size + fill pinned here AND as svg attrs. */
+.rf-ic{width:52px;height:52px;display:block}
+.rf-ic svg{width:44px;height:44px;fill:none;stroke:var(--accent-3);stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
 .open-when{text-align:center;font-family:var(--serif);color:var(--accent-3);
   font-size:15px;margin:-8px 0 16px}
 </style>
@@ -1028,7 +1032,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
        DOM by the opening script once the event has passed. -->
   <form class="res-form" data-service="opening" novalidate>
     <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-    <span class="ic rf-ic" aria-hidden="true"><svg viewBox="0 0 44 44"><path d="M8 13h28v18H8zM8 14l14 10 14-10"/></svg></span>
+    <span class="ic rf-ic" aria-hidden="true"><svg width="44" height="44" viewBox="0 0 44 44"><path d="M8 13h28v18H8zM8 14l14 10 14-10"/></svg></span>
     <div class="fk" data-i18n="open.fk">Aanmelding opening</div>
     <h3 data-i18n="svc.opening.t">Aanmelden voor de opening</h3>
     <p class="open-when"><span data-i18n="open.date">5 September 2026</span> · <span data-i18n="open.time">17.00 – 23.00 hrs</span></p>
