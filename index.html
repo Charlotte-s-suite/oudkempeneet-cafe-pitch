@@ -1028,62 +1028,71 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
              alt="Eetcafé Oud Kempen — Stavenisse, Zeeland">
       </div>
       <div class="inv-body">
-        <span class="inv-kicker" data-i18n="open.kicker">Invitation</span>
-        <span class="inv-script" data-i18n="open.script">to our grand opening celebration!</span>
+        <span class="inv-kicker" data-i18n="open.kicker">Uitnodiging</span>
+        <span class="inv-script" data-i18n="open.script">voor ons knallende openingsfeest!</span>
         <div class="inv-rule"><i></i><s></s><i></i></div>
-        <h2 class="inv-h" id="openSplashT" data-i18n="open.h">Eetcafé Oud Kempen officially opens its doors!</h2>
-        <p class="inv-lede" data-i18n="open.body">After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!</p>
+        <h2 class="inv-h" id="openSplashT" data-i18n="open.h">Eetcafé Oud Kempen opent feestelijk zijn deuren!</h2>
+        <p class="inv-lede" data-i18n="open.body">Na alle voorbereidingen is het eindelijk zover – en dat willen we heel graag samen met jullie vieren! Wij nodigen familie, vrienden, kennissen en natuurlijk onze nieuwe dorps- en eilandbewoners van harte uit.</p>
 
         <div class="inv-grid3">
           <div class="inv-box inv-when">
-            <div class="inv-day" data-i18n="open.day">Saturday</div>
-            <div class="inv-date" data-i18n="open.date">5 September 2026</div>
+            <div class="inv-day" data-i18n="open.day">Zaterdag</div>
+            <div class="inv-date" data-i18n="open.date">5 september 2026</div>
             <div class="inv-rule sm"><i></i><s></s><i></i></div>
-            <div class="inv-time" data-i18n="open.time">17.00 – 23.00 hrs</div>
+            <div class="inv-time" data-i18n="open.time">17.00 – 23.00 uur</div>
           </div>
+          <!-- The bullet list is NOT the same in every language. The Dutch poster gives
+               "Alcoholvrij alternatief mogelijk" its own bullet instead of a sub-line, and
+               has no munten bullet at all — munten appear only in the box. data-langs says
+               which languages each row belongs to; applyLang() does the rest. Defaults are
+               Dutch, matching <html lang="nl">, so the no-JS render is coherent. -->
           <ul class="inv-what">
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l-1.6 6.2a4 4 0 01-3.4 3H12a4 4 0 01-3.4-3zM12 13.2V20M9 20h6"/></svg>
-              <span><span class="t" data-i18n="open.b1">1 free low-alcoholic drink per person</span><span class="s" data-i18n="open.b1s">Non-alcoholic alternative available</span></span>
+              <span><span class="t" data-i18n="open.b1">1 gratis zwak alcoholisch drankje per persoon</span><span class="s" data-langs="en de" data-i18n="open.b1s" hidden>Non-alcoholic alternative available</span></span>
+            </li>
+            <li data-langs="nl">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15h16a8 8 0 00-16 0zM3 18h18M9 15c0-3 1.5-5 3-5"/></svg>
+              <span class="t" data-i18n="open.b1s">Alcoholvrij alternatief mogelijk</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 15h16a8 8 0 00-16 0zM3 18h18M9 15c0-3 1.5-5 3-5"/></svg>
-              <span class="t" data-i18n="open.b2">Delicious bites</span>
+              <span class="t" data-i18n="open.b2">Lekkere hapjes</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V6l10-2v12"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="16" r="2"/></svg>
-              <span class="t" data-i18n="open.b3">Live music</span>
+              <span class="t" data-i18n="open.b3">Live muziek</span>
             </li>
-            <li>
+            <li data-langs="en de" hidden>
               <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="7" ry="2.6"/><path d="M5 7v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7M5 11v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg>
-              <span class="t" data-i18n="open.b4">Token system</span>
+              <span class="t" data-i18n="open.b4">Munten-systeem</span>
             </li>
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6l1.4 1.4M17 17l1.4 1.4M18.4 5.6L17 7M7 17l-1.4 1.4"/></svg>
-              <span class="t" data-i18n="open.b5">Hopefully nice weather</span>
+              <span class="t" data-i18n="open.b5">Hopelijk mooi weer</span>
             </li>
           </ul>
           <div class="inv-box">
-            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="7" ry="2.6"/><path d="M5 7v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7M5 11v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg><span data-i18n="open.tok.t">Token system</span></h3>
-            <p data-i18n="open.tok.p">During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.</p>
+            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="7" ry="2.6"/><path d="M5 7v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7M5 11v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg><span data-i18n="open.tok.t">Munten-systeem</span></h3>
+            <p data-i18n="open.tok.p">Tijdens het feest werken wij met consumptiemunten, die ter plaatse verkrijgbaar zijn. De munten zijn geldig bij Eetcafé Oud Kempen tot en met 31 oktober 2026.</p>
           </div>
         </div>
 
         <div class="inv-grid2">
           <div class="inv-box inv-reg">
-            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-i18n="open.reg.t">Please register</span></h3>
-            <p data-i18n="open.reg.p">So that we can prepare well, please let us know if you will be joining us.</p>
+            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-i18n="open.reg.t">Aanmelden graag!</span></h3>
+            <p data-i18n="open.reg.p">Om ons goed voor te bereiden, horen wij graag of jullie erbij zijn.</p>
           <button type="button" class="btn btn-gold inv-cta" data-open="opening" data-i18n="open.cta">Register</button>
           </div>
           <div class="inv-box">
-            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M2 9h20v4H2zM12 9v12M12 9S9.5 3.5 7 5.5 9 9 12 9zM12 9s2.5-5.5 5-3.5S15 9 12 9z"/></svg><span data-i18n="open.gift.t">A gift?</span></h3>
-            <p data-i18n="open.gift.p1">Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.</p>
-            <p data-i18n="open.gift.p2">We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.</p>
+            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M2 9h20v4H2zM12 9v12M12 9S9.5 3.5 7 5.5 9 9 12 9zM12 9s2.5-5.5 5-3.5S15 9 12 9z"/></svg><span data-i18n="open.gift.t">Een cadeau?</span></h3>
+            <p data-i18n="open.gift.p1">Niet verplicht! Jullie aanwezigheid is voor ons het mooiste geschenk. Wilt u ons toch iets geven, dan waarderen wij een geldcadeau.</p>
+            <p data-i18n="open.gift.p2">Wij schenken 10% van alle geldcadeaus aan een goed doel in Stavenisse of Tholen en leggen daar zelf nog eens 10% bovenop.</p>
           </div>
         </div>
 
         <div class="inv-sign">
-          <p class="inv-close" data-i18n="open.close">We look forward to an unforgettable evening with you!</p>
+          <p class="inv-close" data-i18n="open.close">Wij kijken uit naar een onvergetelijke avond met jullie!</p>
           <div class="inv-team" data-i18n="open.team">Team Eetcafé Oud Kempen</div>
           <div class="inv-rule wide"><i></i><s></s><i></i></div>
           <div class="inv-place" data-i18n="open.place">Stavenisse – Zeeland</div>
@@ -1338,7 +1347,7 @@ const I18N = {
        translated, as is every field label in the form, which reuses the
        site's existing res.l.* keys.
        ----------------------------------------------------------------------- */
-    "open.kicker":"Invitation","open.script":"to our grand opening celebration!","open.h":"Eetcafé Oud Kempen officially opens its doors!","open.body":"After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!","open.day":"Saturday","open.date":"5 September 2026","open.time":"17.00 – 23.00 hrs","open.b1":"1 free low-alcoholic drink per person","open.b1s":"Non-alcoholic alternative available","open.b2":"Delicious bites","open.b3":"Live music","open.b4":"Token system","open.b5":"Hopefully nice weather","open.tok.t":"Token system","open.tok.p":"During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.","open.reg.t":"Please register","open.reg.p":"So that we can prepare well, please let us know if you will be joining us.","open.gift.t":"A gift?","open.gift.p1":"Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.","open.gift.p2":"We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.","open.close":"We look forward to an unforgettable evening with you!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
+    "open.kicker":"Uitnodiging","open.script":"voor ons knallende openingsfeest!","open.h":"Eetcafé Oud Kempen opent feestelijk zijn deuren!","open.body":"Na alle voorbereidingen is het eindelijk zover – en dat willen we heel graag samen met jullie vieren! Wij nodigen familie, vrienden, kennissen en natuurlijk onze nieuwe dorps- en eilandbewoners van harte uit.","open.day":"Zaterdag","open.date":"5 september 2026","open.time":"17.00 – 23.00 uur","open.b1":"1 gratis zwak alcoholisch drankje per persoon","open.b1s":"Alcoholvrij alternatief mogelijk","open.b2":"Lekkere hapjes","open.b3":"Live muziek","open.b4":"Munten-systeem","open.b5":"Hopelijk mooi weer","open.tok.t":"Munten-systeem","open.tok.p":"Tijdens het feest werken wij met consumptiemunten, die ter plaatse verkrijgbaar zijn. De munten zijn geldig bij Eetcafé Oud Kempen tot en met 31 oktober 2026.","open.reg.t":"Aanmelden graag!","open.reg.p":"Om ons goed voor te bereiden, horen wij graag of jullie erbij zijn.","open.gift.t":"Een cadeau?","open.gift.p1":"Niet verplicht! Jullie aanwezigheid is voor ons het mooiste geschenk. Wilt u ons toch iets geven, dan waarderen wij een geldcadeau.","open.gift.p2":"Wij schenken 10% van alle geldcadeaus aan een goed doel in Stavenisse of Tholen en leggen daar zelf nog eens 10% bovenop.","open.close":"Wij kijken uit naar een onvergetelijke avond met jullie!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
     "open.cta":"Aanmelden","open.continue":"Verder naar de website","open.ribbon":"Grote opening · zaterdag 5 september","open.ribbon.cta":"Bekijk de uitnodiging","open.fk":"Aanmelding opening","svc.opening.t":"Aanmelden voor de opening","open.note2":"Wij noteren u op de gastenlijst voor 5 september.","open.past.t":"De opening heeft plaatsgevonden","open.past.p":"Bedankt aan iedereen die erbij was. Oud-Kempen Eetcafé is 7 dagen per week open.","open.past.cta":"Naar de website","open.title":"Grote opening · zaterdag 5 september 2026",
     "prov":"Website door Merritt Digital"
   },
@@ -1438,7 +1447,7 @@ const I18N = {
        translated, as is every field label in the form, which reuses the
        site's existing res.l.* keys.
        ----------------------------------------------------------------------- */
-    "open.kicker":"Invitation","open.script":"to our grand opening celebration!","open.h":"Eetcafé Oud Kempen officially opens its doors!","open.body":"After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!","open.day":"Saturday","open.date":"5 September 2026","open.time":"17.00 – 23.00 hrs","open.b1":"1 free low-alcoholic drink per person","open.b1s":"Non-alcoholic alternative available","open.b2":"Delicious bites","open.b3":"Live music","open.b4":"Token system","open.b5":"Hopefully nice weather","open.tok.t":"Token system","open.tok.p":"During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.","open.reg.t":"Please register","open.reg.p":"So that we can prepare well, please let us know if you will be joining us.","open.gift.t":"A gift?","open.gift.p1":"Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.","open.gift.p2":"We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.","open.close":"We look forward to an unforgettable evening with you!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
+    "open.kicker":"Einladung","open.script":"zur großen Eröffnungsfeier!","open.h":"Eetcafé Oud Kempen öffnet feierlich seine Türen!","open.body":"Nach all den Vorbereitungen ist es endlich so weit – und das möchten wir sehr gerne gemeinsam mit euch feiern! Wir laden herzlich ein: Familie, Freunde, Bekannte und natürlich unsere neuen Dorf- und Inselbewohner!","open.day":"Samstag","open.date":"5. September 2026","open.time":"17.00 – 23.00 Uhr","open.b1":"1 gratis schwach alkoholisches Getränk pro Person","open.b1s":"Alkoholfreie Alternative möglich","open.b2":"Leckere Häppchen","open.b3":"Live-Musik","open.b4":"Münzen-System","open.b5":"Hoffentlich schönes Wetter","open.tok.t":"Münzen-System","open.tok.p":"Während der Feier arbeiten wir mit Verzehrmünzen, die vor Ort erhältlich sind. Die Münzen sind im Eetcafé Oud Kempen gültig bis 31. Oktober 2026.","open.reg.t":"Bitte anmelden","open.reg.p":"Damit wir uns gut vorbereiten können, gebt uns bitte Bescheid, ob ihr dabei seid.","open.gift.t":"Ein Geschenk?","open.gift.p1":"Nicht verpflichtet! Eure Anwesenheit ist das schönste Geschenk. Wenn ihr uns dennoch etwas schenken möchtet, freuen wir uns über ein Geldgeschenk.","open.gift.p2":"Wir spenden 10% aller Geldgeschenke an einen guten Zweck in Stavenisse oder Tholen und legen selbst noch einmal 10% oben drauf.","open.close":"Wir freuen uns auf einen unvergesslichen Abend mit euch!","open.team":"Team Eetcafé Oud Kempen","open.place":"Stavenisse – Zeeland",
     "open.cta":"Anmelden","open.continue":"Weiter zur Website","open.ribbon":"Große Eröffnung · Samstag, 5. September","open.ribbon.cta":"Einladung ansehen","open.fk":"Anmeldung Eröffnung","svc.opening.t":"Für die Eröffnung anmelden","open.note2":"Wir setzen Sie auf die Gästeliste für den 5. September.","open.past.t":"Die Eröffnung hat stattgefunden","open.past.p":"Danke an alle, die dabei waren. Oud-Kempen Eetcafé ist 7 Tage die Woche geöffnet.","open.past.cta":"Zur Website","open.title":"Große Eröffnung · Samstag, 5. September 2026",
     "prov":"Website von Merritt Digital"
   }
@@ -1450,6 +1459,13 @@ function applyLang(lang){
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const k = el.getAttribute('data-i18n');
     if(dict[k]!=null) el.textContent = dict[k];
+  });
+  /* Rows that belong to particular languages only. The client's Dutch invitation has a
+     structurally different bullet list from his English and German ones: the alcohol-free
+     alternative is its own bullet rather than a sub-line, and there is no munten bullet.
+     We render each language's list as printed rather than forcing one shared shape. */
+  document.querySelectorAll('[data-langs]').forEach(el=>{
+    el.hidden = el.getAttribute('data-langs').split(/\s+/).indexOf(lang) === -1;
   });
   document.documentElement.lang = HTML_LANG[lang] || 'nl';
   document.querySelectorAll('.lang button').forEach(b=>{
