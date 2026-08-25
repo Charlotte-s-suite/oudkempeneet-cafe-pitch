@@ -472,12 +472,9 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 /* overflow-x:clip contains the string lights, which are deliberately wider than the
    column; without it they widen the document and break the three-viewport law */
 .inv-top{position:relative;padding-top:calc(var(--crest) * .52);overflow-x:clip}
-/* Full width, never wider: the SVG already crops horizontally (preserveAspectRatio
-   slice), so it reads as a full-bleed run of lights without laying out past the
-   column — which is what widened the document and broke the width law. */
-.inv-lights{position:absolute;top:0;left:0;right:0;width:100%;
-  height:clamp(52px,8vw,92px);pointer-events:none;z-index:1;opacity:.92}
-.inv-lights svg{display:block;width:100%;height:100%}
+/* The string lights used to be an SVG band across the top of the photo, so they
+   scrolled away and the rest of the page was confetti on black. They now live in the
+   shared .gold-field canvas, swagging the whole way down behind the content. */
 .inv-photo{position:relative;aspect-ratio:16/8;overflow:hidden;z-index:1}
 @media(max-width:560px){.inv-photo{aspect-ratio:16/10}}
 .inv-photo img{width:100%;height:100%;object-fit:cover}
@@ -1006,7 +1003,6 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     </div>
     <button type="button" class="open-x" id="openX" aria-label="Sluiten">&times;</button>
     <div class="inv">
-      <div class="inv-lights" aria-hidden="true"><svg class="lights" viewBox="0 0 1200 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="bg1"><stop offset="0" stop-color="#FFE6AE" stop-opacity=".95"/><stop offset=".45" stop-color="#E8B863" stop-opacity=".35"/><stop offset="1" stop-color="#E8B863" stop-opacity="0"/></radialGradient></defs><path d="M-30 6 Q300 104 620 40 Q940 -16 1230 52" fill="none" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1.1"/><circle cx="4.7" cy="23.6" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M6.6 16.4l-1.2 4.3" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="4.7" cy="23.6" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="78.1" cy="41.5" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M79.7 34.2l-1.0 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="78.1" cy="41.5" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="151.4" cy="55.3" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M152.6 47.9l-0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="151.4" cy="55.3" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="224.4" cy="65.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M225.2 57.7l-0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="224.4" cy="65.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="297.1" cy="71.0" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M297.5 63.5l-0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="297.1" cy="71.0" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="369.6" cy="72.8" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M369.6 65.3l0.0 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="369.6" cy="72.8" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="441.9" cy="70.5" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M441.5 63.1l0.3 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="441.9" cy="70.5" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="513.9" cy="64.3" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M513.1 56.8l0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="513.9" cy="64.3" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="585.7" cy="54.0" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M584.4 46.6l0.8 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="585.7" cy="54.0" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="656.6" cy="41.6" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M655.5 34.2l0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="656.6" cy="41.6" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="726.7" cy="32.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M725.8 24.8l0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="726.7" cy="32.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="796.0" cy="25.9" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M795.5 18.5l0.3 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="796.0" cy="25.9" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="864.5" cy="22.7" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M864.4 15.2l0.1 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="864.5" cy="22.7" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="932.4" cy="22.5" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M932.5 15.0l-0.1 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="932.4" cy="22.5" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="999.4" cy="25.3" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M999.9 17.9l-0.3 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="999.4" cy="25.3" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="1065.7" cy="31.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M1066.6 23.8l-0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="1065.7" cy="31.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="1131.3" cy="40.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M1132.5 32.8l-0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="1131.3" cy="40.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="1196.1" cy="52.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M1197.7 44.8l-0.9 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="1196.1" cy="52.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><path d="M-30 64 Q260 150 560 96 Q880 44 1230 110" fill="none" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1.1"/><circle cx="4.4" cy="81.5" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M6.3 74.2l-1.2 4.3" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="4.4" cy="81.5" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="77.6" cy="98.7" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M79.1 91.3l-0.9 4.4" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="77.6" cy="98.7" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="151.2" cy="111.5" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M152.2 104.1l-0.6 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="151.2" cy="111.5" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="225.0" cy="119.9" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M225.7 112.5l-0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="225.0" cy="119.9" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="299.2" cy="124.0" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M299.4 116.5l-0.1 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="299.2" cy="124.0" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="373.7" cy="123.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M373.5 116.1l0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="373.7" cy="123.6" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="448.5" cy="118.8" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M447.9 111.3l0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="448.5" cy="118.8" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="523.7" cy="109.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M522.5 102.2l0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="523.7" cy="109.6" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="601.1" cy="97.4" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M600.1 90.0l0.6 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="601.1" cy="97.4" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="681.7" cy="88.1" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M681.1 80.6l0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="681.7" cy="88.1" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="763.3" cy="82.5" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M762.9 75.0l0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="763.3" cy="82.5" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="845.8" cy="80.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M845.7 73.1l0.0 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="845.8" cy="80.6" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="929.2" cy="82.3" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M929.5 74.8l-0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="929.2" cy="82.3" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="1013.5" cy="87.7" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M1014.2 80.3l-0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="1013.5" cy="87.7" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="1098.9" cy="96.8" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M1099.8 89.4l-0.6 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="1098.9" cy="96.8" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="1185.1" cy="109.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M1186.4 102.2l-0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="1185.1" cy="109.6" r="3.1" fill="#FFE1A0" opacity="0.84"/></svg></div>
       <div class="inv-top">
         <div class="inv-photo">
           <img src="assets/terrace.webp" width="1200" height="653" alt="Het terras van Oud-Kempen op een zonnige dag" loading="lazy">
@@ -1859,7 +1855,7 @@ function goldField(canvas){
 
   var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var W=0, H=0, DPR=1, parts=[], sprites=null, raf=0, last=0, running=false;
-  var lastW=0, lastH=0;
+  var lastW=0, lastH=0, lights=null, clock=0;
   var slowFrames=0, tier=0;            // 0 full, 1 reduced, 2 frozen
 
   function makeSprite(draw, size){
@@ -1906,6 +1902,103 @@ function goldField(canvas){
     var e = Math.min(1, Math.abs(x - W*0.5)/quiet());
     return 0.34 + 0.66*Math.pow(e,1.25);
   }
+  /* ---------------------------------------------------------------------------
+     Festoon lights. They belong in this layer, not the DOM: one canvas, one loop,
+     one perf budget, and they persist the whole way down the page instead of
+     scrolling away with the photo.
+
+     The wire is STATIC, so a whole row of it is pre-rendered once into a tile and
+     stamped with drawImage; only the bulbs are dynamic, and a bulb is a choice
+     between three pre-rendered brightness sprites plus a cheap alpha. No per-frame
+     shadows, filters or path building.
+     --------------------------------------------------------------------------- */
+  function buildLights(){
+    var rowH   = W<560 ? 200 : (W<900 ? 240 : 270);
+    var perRow = W<560 ? 6   : (W<900 ? 8   : 10);
+    function bulbSprite(r,glow,core){
+      return makeSprite(function(g,sz){
+        var h=sz/2, gr=g.createRadialGradient(h,h,0,h,h,h);
+        gr.addColorStop(0,'rgba(255,244,214,'+core+')');
+        gr.addColorStop(.22,'rgba(255,224,164,'+(glow*0.8)+')');
+        gr.addColorStop(.55,'rgba(232,184,99,'+(glow*0.28)+')');
+        gr.addColorStop(1,'rgba(212,160,80,0)');
+        g.fillStyle=gr; g.fillRect(0,0,sz,sz);
+      }, r*2);
+    }
+    /* two sag shapes, alternated by row, so the repeat never reads as a pattern */
+    function shape(v){
+      return v===0 ? [[-0.04,0.10],[0.30,0.86],[0.62,0.34],[1.04,0.72]]
+                   : [[-0.04,0.56],[0.26,0.96],[0.58,0.20],[1.04,0.44]];
+    }
+    function qy(p0,p1,p2,t){ return (1-t)*(1-t)*p0+2*(1-t)*t*p1+t*t*p2; }
+    var tiles=[], bulbs=[];
+    for(var v=0; v<2; v++){
+      var pts=shape(v), th=rowH*0.9;
+      var tile=document.createElement('canvas');
+      tile.width=Math.max(1,Math.round(W*DPR)); tile.height=Math.max(1,Math.round(th*DPR));
+      var g=tile.getContext('2d'); g.setTransform(DPR,0,0,DPR,0,0);
+      g.strokeStyle='rgba(150,132,94,.55)'; g.lineWidth=1.1; g.beginPath();
+      var i,t,x,y;
+      for(i=0;i<pts.length-1;i++){
+        var a=pts[i], b=pts[i+1], mx=(a[0]+b[0])/2;
+        if(i===0) g.moveTo(a[0]*W, a[1]*th*0.7+th*0.08);
+        g.quadraticCurveTo(mx*W, (a[1]+ (b[1]-a[1])*1.35)*th*0.7+th*0.08, b[0]*W, b[1]*th*0.7+th*0.08);
+      }
+      g.stroke();
+      /* Fade the wire across the reading column, baked into the tile so it costs
+         nothing at runtime. A hairline running through the headline and the closing
+         script lines was the one place the strings crowded the words. */
+      g.globalCompositeOperation='destination-in';
+      var lg=g.createLinearGradient(0,0,W,0);
+      lg.addColorStop(0,'rgba(0,0,0,1)'); lg.addColorStop(.28,'rgba(0,0,0,.20)');
+      lg.addColorStop(.72,'rgba(0,0,0,.20)'); lg.addColorStop(1,'rgba(0,0,0,1)');
+      g.fillStyle=lg; g.fillRect(0,0,W,th);
+      g.globalCompositeOperation='source-over';
+      tiles.push(tile);
+      var row=[];
+      for(i=0;i<perRow;i++){
+        t=(i+0.5)/perRow;
+        var seg=Math.min(pts.length-2, Math.floor(t*(pts.length-1)));
+        var lt=(t*(pts.length-1))-seg;
+        var p0=pts[seg], p2=pts[seg+1];
+        var p1y=(p0[1]+(p2[1]-p0[1])*1.35);
+        x=p0[0]*W + (p2[0]-p0[0])*W*lt;
+        y=qy(p0[1],p1y,p2[1],lt)*th*0.7+th*0.08 + 7;
+        row.push({x:x, y:y, ph:Math.random()*Math.PI*2, sp:0.22+Math.random()*0.5,
+                  sz:(i%3===0?1:0)});
+      }
+      bulbs.push(row);
+    }
+    lights={rowH:rowH, th:rowH*0.9, tiles:tiles, bulbs:bulbs,
+            sp:[bulbSprite(9,.55,.75), bulbSprite(12,.8,.95), bulbSprite(16,1,1)]};
+  }
+
+  function drawLights(t, moving){
+    if(!lights) return;
+    var rowH=lights.rowH;
+    var drift = ((window.pageYOffset||0)*0.12) % rowH;      /* a slow parallax as you scroll */
+    var rows = Math.ceil(H/rowH)+2;
+    var r,i,b,row,y,ph,lit,lvl;
+    ctx.globalAlpha=0.85;
+    for(r=-1;r<rows;r++) ctx.drawImage(lights.tiles[(r%2+2)%2], 0, r*rowH - drift, W, lights.th);
+    var step = (tier===1) ? 2 : 1;                          /* struggling: fewer bulbs */
+    for(r=-1;r<rows;r++){
+      row=lights.bulbs[(r%2+2)%2];
+      for(i=0;i<row.length;i+=step){
+        b=row[i];
+        y = r*rowH - drift + b.y;
+        if(y<-30 || y>H+30) continue;
+        /* out of phase per bulb AND per row, so nothing reads as a chase or a blink */
+        lit = moving ? (0.5+0.5*Math.sin(t*b.sp + b.ph + r*1.7)) : 0.72;
+        lvl = lit<0.34 ? 0 : (lit<0.72 ? 1 : 2);
+        ctx.globalAlpha = (0.30+0.62*lit) * legible(b.x);
+        var img=lights.sp[lvl];
+        ctx.drawImage(img, b.x-img.width/2, y-img.height/2);
+      }
+    }
+    ctx.globalAlpha=1;
+  }
+
   function count(){
     var base = Math.round((W*H)/15000);
     var cap  = W<560 ? 30 : (W<900 ? 52 : 78);
@@ -1949,6 +2042,7 @@ function goldField(canvas){
     canvas.width=Math.round(W*DPR); canvas.height=Math.round(H*DPR);   /* clears the bitmap */
     ctx.setTransform(DPR,0,0,DPR,0,0);
     if(!sprites) sprites=buildSprites();
+    buildLights();
     if(reseed || !parts.length){ seed(); }
     else if(oldW>0 && oldH>0){
       var sx=W/oldW, sy=H/oldH;
@@ -1969,6 +2063,8 @@ function goldField(canvas){
   }
   function draw(dt){
     ctx.clearRect(0,0,W,H);
+    /* behind the confetti, and the whole layer is already behind the content */
+    drawLights(clock, !reduce && tier<2);
     for(var i=0;i<parts.length;i++){
       var p=parts[i];
       if(dt){
@@ -1996,6 +2092,7 @@ function goldField(canvas){
   function frame(now){
     raf=0;
     var dt=last? Math.min((now-last)/1000, 0.05) : 0.016;
+    clock = now/1000;
     if(last && (now-last) > 34){ if(++slowFrames > 45) downshift(); } else if(slowFrames) slowFrames--;
     last=now;
     draw(dt);
