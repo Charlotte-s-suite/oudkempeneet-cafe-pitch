@@ -410,101 +410,178 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
 /* ============================================================
    GRAND OPENING — 5 September 2026. Auto-expiring; see the
    "GRAND OPENING" script block at the foot of this file.
-   Gold-on-dark register, taken from the printed invitation and
-   the site's own espresso band (--field-deep + brass).
+   Built from the printed invitation (assets in the studio tenant folder).
+   Generated from shared sources by tools/gen.py — edit those, not this.
    ============================================================ */
 [hidden]{display:none!important}          /* the splash sets display:flex — hidden must still win */
+:root{
+  --night:#07090B;        /* the invitation's ground: the poster is near-black edge to edge */
+  --night-2:#0B0E11;
+  --crest:clamp(74px,12.5vw,124px);
+  --script:"OK Script","Snell Roundhand","Apple Chancery","Segoe Script",cursive;
+}
+/* One display face, for the two calligraphic lines only. Self-hosted and subset to
+   120 glyphs (English + every Dutch/German diacritic) so it stays ~23KB and so the
+   client's visitors are never handed to a third-party font CDN. SIL Open Font
+   License 1.1 — see assets/script-font-OFL.txt. */
+@font-face{
+  font-family:"OK Script";
+  src:url("assets/script.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+  unicode-range:U+0020-007E,U+00A0-00FF,U+2013-2014,U+2018-2019,U+201C-201D,U+2026;
+}
 
 /* ---------- ribbon (stays after the splash is dismissed) ---------- */
-.open-ribbon{background:linear-gradient(180deg,var(--field-deep),var(--field-deep-2));
-  border-bottom:1px solid rgba(231,192,121,.28);color:var(--paper-on-dark)}
+.open-ribbon{background:linear-gradient(180deg,var(--night-2),var(--night));
+  border-bottom:1px solid rgba(212,168,94,.3);color:var(--paper-on-dark)}
 .open-ribbon-in{max-width:1080px;margin:0 auto;padding:11px 22px;display:flex;flex-wrap:wrap;
   align-items:center;justify-content:center;gap:8px 16px;text-align:center}
-.open-ribbon .orb-t{font-family:var(--serif);font-size:clamp(14px,3vw,17px);letter-spacing:.03em;color:#F6ECDA}
+.open-ribbon .orb-t{font-family:var(--serif);font-size:clamp(14px,3vw,17px);letter-spacing:.03em;color:#F3E7CE}
 .open-ribbon .orb-a{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent-1);
   text-decoration:none;border-bottom:1px solid rgba(231,192,121,.5);padding:4px 0;min-height:24px}
 .open-ribbon .orb-a:hover,.open-ribbon .orb-a:focus-visible{color:#F6DFAF;border-bottom-color:var(--accent-1)}
 
-/* ---------- splash overlay ---------- */
+/* ---------- splash overlay: near-black, edge to edge, like the poster ---------- */
 .open-splash{position:fixed;inset:0;z-index:80;display:flex;align-items:flex-start;justify-content:center;
-  overflow-y:auto;-webkit-overflow-scrolling:touch;background:rgba(14,8,4,.9);
-  padding:clamp(10px,3vh,40px) 14px 40px;opacity:0;transition:opacity .32s ease}
+  overflow-y:auto;-webkit-overflow-scrolling:touch;background:var(--night);
+  padding:clamp(10px,2.2vh,26px) 0 34px;opacity:0;transition:opacity .32s ease}
 .open-splash.on{opacity:1}
 @media (prefers-reduced-motion: reduce){.open-splash{transition:none}}
-.open-panel{position:relative;width:min(760px,100%);margin:auto}
-.open-x{position:absolute;top:10px;right:10px;z-index:5;width:40px;height:40px;border-radius:50%;
-  border:1px solid rgba(231,192,121,.45);background:rgba(20,12,6,.72);color:var(--accent-1);
-  font-size:22px;line-height:1;cursor:pointer;backdrop-filter:blur(4px)}
-.open-x:hover,.open-x:focus-visible{color:#F6DFAF;border-color:var(--accent-1);outline:none}
-/* The overlay covers the nav, so the language switch has to come with it: a visitor
-   who lands here from the printed QR code must be able to change language without
-   first dismissing the invitation. Reuses the .lang markup, so the site's existing
-   handlers bind to it and keep aria-pressed in sync for free. */
-.open-lang{position:absolute;top:10px;left:10px;z-index:5;border-color:rgba(231,192,121,.45);
-  background:rgba(20,12,6,.72);backdrop-filter:blur(4px)}
+.open-splash::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(120% 62% at 50% 4%,rgba(150,110,50,.2),rgba(7,9,11,0) 62%)}
+.open-panel{--pad:clamp(12px,2vw,20px);position:relative;z-index:2;width:min(980px,100%);margin:auto;padding:0 var(--pad)}
+.open-lang{position:absolute;top:10px;left:10px;z-index:6;border-color:rgba(231,192,121,.45);
+  background:rgba(7,9,11,.74);backdrop-filter:blur(4px)}
 .open-lang button{color:#E4D3B4;border-right-color:rgba(231,192,121,.32);min-height:40px;min-width:40px}
 .open-lang button:hover{color:#F6DFAF}
 .open-lang button[aria-pressed="true"]{background:var(--accent-2);color:#241300;font-weight:600}
-.open-skip{display:block;width:100%;margin:16px auto 0;background:none;border:0;cursor:pointer;
+.open-x{position:absolute;top:10px;right:10px;z-index:6;width:40px;height:40px;border-radius:50%;
+  border:1px solid rgba(231,192,121,.45);background:rgba(7,9,11,.74);color:var(--accent-1);
+  font-size:22px;line-height:1;cursor:pointer;backdrop-filter:blur(4px)}
+.open-x:hover,.open-x:focus-visible{color:#F6DFAF;border-color:var(--accent-1);outline:none}
+.open-skip{display:block;width:100%;margin:14px auto 0;background:none;border:0;cursor:pointer;
   font-family:var(--sans);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
-  color:#C9B79C;padding:14px 8px;min-height:46px}
+  color:#9A8D77;padding:14px 8px;min-height:46px}
 .open-skip:hover,.open-skip:focus-visible{color:var(--accent-1);outline:none}
 
-/* ---------- the invitation itself (shared with opening.html) ---------- */
-.inv{background:linear-gradient(180deg,var(--field-deep),var(--field-deep-2));
-  border:1px solid rgba(231,192,121,.34);border-radius:4px;overflow:clip;padding:10px}
-.inv-photo{position:relative;aspect-ratio:16/7;overflow:clip;border-radius:2px}
-@media(max-width:560px){.inv-photo{aspect-ratio:16/9}}   /* phones: a band, not a sliver */
+/* ---------- the invitation (shared by the homepage splash and opening.html) ----------
+   Gold on near-black, matching the printed invitation Zach had made: string lights
+   across the top, the crest straddling the photo edge, the terrace shot dissolving
+   into the ground, hairline rules with a diamond, and a tight two/three-column grid. */
+.inv{position:relative;z-index:2;background:transparent;color:var(--paper-on-dark)}
+/* overflow-x:clip contains the string lights, which are deliberately wider than the
+   column; without it they widen the document and break the three-viewport law */
+.inv-top{position:relative;padding-top:calc(var(--crest) * .52);overflow-x:clip}
+/* Full width, never wider: the SVG already crops horizontally (preserveAspectRatio
+   slice), so it reads as a full-bleed run of lights without laying out past the
+   column — which is what widened the document and broke the width law. */
+.inv-lights{position:absolute;top:0;left:0;right:0;width:100%;
+  height:clamp(52px,8vw,92px);pointer-events:none;z-index:1;opacity:.92}
+.inv-lights svg{display:block;width:100%;height:100%}
+.inv-photo{position:relative;aspect-ratio:16/8;overflow:hidden;z-index:1}
+@media(max-width:560px){.inv-photo{aspect-ratio:16/10}}
 .inv-photo img{width:100%;height:100%;object-fit:cover}
-.inv-photo::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(20,12,6,.18) 0,rgba(20,12,6,.15) 45%,var(--field-deep) 100%)}
-.inv-body{padding:clamp(16px,3.4vw,30px) clamp(10px,3vw,30px) clamp(18px,3vw,28px);
-  color:var(--paper-on-dark);text-align:center;margin-top:-6px;position:relative;z-index:2}
-.inv-kicker{display:block;font-family:var(--serif);font-weight:700;color:var(--accent-1);
-  font-size:clamp(30px,8vw,54px);letter-spacing:.16em;text-indent:.16em;text-transform:uppercase;line-height:1.05}
-.inv-script{display:block;font-family:var(--serif);font-style:italic;color:#F1D9A8;
-  font-size:clamp(15px,3.4vw,23px);margin-top:6px;letter-spacing:.01em}
-.inv-rule{width:130px;height:1px;margin:16px auto 18px;
-  background:linear-gradient(90deg,transparent,var(--accent-2),transparent)}
-.inv-h{font-size:clamp(19px,4.2vw,29px);color:#F6ECDA;line-height:1.2;letter-spacing:.01em}
-.inv-lede{max-width:52ch;margin:14px auto 0;color:#CBB99E;font-size:clamp(14px,2.5vw,16px)}
+/* The photo dissolves into the ground on every edge. This has to be a MASK, not a
+   black overlay: the ground carries a warm radial wash and the confetti sits behind,
+   so painting flat black over the photo edges left a visible seam where the two
+   blacks met. Masking makes the photo genuinely transparent at the edges, and the
+   flecks drift through it the way they do on the printed invitation. */
+.inv-photo{
+  /* Two linear masks intersected, rather than one radial: a radial fades the corners
+     hard but leaves the long left and right edges at a constant partial alpha, and a
+     constant alpha down a straight edge still reads as a cut line. Intersecting a
+     vertical and a horizontal fade gives independent control of each edge. */
+  --vigY:linear-gradient(180deg,transparent 0,#000 17%,#000 63%,transparent 100%);
+  --vigX:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);
+  -webkit-mask-image:var(--vigY),var(--vigX);-webkit-mask-composite:source-in;
+  mask-image:var(--vigY),var(--vigX);mask-composite:intersect}
+/* bleed to the edge of the wrapper, as the poster bleeds to the edge of the page.
+   Each surface sets --pad to its own gutter so the bleed can never exceed it. */
+.inv-top{margin-inline:calc(-1 * var(--pad,0px))}
+@supports not ((-webkit-mask-image:radial-gradient(#000,#000)) or (mask-image:radial-gradient(#000,#000))){
+  .inv-photo::after{content:"";position:absolute;inset:-1px;pointer-events:none;
+    background:linear-gradient(180deg,var(--night) 0,rgba(7,9,11,0) 26%,rgba(7,9,11,0) 60%,var(--night) 100%)}}
+.inv-crest{position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:3;
+  width:var(--crest);height:var(--crest);border-radius:50%;
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,.6))}
 
-.inv-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px;text-align:left}
-@media(max-width:640px){.inv-grid{grid-template-columns:1fr}}
-.inv-box{border:1px solid rgba(231,192,121,.26);border-radius:4px;padding:20px 20px 18px;
-  background:rgba(231,192,121,.04)}
-.inv-box h3{font-size:16px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-1);margin-bottom:9px}
-.inv-box p{margin:0 0 9px;color:#CBB99E;font-size:14.5px;line-height:1.55}
+.inv-body{position:relative;z-index:2;margin-top:-2px;text-align:center;
+  padding:0 clamp(18px,3vw,26px) clamp(20px,3vw,30px)}
+.inv-kicker{display:block;font-family:var(--serif);font-weight:700;color:var(--accent-1);
+  font-size:clamp(31px,8.4vw,64px);letter-spacing:.15em;text-indent:.15em;text-transform:uppercase;line-height:1.02}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .inv-kicker{background-image:linear-gradient(178deg,#FBEAC0 4%,#E7C079 40%,#C08A3E 78%,#F2D79E 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}}
+.inv-script{display:block;font-family:var(--script);color:#F0D6A2;line-height:1.3;
+  font-size:clamp(23px,5.6vw,44px);margin-top:2px;padding:0 4px}
+.inv-h{font-size:clamp(19px,3.9vw,31px);color:var(--accent-1);line-height:1.16;letter-spacing:.01em;
+  margin-top:12px;font-weight:400}
+.inv-lede{max-width:56ch;margin:10px auto 0;color:#C7BCA9;font-size:clamp(13.5px,2.3vw,16px);line-height:1.5}
+
+/* ---------- hairline rule with a centred diamond ---------- */
+.inv-rule{display:flex;align-items:center;justify-content:center;gap:9px;margin:13px auto 0;
+  width:min(320px,72%)}
+.inv-rule.sm{width:min(170px,66%);margin:11px auto}
+.inv-rule.wide{width:min(430px,86%);margin:14px auto 0}
+.inv-rule i{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(212,168,94,.72))}
+.inv-rule s + i{background:linear-gradient(90deg,rgba(212,168,94,.72),transparent)}
+.inv-rule s{width:5px;height:5px;transform:rotate(45deg);background:var(--accent-2);flex:none}
+
+/* ---------- the grid ---------- */
+.inv-grid3,.inv-grid2{display:grid;gap:12px;margin-top:18px;text-align:left}
+.inv-grid2{align-items:start}
+.inv-grid3{grid-template-columns:1fr}
+.inv-grid2{grid-template-columns:1fr}
+@media(min-width:660px){
+  .inv-grid3{grid-template-columns:1fr 1fr}
+  .inv-grid3>:last-child{grid-column:1/-1}
+  .inv-grid2{grid-template-columns:1fr 1fr}
+}
+@media(min-width:940px){
+  .inv-grid3{grid-template-columns:.92fr 1.06fr .92fr}
+  .inv-grid3>:last-child{grid-column:auto}
+}
+.inv-box{border:1px solid rgba(212,168,94,.3);border-radius:5px;padding:16px 17px;
+  background:rgba(214,170,96,.035)}
+.inv-box h3{display:flex;align-items:center;gap:9px;font-size:14.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent-1);margin-bottom:8px;font-weight:700}
+.inv-box h3 .bh{width:24px;height:24px;flex:none;stroke:var(--accent-1);fill:none;stroke-width:1.3;
+  stroke-linecap:round;stroke-linejoin:round}
+.inv-box p{margin:0 0 7px;color:#C0B4A0;font-size:13.8px;line-height:1.46}
 .inv-box p:last-child{margin-bottom:0}
 
-.inv-when{display:flex;flex-direction:column;justify-content:center;text-align:center}
+.inv-when{display:flex;flex-direction:column;justify-content:center;text-align:center;padding:20px 16px}
 .inv-day{font-family:var(--serif);font-weight:700;color:var(--accent-1);
-  font-size:clamp(20px,4.6vw,28px);letter-spacing:.1em;text-indent:.1em;text-transform:uppercase;line-height:1.1}
-.inv-date{font-family:var(--serif);font-weight:700;color:#F6ECDA;font-size:clamp(17px,3.6vw,22px);margin-top:4px}
-.inv-when .inv-rule{margin:14px auto}
-.inv-time{font-family:var(--serif);font-weight:700;color:var(--accent-1);font-size:clamp(16px,3.4vw,21px);letter-spacing:.04em}
+  font-size:clamp(21px,4.4vw,30px);letter-spacing:.09em;text-indent:.09em;text-transform:uppercase;line-height:1.06}
+.inv-date{font-family:var(--serif);font-weight:700;color:#F3E7CE;font-size:clamp(16px,3.2vw,21px);margin-top:3px}
+.inv-time{font-family:var(--serif);font-weight:700;color:var(--accent-1);
+  font-size:clamp(15.5px,3vw,20px);letter-spacing:.03em}
 
-.inv-what{list-style:none;margin:0;padding:20px;display:flex;flex-direction:column;justify-content:center;gap:2px}
-.inv-what li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;
-  border-bottom:1px solid rgba(231,192,121,.14)}
+/* the bullets carry no box on the poster — dividers and a rule against the date panel */
+.inv-what{list-style:none;margin:0;padding:2px 4px;display:flex;flex-direction:column;justify-content:center}
+@media(min-width:940px){.inv-what{padding-left:20px;border-left:1px solid rgba(212,168,94,.26)}}
+.inv-what li{display:flex;align-items:flex-start;gap:11px;padding:8px 0;
+  border-bottom:1px solid rgba(212,168,94,.16)}
 .inv-what li:last-child{border-bottom:0}
-.inv-what svg{width:22px;height:22px;flex:none;margin-top:1px;stroke:var(--accent-1);fill:none;
-  stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round}
-.inv-what .t{display:block;color:#F3ECE0;font-size:14.5px;line-height:1.35}
-.inv-what .s{display:block;color:#A89478;font-size:12.5px;margin-top:3px;line-height:1.35}
+.inv-what svg{width:21px;height:21px;flex:none;margin-top:1px;stroke:var(--accent-1);fill:none;
+  stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+.inv-what .t{display:block;color:#EFE6D6;font-size:13.8px;line-height:1.32}
+.inv-what .s{display:block;color:#9A8D77;font-size:12px;margin-top:2px;line-height:1.3}
 
-/* the paper form window is light — the on-dark box colour must not follow it in */
-.inv-reg .form-window p{color:var(--muted)}
-.inv-reg{margin-top:14px;text-align:center}
-.inv-reg .inv-cta{margin-top:16px}
-.inv-reg p{max-width:46ch;margin-left:auto;margin-right:auto}
+.inv-reg{text-align:center}
+.inv-reg h3{justify-content:center}
+.inv-reg p{max-width:42ch;margin-left:auto;margin-right:auto}
+.inv-reg .inv-cta{margin-top:13px}
 
-.inv-sign{margin-top:26px}
-.inv-close{font-family:var(--serif);font-style:italic;color:var(--accent-1);
-  font-size:clamp(16px,3.4vw,22px);line-height:1.35;margin:0 auto;max-width:34ch}
-.inv-team{font-family:var(--serif);color:#F6ECDA;font-size:clamp(15px,3vw,18px);margin-top:8px}
-.inv-place{font-size:11.5px;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:#A89478;margin-top:10px}
+.inv-sign{margin-top:20px}
+.inv-close{font-family:var(--script);color:var(--accent-1);line-height:1.3;
+  font-size:clamp(22px,5vw,40px);margin:0 auto;max-width:22ch}
+.inv-team{font-family:var(--serif);color:#F3E7CE;font-size:clamp(15px,2.9vw,20px);margin-top:6px}
+.inv-place{font-size:11px;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:#9A8D77;margin-top:11px}
+
+/* the confetti layer: never interactive, never above the content */
+.gold-field{position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;display:block}
 
 /* the opening's own reservation form (reuses the site's form machinery) */
 .res-front .rf-ic{display:block;margin-bottom:12px}
@@ -861,6 +938,7 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
      any failure of the date logic leaves it invisible. Dismissible — it never blocks
      the rest of the site.                                                            -->
 <div class="open-splash" id="openSplash" role="dialog" aria-modal="true" aria-labelledby="openSplashT" hidden>
+  <canvas class="gold-field" id="openField" aria-hidden="true"></canvas>
   <div class="open-panel">
     <div class="lang open-lang" role="group" aria-label="Language">
       <button type="button" data-lang="nl" aria-pressed="true">NL</button>
@@ -869,24 +947,29 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     </div>
     <button type="button" class="open-x" id="openX" aria-label="Sluiten">&times;</button>
     <div class="inv">
-      <div class="inv-photo">
-        <img src="assets/terrace.webp" width="1200" height="653" alt="Het terras van Oud-Kempen op een zonnige dag" loading="lazy">
+      <div class="inv-lights" aria-hidden="true"><svg class="lights" viewBox="0 0 1200 120" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><radialGradient id="bg1"><stop offset="0" stop-color="#FFE6AE" stop-opacity=".95"/><stop offset=".45" stop-color="#E8B863" stop-opacity=".35"/><stop offset="1" stop-color="#E8B863" stop-opacity="0"/></radialGradient></defs><path d="M-30 6 Q300 104 620 40 Q940 -16 1230 52" fill="none" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1.1"/><circle cx="4.7" cy="23.6" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M6.6 16.4l-1.2 4.3" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="4.7" cy="23.6" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="78.1" cy="41.5" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M79.7 34.2l-1.0 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="78.1" cy="41.5" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="151.4" cy="55.3" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M152.6 47.9l-0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="151.4" cy="55.3" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="224.4" cy="65.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M225.2 57.7l-0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="224.4" cy="65.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="297.1" cy="71.0" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M297.5 63.5l-0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="297.1" cy="71.0" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="369.6" cy="72.8" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M369.6 65.3l0.0 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="369.6" cy="72.8" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="441.9" cy="70.5" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M441.5 63.1l0.3 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="441.9" cy="70.5" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="513.9" cy="64.3" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M513.1 56.8l0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="513.9" cy="64.3" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="585.7" cy="54.0" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M584.4 46.6l0.8 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="585.7" cy="54.0" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="656.6" cy="41.6" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M655.5 34.2l0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="656.6" cy="41.6" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="726.7" cy="32.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M725.8 24.8l0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="726.7" cy="32.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="796.0" cy="25.9" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M795.5 18.5l0.3 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="796.0" cy="25.9" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="864.5" cy="22.7" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M864.4 15.2l0.1 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="864.5" cy="22.7" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="932.4" cy="22.5" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M932.5 15.0l-0.1 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="932.4" cy="22.5" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="999.4" cy="25.3" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M999.9 17.9l-0.3 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="999.4" cy="25.3" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="1065.7" cy="31.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M1066.6 23.8l-0.5 4.5" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="1065.7" cy="31.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="1131.3" cy="40.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M1132.5 32.8l-0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="1131.3" cy="40.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><circle cx="1196.1" cy="52.2" r="15" fill="url(#bg1)" opacity="0.95"/><path d="M1197.7 44.8l-0.9 4.4" stroke="#7A6A4A" stroke-opacity="0.76" stroke-width="1"/><circle cx="1196.1" cy="52.2" r="3.1" fill="#FFE1A0" opacity="1.00"/><path d="M-30 64 Q260 150 560 96 Q880 44 1230 110" fill="none" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1.1"/><circle cx="4.4" cy="81.5" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M6.3 74.2l-1.2 4.3" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="4.4" cy="81.5" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="77.6" cy="98.7" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M79.1 91.3l-0.9 4.4" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="77.6" cy="98.7" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="151.2" cy="111.5" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M152.2 104.1l-0.6 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="151.2" cy="111.5" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="225.0" cy="119.9" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M225.7 112.5l-0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="225.0" cy="119.9" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="299.2" cy="124.0" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M299.4 116.5l-0.1 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="299.2" cy="124.0" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="373.7" cy="123.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M373.5 116.1l0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="373.7" cy="123.6" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="448.5" cy="118.8" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M447.9 111.3l0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="448.5" cy="118.8" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="523.7" cy="109.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M522.5 102.2l0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="523.7" cy="109.6" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="601.1" cy="97.4" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M600.1 90.0l0.6 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="601.1" cy="97.4" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="681.7" cy="88.1" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M681.1 80.6l0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="681.7" cy="88.1" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="763.3" cy="82.5" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M762.9 75.0l0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="763.3" cy="82.5" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="845.8" cy="80.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M845.7 73.1l0.0 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="845.8" cy="80.6" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="929.2" cy="82.3" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M929.5 74.8l-0.2 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="929.2" cy="82.3" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="1013.5" cy="87.7" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M1014.2 80.3l-0.4 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="1013.5" cy="87.7" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="1098.9" cy="96.8" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M1099.8 89.4l-0.6 4.5" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="1098.9" cy="96.8" r="3.1" fill="#FFE1A0" opacity="0.84"/><circle cx="1185.1" cy="109.6" r="15" fill="url(#bg1)" opacity="0.72"/><path d="M1186.4 102.2l-0.7 4.4" stroke="#7A6A4A" stroke-opacity="0.58" stroke-width="1"/><circle cx="1185.1" cy="109.6" r="3.1" fill="#FFE1A0" opacity="0.84"/></svg></div>
+      <div class="inv-top">
+        <div class="inv-photo">
+          <img src="assets/terrace.webp" width="1200" height="653" alt="Het terras van Oud-Kempen op een zonnige dag" loading="lazy">
+        </div>
+        <img class="inv-crest" src="assets/crest.webp" width="320" height="320" loading="lazy"
+             alt="Eetcafé Oud Kempen — Stavenisse, Zeeland">
       </div>
       <div class="inv-body">
         <span class="inv-kicker" data-i18n="open.kicker">Invitation</span>
         <span class="inv-script" data-i18n="open.script">to our grand opening celebration!</span>
-        <div class="inv-rule"></div>
+        <div class="inv-rule"><i></i><s></s><i></i></div>
         <h2 class="inv-h" id="openSplashT" data-i18n="open.h">Eetcafé Oud Kempen officially opens its doors!</h2>
         <p class="inv-lede" data-i18n="open.body">After all the preparations, the time has finally come — and we would love to celebrate together with you! We warmly invite our family, friends, acquaintances and of course our new village and island residents!</p>
 
-        <div class="inv-grid">
+        <div class="inv-grid3">
           <div class="inv-box inv-when">
             <div class="inv-day" data-i18n="open.day">Saturday</div>
             <div class="inv-date" data-i18n="open.date">5 September 2026</div>
-            <div class="inv-rule"></div>
+            <div class="inv-rule sm"><i></i><s></s><i></i></div>
             <div class="inv-time" data-i18n="open.time">17.00 – 23.00 hrs</div>
           </div>
-          <ul class="inv-box inv-what">
+          <ul class="inv-what">
             <li>
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4h10l-1.6 6.2a4 4 0 01-3.4 3H12a4 4 0 01-3.4-3zM12 13.2V20M9 20h6"/></svg>
               <span><span class="t" data-i18n="open.b1">1 free low-alcoholic drink per person</span><span class="s" data-i18n="open.b1s">Non-alcoholic alternative available</span></span>
@@ -908,29 +991,29 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
               <span class="t" data-i18n="open.b5">Hopefully nice weather</span>
             </li>
           </ul>
-        </div>
-
-        <div class="inv-grid">
           <div class="inv-box">
-            <h3 data-i18n="open.tok.t">Token system</h3>
+            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="7" rx="7" ry="2.6"/><path d="M5 7v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6V7M5 11v4c0 1.4 3.1 2.6 7 2.6s7-1.2 7-2.6v-4"/></svg><span data-i18n="open.tok.t">Token system</span></h3>
             <p data-i18n="open.tok.p">During the party we will be using tokens, which are available on site. The tokens are valid at Eetcafé Oud Kempen until 31 October 2026.</p>
           </div>
+        </div>
+
+        <div class="inv-grid2">
+          <div class="inv-box inv-reg">
+            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span data-i18n="open.reg.t">Please register</span></h3>
+            <p data-i18n="open.reg.p">So that we can prepare well, please let us know if you will be joining us.</p>
+          <button type="button" class="btn btn-gold inv-cta" data-open="opening" data-i18n="open.cta">Register</button>
+          </div>
           <div class="inv-box">
-            <h3 data-i18n="open.gift.t">A gift?</h3>
+            <h3><svg class="bh" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M2 9h20v4H2zM12 9v12M12 9S9.5 3.5 7 5.5 9 9 12 9zM12 9s2.5-5.5 5-3.5S15 9 12 9z"/></svg><span data-i18n="open.gift.t">A gift?</span></h3>
             <p data-i18n="open.gift.p1">Not required! Your presence is the most valuable gift to us. If you would still like to give us something, we would appreciate a monetary gift.</p>
             <p data-i18n="open.gift.p2">We will donate 10% of all monetary gifts to a good cause in Stavenisse or Tholen, and we will add another 10% ourselves.</p>
           </div>
         </div>
 
-        <div class="inv-box inv-reg">
-          <h3 data-i18n="open.reg.t">Please register</h3>
-          <p data-i18n="open.reg.p">So that we can prepare well, please let us know if you will be joining us.</p>
-          <button type="button" class="btn btn-gold inv-cta" data-open="opening" data-i18n="open.cta">Register</button>
-        </div>
-
         <div class="inv-sign">
           <p class="inv-close" data-i18n="open.close">We look forward to an unforgettable evening with you!</p>
           <div class="inv-team" data-i18n="open.team">Team Eetcafé Oud Kempen</div>
+          <div class="inv-rule wide"><i></i><s></s><i></i></div>
           <div class="inv-place" data-i18n="open.place">Stavenisse – Zeeland</div>
         </div>
       </div>
@@ -938,7 +1021,6 @@ footer .fine a{color:#D8C7AC;text-decoration:none}
     <button type="button" class="open-skip" id="openSkip" data-i18n="open.continue">Continue to the website</button>
   </div>
 </div>
-
 <!-- ============================== RESERVATION FORMS (per category) ============================== -->
 <div id="res-form-store" hidden>
   <form class="res-form" data-service="table" novalidate>
@@ -1693,6 +1775,148 @@ async function loadWeather(){
   window.addEventListener('resize', onScroll, {passive:true});
   update();
 })();
+/* >>> GOLDFIELD — generated, do not edit in place >>> */
+/* ============================================================
+   Gold confetti + bokeh — the poster's atmosphere, cheaply.
+
+   One canvas, sprites pre-rendered ONCE, then nothing per frame but
+   drawImage. No DOM, no layout reads, no filters, no shadows in the loop.
+   Particle count scales with viewport area and is hard-capped (lower on
+   phones). Device pixel ratio is capped at 1.5 — this is blurred gold, and
+   halving the fill cost matters more than sharpness.
+
+   It measures itself on the device it actually landed on: if frames run
+   long it sheds particles, and if it is still slow it freezes to a single
+   static frame rather than keep costing paint. Under prefers-reduced-motion
+   it never animates at all — one frame, then done. Pauses when the tab is
+   hidden or the canvas scrolls out of view.
+   ============================================================ */
+function goldField(canvas){
+  if(!canvas || !canvas.getContext) return;
+  var ctx;
+  try{ ctx = canvas.getContext('2d'); }catch(e){ return; }
+  if(!ctx) return;
+
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var W=0, H=0, DPR=1, parts=[], sprites=null, raf=0, last=0, running=false;
+  var slowFrames=0, tier=0;            // 0 full, 1 reduced, 2 frozen
+
+  function makeSprite(draw, size){
+    var c=document.createElement('canvas'); c.width=c.height=size;
+    draw(c.getContext('2d'), size); return c;
+  }
+  function buildSprites(){
+    function bokeh(r){
+      return makeSprite(function(g,s){
+        var h=s/2, gr=g.createRadialGradient(h,h,0,h,h,h);
+        gr.addColorStop(0,   'rgba(255,228,170,.55)');
+        gr.addColorStop(.35, 'rgba(232,184,99,.28)');
+        gr.addColorStop(.75, 'rgba(212,160,80,.08)');
+        gr.addColorStop(1,   'rgba(212,160,80,0)');
+        g.fillStyle=gr; g.fillRect(0,0,s,s);
+      }, r*2);
+    }
+    function fleck(w,h){
+      return makeSprite(function(g,s){
+        var gr=g.createLinearGradient(0,0,s,s);
+        gr.addColorStop(0,'#FFEFC6'); gr.addColorStop(.5,'#E2B463'); gr.addColorStop(1,'#B98B3C');
+        g.fillStyle=gr;
+        var x=(s-w)/2, y=(s-h)/2, r=Math.min(w,h)/2;
+        g.beginPath();
+        if(g.roundRect) g.roundRect(x,y,w,h,r); else g.rect(x,y,w,h);
+        g.fill();
+      }, Math.ceil(Math.max(w,h)*1.5));
+    }
+    return {b:[bokeh(11),bokeh(19),bokeh(29)], f:[fleck(5,12),fleck(7,17),fleck(4,9)]};
+  }
+
+  function count(){
+    var base = Math.round((W*H)/15000);
+    var cap  = W<560 ? 30 : (W<900 ? 52 : 78);
+    if(tier===1) cap = Math.round(cap*0.55);
+    return Math.max(6, Math.min(cap, base));
+  }
+  function seed(){
+    var n=count(); parts=[];
+    for(var i=0;i<n;i++){
+      var isFleck = i%4 !== 0;                 /* 3 flecks to every soft bokeh */
+      parts.push({
+        f: isFleck,
+        s: (Math.random()*3)|0,
+        x: Math.random()*W,
+        y: Math.pow(Math.random(),1.45)*H,   /* denser toward the top, as on the poster */
+        vy: (isFleck? 5+Math.random()*11 : 2+Math.random()*5),   // px per second
+        vx: (Math.random()-0.5)*7,
+        a: (isFleck? 0.42+Math.random()*0.55 : 0.22+Math.random()*0.4),
+        r: Math.random()*Math.PI*2,
+        vr: (Math.random()-0.5)*0.5,
+        p: Math.random()*Math.PI*2,          // sway phase
+        ps: 0.25+Math.random()*0.5
+      });
+    }
+  }
+  function resize(){
+    var r=canvas.getBoundingClientRect();
+    W=Math.max(1,Math.round(r.width)); H=Math.max(1,Math.round(r.height));
+    DPR=Math.min(window.devicePixelRatio||1, 1.5);
+    canvas.width=Math.round(W*DPR); canvas.height=Math.round(H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    if(!sprites) sprites=buildSprites();
+    seed(); draw(0);
+  }
+  function draw(dt){
+    ctx.clearRect(0,0,W,H);
+    for(var i=0;i<parts.length;i++){
+      var p=parts[i];
+      if(dt){
+        p.y += p.vy*dt;
+        p.x += (p.vx + Math.sin(p.p += p.ps*dt)*6)*dt;
+        p.r += p.vr*dt;
+        if(p.y > H+30){ p.y=-30; p.x=Math.random()*W; }
+        if(p.x < -30) p.x=W+30; else if(p.x > W+30) p.x=-30;
+      }
+      var img = p.f ? sprites.f[p.s] : sprites.b[p.s];
+      ctx.globalAlpha = p.a;
+      if(p.f){
+        ctx.translate(p.x,p.y); ctx.rotate(p.r);
+        ctx.drawImage(img, -img.width/2, -img.height/2);
+        ctx.setTransform(DPR,0,0,DPR,0,0);
+      } else {
+        ctx.drawImage(img, p.x-img.width/2, p.y-img.height/2);
+      }
+    }
+    ctx.globalAlpha=1;
+  }
+  function frame(now){
+    raf=0;
+    var dt=last? Math.min((now-last)/1000, 0.05) : 0.016;
+    if(last && (now-last) > 34){ if(++slowFrames > 45) downshift(); } else if(slowFrames) slowFrames--;
+    last=now;
+    draw(dt);
+    if(running) raf=requestAnimationFrame(frame);
+  }
+  /* the device told us it is struggling: shed particles once, and if that was
+     not enough, stop animating and leave the static field in place */
+  function downshift(){
+    slowFrames=0;
+    if(tier===0){ tier=1; seed(); }
+    else { tier=2; stop(); draw(0); }
+  }
+  function start(){ if(running||reduce||tier===2) return; running=true; last=0; raf=requestAnimationFrame(frame); }
+  function stop(){ running=false; if(raf) cancelAnimationFrame(raf); raf=0; }
+
+  try{
+    resize();
+    if(reduce) return;                                  // one static frame, no loop, ever
+    var rt; window.addEventListener('resize',function(){ clearTimeout(rt); rt=setTimeout(resize,180); },{passive:true});
+    document.addEventListener('visibilitychange',function(){ document.hidden? stop() : start(); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es[0].isIntersecting? start() : stop(); },{rootMargin:'80px'}).observe(canvas);
+    } else start();
+  }catch(e){ stop(); }                                  // atmosphere is never worth an exception
+}
+/* <<< GOLDFIELD <<< */
+
 /* ============================================================
    GRAND OPENING — Saturday 5 September 2026, 17.00–23.00 (Europe/Amsterdam).
    The printed invitation's QR code points at "/", so the splash lives here, on
@@ -1743,7 +1967,7 @@ async function loadWeather(){
   var xb    = document.getElementById('openX'),
       skip  = document.getElementById('openSkip'),
       modal = document.getElementById('resModal'),
-      shown = false, lastFocus = null;
+      shown = false, lastFocus = null, fieldOn = 0;
 
   function modalOpen(){ return !!(modal && modal.classList.contains('open')); }
   function seen(){ try{ return localStorage.getItem('ok-opening-seen')==='1'; }catch(e){ return false; } }
@@ -1753,6 +1977,7 @@ async function loadWeather(){
     if(shown) return; shown = true;
     lastFocus = document.activeElement;
     splash.hidden = false;
+    if(!fieldOn){ fieldOn=1; goldField(document.getElementById('openField')); }
     document.body.style.overflow = 'hidden';
     requestAnimationFrame(function(){ splash.classList.add('on'); });
     if(xb){ try{ xb.focus({preventScroll:true}); }catch(e){} }
