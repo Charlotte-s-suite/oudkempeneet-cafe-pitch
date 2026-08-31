@@ -1,0 +1,7 @@
+# Wrangler reads this from the assets directory (= repo root, per the registry deploy entry).
+# The publish procedure in DEPLOY.md writes its own copy into a temp staging dir; this one
+# exists so the guard is STRUCTURAL rather than procedural — a plain `wrangler deploy` from
+# the repo root must not put internal documents on the client's public domain.
+# DEPLOY.md was published to oudkempeneetcafe.nl once. Do not remove this file.
+*.md
+.assetsignore
