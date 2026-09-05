@@ -37,7 +37,8 @@ internal process. Strip internal files from the staging copy before deploying:
 
 ```sh
 rm -f /tmp/cafe/site/DEPLOY.md
-printf 'DEPLOY.md\n*.md\n' > /tmp/cafe/site/.assetsignore
+# Do NOT overwrite site/.assetsignore here: the committed one is the wider guard (*.md, *.json,
+# wrangler.toml, .git/, src/ …). Overwriting it with a two-line version re-opened the leak.
 ```
 
 The publish snippet above already does this. **After every deploy, check that it did:**
@@ -61,7 +62,8 @@ directory = "./site"
 not_found_handling = "404-page"
 TOML
 cd /tmp/cafe && rm -f /tmp/cafe/site/DEPLOY.md                      # never ship internal docs
-printf 'DEPLOY.md\n*.md\n' > /tmp/cafe/site/.assetsignore
+# Do NOT overwrite site/.assetsignore here: the committed one is the wider guard (*.md, *.json,
+# wrangler.toml, .git/, src/ …). Overwriting it with a two-line version re-opened the leak.
 npx --yes wrangler@latest deploy
 ```
 
