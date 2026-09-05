@@ -6,7 +6,7 @@ about publishing._
 ## ⚠ Pushing to GitHub does NOT update the live site
 
 `git push` updates the repo and rebuilds GitHub Pages at
-`https://charlotte-s-suite.github.io/oudkempeneet-cafe-pitch/`. That address is the **pitch
+`https://fullylucid.github.io/oudkempeneet-cafe-pitch/`. That address is the **pitch
 artifact**. It is *not* what the client's customers see, and for a long time the registry listed
 it as "live", which is exactly what caused the confusion.
 
