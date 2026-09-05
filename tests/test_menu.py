@@ -31,6 +31,10 @@ check(db.execute('select count(*) from menu_items').fetchone()[0]==110,'seed ide
 r=db.execute("select vat_rate,orderable from menu_items where id='d-hot-8'").fetchone(); check(r==(21,1),'D1 Irish Coffee row')
 check(db.execute("select count(*) from menu_items where orderable=0").fetchone()[0]==3,'D1 non-orderable count')
 check(db.execute("select value from settings where key='standard_wait_min'").fetchone()[0]=='45','settings seeded')
+check(db.execute("select value from settings where key='strip_contact_after_days'").fetchone()[0]=='0','retention = never (Q15 = b)')
+db.execute("insert into orders(id,public_ref,lang,subtotal_cents,vat_low_cents,vat_high_cents,total_cents,pickup_eta_min) values('o1','ABCD','nl',850,70,0,850,45)")
+db.execute("insert into order_items(order_id,line,item_id,qty,unit_price_cents,vat_rate,name_snapshot,line_note) values('o1',1,'m-start-0',1,850,9,'Soep van de dag','zonder brood')")
+check(db.execute("select line_note from order_items where order_id='o1'").fetchone()[0]=='zonder brood','line_note column (Q23 = a)')
 try: db.execute("insert into orders(id,public_ref,lang,subtotal_cents,vat_low_cents,vat_high_cents,total_cents,pickup_eta_min) values('x','ABCD','xx',1,0,0,1,45)"); check(False,'lang CHECK enforced')
 except sqlite3.IntegrityError: pass
 try: db.execute("insert into order_items(order_id,line,item_id,qty,unit_price_cents,vat_rate,name_snapshot) values('x',1,'m-start-0',21,850,9,'Soep')"); check(False,'qty<=20 CHECK enforced')

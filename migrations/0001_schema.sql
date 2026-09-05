@@ -30,10 +30,10 @@ CREATE TABLE IF NOT EXISTS orders (
   vat_low_cents   INTEGER NOT NULL,          -- 9% bucket, from that bucket's inclusive subtotal (gate cond. 6)
   vat_high_cents  INTEGER NOT NULL,          -- 21% bucket
   total_cents     INTEGER NOT NULL,
-  customer_name   TEXT,                      -- nullable: stripped by the retention sweep (Q37 default 90 days)
+  customer_name   TEXT,                      -- nullable: stripped by the retention sweep (Q15 = b: never, by ruling; the sweep honours the setting)
   customer_email  TEXT,
   customer_phone  TEXT,
-  order_note      TEXT,                      -- one note per order (Q23 = b)
+  order_note      TEXT,                      -- one note for the whole order (Q23 = a: plus line_note per item)
   pickup_eta_min  INTEGER NOT NULL,          -- standard wait at order time (Q7 = 45)
   msp_order_id    TEXT UNIQUE,               -- webhook idempotency; must match before any write (gate cond. 4)
   msp_status      TEXT,                      -- last raw MultiSafepay status seen
@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS order_items (
   unit_price_cents INTEGER NOT NULL,
   vat_rate        INTEGER NOT NULL CHECK (vat_rate IN (9,21)),
   name_snapshot   TEXT NOT NULL,             -- in the order's language
+  line_note       TEXT,                      -- per-item request (Q23 = a, ruled 2026-09-05)
   PRIMARY KEY (order_id, line)
 );
 
@@ -69,7 +70,7 @@ INSERT OR IGNORE INTO settings (key, value) VALUES
   ('last_orders_offset_min', '30'),
   ('standard_wait_min', '45'),
   ('min_order_cents', '0'),
-  ('strip_contact_after_days', '90'),
+  ('strip_contact_after_days', '0'),          -- 0 = never (Q15 = b, ruled 2026-09-05; AVG exposure flagged in RULINGS.md)
   ('cart_max_lines', '50'),
   ('cart_max_qty_per_line', '20'),
   ('cart_max_total_cents', '50000'),
